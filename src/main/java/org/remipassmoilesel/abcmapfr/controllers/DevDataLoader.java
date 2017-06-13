@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import java.util.Date;
 
@@ -18,9 +17,9 @@ import java.util.Date;
  */
 
 @Component
-public class DataLoader implements ApplicationRunner {
+public class DevDataLoader implements ApplicationRunner {
 
-    private final Logger logger = LoggerFactory.getLogger(DataLoader.class);
+    private final Logger logger = LoggerFactory.getLogger(DevDataLoader.class);
 
     @Autowired
     private VoteRepository voteRepository;
