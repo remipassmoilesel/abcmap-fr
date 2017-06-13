@@ -1,6 +1,6 @@
 package org.remipassmoilesel.abcmapfr.controllers;
 
-import org.remipassmoilesel.abcmapfr.Utils;
+import org.remipassmoilesel.abcmapfr.utils.Utils;
 import org.remipassmoilesel.abcmapfr.entities.Vote;
 import org.remipassmoilesel.abcmapfr.repositories.VoteRepository;
 import org.slf4j.Logger;

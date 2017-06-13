@@ -3,7 +3,7 @@ package org.remipassmoilesel.abcmapfr.utils;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.boot.context.event.ApplicationStartingEvent;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 
@@ -34,7 +34,7 @@ public class UpdateFilesListener implements ApplicationListener<ApplicationEvent
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
 
-        if (event instanceof ApplicationStartedEvent) {
+        if (event instanceof ApplicationStartingEvent) {
            update();
         }
 
@@ -43,7 +43,6 @@ public class UpdateFilesListener implements ApplicationListener<ApplicationEvent
     public void addPeer(Path src, Path dst) {
         peers.put(src, dst);
     }
-
 
     public void update() {
         Iterator<Path> keyIt = peers.keySet().iterator();

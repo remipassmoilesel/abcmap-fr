@@ -19,13 +19,13 @@ public class AbcmapFrApplication {
 
         mainApp = new SpringApplication(AbcmapFrApplication.class);
 
-        SpringApplication.run(AbcmapFrApplication.class, args);
-
         // listen application to update files
         UpdateFilesListener updater = new UpdateFilesListener();
         updater.addPeer(Paths.get("src/main/resources"), Paths.get("target/classes"));
 
         // first file update
         mainApp.addListeners(updater);
+
+        mainApp.run(args);
     }
 }
