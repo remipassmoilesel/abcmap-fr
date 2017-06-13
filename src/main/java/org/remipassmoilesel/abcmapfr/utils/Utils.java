@@ -1,4 +1,4 @@
-package org.remipassmoilesel.abcmapfr;
+package org.remipassmoilesel.abcmapfr.utils;
 
 import java.util.Random;
 
