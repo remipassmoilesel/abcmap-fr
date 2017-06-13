@@ -50,4 +50,11 @@ public class MainController {
         return Templates.WELCOME;
     }
 
+    @RequestMapping(value = Mappings.DOWNLOAD, method = RequestMethod.GET)
+    public String showDownload(Model model) {
+
+        Mappings.includeMappings(model);
+        return Templates.DOWNLOAD;
+    }
+
 }
