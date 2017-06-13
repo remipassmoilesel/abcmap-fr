@@ -1,18 +1,69 @@
 <!DOCTYPE HTML>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="main-decorator">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="main-decorator">
 <head>
 
-    <title>Content page example</title>
+    <title>Bienvenue</title>
 
 </head>
 <body>
 
 <div layout:fragment="header">
-    <h1>Title example</h1>
+    <h1>Bienvenue !</h1>
 </div>
 
 <div layout:fragment="content">
-    <section>Content example</section>
+    <section>
+
+        <p><b>Abc-Map est un logiciel libre de cartographie qui permet de créer, de mettre en forme et
+            d'imprimer des cartes géographiques simplement. Ce logiciel est disponible gratuitement pour
+            tous usages et fonctionne sur Windows, Linux et Mac.</b></p>
+
+        <p>Créez votre première carte rapidement grâce aux vidéos tutoriel décrivant étape par étape
+            des exemples simples. Les applications possibles sont très nombreuses:
+        </p>
+
+        <ul>
+            <li>Activités de loisirs: chasse, pêche, airsoft, découverte,</li>
+            <li>Activités sportives: randonnée, course d'orientation,</li>
+            <li>Enseignement, études,</li>
+            <li>Tourisme, animations,</li>
+            <li>Activités professionnelles,</li>
+            <li>Et bien d'autres !</li>
+        </ul>
+
+        <div style="text-align:center"><a href="http://abc-map.fr/help/">
+            D&eacute;couvrez le fonctionnement du logiciel en quelques minutes<br/>
+            grâce à la vidéo de pr&eacute;sentation</a></div>
+
+        <div style="padding: 10px; margin: auto; width: 300px; text-align: center;">
+            <a href="http://abc-map.fr/download/">Télécharger Abc-Map</a>
+            <br/>
+            <span id="downloadNumber">300 téléchargements cette semaine</span>
+        </div>
+    </section>
+
+    <section>
+        <h2>Tour d'horizon des fonctionnalit&eacute;s</h2>
+
+        <div class='functionnality' th:each="func, iter : ${functionnalities}">
+            <span th:utext="${func}"></span>
+            <div><img th:src="${'/images/functionnality' + (iter.index + 1) + '.png'}"/></div>
+        </div>
+
+        <p>Abc-Map possède d'autres fonctionnalités simples mais efficaces.
+            Alors n'hésitez pas, rendez-vous sur la page de t&eacute;l&eacute;chargement et
+            faîtes vos essais !</p>
+
+    </section>
+
+    <section>
+        Extraits de cartes utilis&eacute;s dans les illustrations:
+        <a href="http://www.openstreetmap.org" target="_blank">http://www.openstreetmap.org</a>
+        <br/>&copy; les contributeurs d'OpenStreetMap
+    </section>
+
 </div>
 
 </body>
