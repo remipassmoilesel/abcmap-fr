@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="main-decorator">
+<head>
+
+    <title>Questions fréquentes</title>
+
+</head>
+<body>
+
+<div layout:fragment="header">
+    <h1>Questions fréquentes</h1>
+</div>
+
+<div layout:fragment="content">
+
+    <section id="faqSummary">
+        <h3>Sommaire</h3>
+        <div th:each="question, iter : ${questions}">
+
+            <h4 class="title" style="margin: 8px" th:if="${#strings.isEmpty(titles.get(iter.index)) == false}"
+                th:text="${titles.get(iter.index)}"></h4>
+
+            <a class="question" th:href="${'#question' + iter.index}"
+               th:utext="${(iter.index + 1 )+ ' - ' + question}">1 - Question</a>
+
+        </div>
+    </section>
+
+    <section>
+        <div th:each="question, iter : ${questions}">
+            <a class="question" th:name="${'question' + iter.index}" 
+               th:utext="${(iter.index + 1 )+ ' - ' + question}">1 - Question</a>
+            <div class="answer" th:utext="${answers.get(iter.index)}">Réponse</div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

@@ -10,5 +10,6 @@ public class Templates {
     public static final String EXAMPLE_CONTENT = PAGES_DIR + "contentExample";
     public static final String WELCOME = PAGES_DIR + "welcome";
     public static final String DOWNLOAD = PAGES_DIR + "download";
+    public static final String FAQ = PAGES_DIR + "faq";
 
 }
