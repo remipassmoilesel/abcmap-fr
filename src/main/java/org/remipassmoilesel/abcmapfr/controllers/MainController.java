@@ -18,7 +18,7 @@ public class MainController {
 
     @RequestMapping(value = Mappings.ROOT, method = RequestMethod.GET)
     public String showIndex() {
-        return Templates.EXAMPLE_CONTENT;
+        return "redirect:" + Mappings.WELCOME;
     }
 
     @RequestMapping(value = Mappings.WELCOME, method = RequestMethod.GET)
