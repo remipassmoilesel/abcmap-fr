@@ -20,12 +20,16 @@
         _paq.push(["setDomains", ["*.abc-map.fr"]]);
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
-        (function() {
-            var u="//vps303506.ovh.net/piwik/";
-            _paq.push(['setTrackerUrl', u+'piwik.php']);
+        (function () {
+            var u = "//vps303506.ovh.net/piwik/";
+            _paq.push(['setTrackerUrl', u + 'piwik.php']);
             _paq.push(['setSiteId', '2']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript';
+            g.async = true;
+            g.defer = true;
+            g.src = u + 'piwik.js';
+            s.parentNode.insertBefore(g, s);
         })();
     </script>
 </head>
@@ -195,12 +199,13 @@
     <div id="sidebar">
         <div class="inner">
 
-            <!-- Search -->
+            <!-- Search
             <section id="search" class="alt">
                 <form method="post" action="#">
                     <input type="text" name="query" id="query" placeholder="Search"/>
                 </form>
             </section>
+            -->
 
             <!-- Menu -->
             <nav id="menu">
@@ -208,9 +213,15 @@
                     <h2>Menu</h2>
                 </header>
                 <ul>
-                    <li><a href="index.html">Homepage</a></li>
-                    <li><a href="generic.html">Generic</a></li>
-                    <li><a href="elements.html">Elements</a></li>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="generic.html">Téléchargements</a></li>
+                    <li><a href="elements.html">Question fréquentes</a></li>
+                    <li><a href="elements.html">Découvrir le projet</a></li>
+                    <li><a href="elements.html">Nouvelle version à venir</a></li>
+                    <li><a href="elements.html">Aide et tutoriels</a></li>
+                    <li><a href="elements.html">Contact</a></li>
+
+                    <!--
                     <li>
                         <span class="opener">Submenu</span>
                         <ul>
@@ -234,10 +245,11 @@
                     <li><a href="#">Maximus Erat</a></li>
                     <li><a href="#">Sapien Mauris</a></li>
                     <li><a href="#">Amet Lacinia</a></li>
+                    -->
                 </ul>
             </nav>
 
-            <!-- Section -->
+            <!-- Section
             <section>
                 <header class="major">
                     <h2>Ante interdum</h2>
@@ -260,21 +272,31 @@
                     <li><a href="#" class="button">More</a></li>
                 </ul>
             </section>
+            -->
 
             <!-- Section -->
             <section>
                 <header class="major">
-                    <h2>Get in touch</h2>
+                    <h2>Restez au courant !</h2>
                 </header>
-                <p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem
-                    ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus
-                    aliquam.</p>
+                <p>Abonnez-vous à la newsletter, pour recevoir occasionnellement des
+                    nouvelles du projet</p>
+                <ul style="list-style: none">
+                    <li>Adresse email:</li>
+                    <li><input type="text" style="width: 60%; display: inline-block; margin: 3px;"/>
+                        <input type="button" value="O.K." style="display: inline-block; margin: 3px;"/></li>
+                </ul>
+            </section>
+
+            <!-- Section -->
+            <section>
+                <header class="major">
+                    <h2>Contact</h2>
+                </header>
+                <p>Proposez une idée ou signalez une erreur directement au développeur.</p>
                 <ul class="contact">
-                    <li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
-                    <li class="fa-phone">(000) 000-0000</li>
-                    <li class="fa-home">1234 Somewhere Road #8254<br/>
-                        Nashville, TN 00000-0000
-                    </li>
+                    <li class="fa-forward">Formulaire de contact</li>
+                    <li class="fa-envelope-o"><a href="#">fr.abcmap@gmail.com</a></li>
                 </ul>
             </section>
 
