@@ -213,13 +213,13 @@
                     <h2>Menu</h2>
                 </header>
                 <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="generic.html">Téléchargements</a></li>
-                    <li><a href="elements.html">Question fréquentes</a></li>
-                    <li><a href="elements.html">Découvrir le projet</a></li>
-                    <li><a href="elements.html">Nouvelle version à venir</a></li>
-                    <li><a href="elements.html">Aide et tutoriels</a></li>
-                    <li><a href="elements.html">Contact</a></li>
+                    <li><a th:href="${mappings.get('WELCOME')}">Accueil</a></li>
+                    <li><a th:href="${mappings.get('DOWNLOAD')}">Téléchargements</a></li>
+                    <li><a th:href="${mappings.get('FAQ')}">Question fréquentes</a></li>
+                    <li><a th:href="${mappings.get('PROJECT')}">Découvrir le projet</a></li>
+                    <li><a th:href="${mappings.get('NEW_VERSION')}">Nouvelle version à venir</a></li>
+                    <li><a th:href="${mappings.get('HELP')}">Aide et tutoriels</a></li>
+                    <li><a th:href="${mappings.get('CONTACT')}">Contact</a></li>
 
                     <!--
                     <li>

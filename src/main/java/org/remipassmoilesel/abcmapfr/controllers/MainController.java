@@ -44,9 +44,9 @@ public class MainController {
 
         );
 
-
         model.addAttribute("functionnalities", functionnalities);
 
+        Mappings.includeMappings(model);
         return Templates.WELCOME;
     }
 
