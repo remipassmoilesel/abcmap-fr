@@ -57,8 +57,6 @@
 @import 'layout/footer';
 @import 'layout/menu';
 
-
-
 // SPECIFIC ADDITIONS FOR ABC-MAP.FR
 
 #goToTopButton {
@@ -83,3 +81,8 @@
 #goToTopButton:before {
   color: white;
 }
+
+.pageTitle h1 {
+  margin-top: 0.5em;
+}
+

@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
       layout:decorator="main-decorator">
 <head>
 
@@ -12,9 +11,7 @@
 </head>
 <body>
 
-<div layout:fragment="header">
-    <h1>Title example</h1>
-</div>
+<h1 layout:fragment="header">Title example</h1>
 
 <div layout:fragment="content">
     <section>Content example</section>

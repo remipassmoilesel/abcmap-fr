@@ -20,8 +20,9 @@
 		.logo {
 			border-bottom: 0;
 			color: inherit;
-			font-family: _font(family-heading);
-			font-size: 1.125em;
+			font-family: _font(family-fixed);
+			font-size: 3em;
+			font-weight: bolder;
 		}
 
 		.icons {
@@ -36,7 +37,7 @@
 			padding-top: 6.5em;
 
 			.logo {
-				font-size: 1.25em;
+				font-size: 3em;
 				margin: 0;
 			}
 

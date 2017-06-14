@@ -82,7 +82,8 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo" layout:fragment="header">Page header</a>
+                <a href="/" class="logo" id="mainLogo">Abc-Map</a>
+
                 <ul class="icons">
                     <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
                     <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
@@ -91,6 +92,10 @@
                     <li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
                 </ul>
             </header>
+
+            <div class="pageTitle">
+                <h1 layout:fragment="header">Page title</h1>
+            </div>
 
             <div layout:fragment="content" th:remove="tag">
 
@@ -248,7 +253,9 @@
             <!-- Menu -->
             <nav id="menu">
                 <header class="major">
-                    <h2>Menu</h2>
+                    <div style="text-align: center">
+                        <h2>Menu</h2>
+                    </div>
                 </header>
                 <ul>
                     <li><a th:href="${mappings.get('WELCOME')}">Accueil</a></li>
