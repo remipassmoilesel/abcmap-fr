@@ -1,0 +1,52 @@
+#videoTitle {
+    margin: 2em;
+    text-align: center;
+    font-weight: bolder;
+}
+
+#videoPlace {
+    text-align: center;
+}
+
+#videoChannel {
+    margin: 2em;
+    text-align: center;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.tutorialFormat {
+    color: gray;
+    font-weight: bolder;
+    font-style: italic;
+    margin: 1em;
+    margin-left: 0em;
+}
+
+.tutorialIllustration {
+    text-align: center;
+}
+
+.tutorialIllustration a {
+    display: block;
+    text-align: center;
+    font-weight: bolder;
+    margin: 1.5em;
+    border: none;
+}
+
+.tutorialIllustration img {
+    clear: both;
+}
+
+.tutorialTitle {
+    margin-top: 2em;
+}
+
+#manualLink{
+    display: block;
+    text-align: center;
+    font-weight: bolder;
+    margin: 1.5em;
+    border: none;
+}

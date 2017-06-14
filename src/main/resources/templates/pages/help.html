@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="main-decorator">
+<head>
+
+    <title>Aide et tutoriels</title>
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/help.css" layout:fragment="htmlHeaders"/>
+
+</head>
+<body>
+
+<div layout:fragment="header">
+    <h1>Aide et tutoriels</h1>
+</div>
+
+<div layout:fragment="content">
+
+    <section>
+        Dans cette section vous trouverez des <b>tutoriels vidéos et statiques</b> expliquant
+        le fonctionnement d'Abc-Map. Vous avez un problème technique ? Vous souhaitez plus
+        de renseignements sur ce logiciel ? Pensez à consulter la section des
+        <b>questions fréquentes</b>.
+    </section>
+
+    <!-- Video tutorials -->
+
+    <section>
+
+        <a name="videoAnchor"/>
+        <h2>Tutoriels vidéo</h2>
+
+        <ul>
+            <li th:each="vid, iter : ${videos}">
+                <a href='#videoAnchor' th:onClick="'showVideo(' + ${iter.index} + ')'" th:text="${vid[0]}"></a></li>
+        </ul>
+
+        <div id="videoTitle">&nbsp;</div>
+        <div id="videoPlace">&nbsp;</div>
+        <div id="videoChannel">Chaine Youtube: <a
+                href="https://www.youtube.com/channel/UCrlsEykrLNpK12Id7c7GP7g"
+                target="_blank">https://www.youtube.com/channel/...</a></div>
+
+    </section>
+
+    <!-- Text tutorials -->
+
+    <section>
+
+        <h2 class="tutorialTitle">Tutoriel sur la création de croquis</h2>
+        <div class="tutorialFormat">Disponible en ligne et en téléchargement aux formats PDF et Flash</div>
+        <p>Retouvez sur le site de la communauté d'enseignants Clionautes.org un tutoriel de 30 minutes sur
+            les principaux outils d'Abc-Map. Créez un croquis ou importez une carte pour l'insérer dans un
+            document de traitement de texte. Le résultat attendu est affiché ci-dessous:</p>
+
+        <div class="tutorialIllustration">
+            <img width="250" src="/images/cotentin.png" alt="Carte du Cotentin crée avec Abc-Map"/>
+            <a href="http://lycee.clionautes.org/spip.php?article603" target="_blank">http://lycee.clionautes.org/spip.php?article603</a>
+        </div>
+
+
+        <h2 class="tutorialTitle">WikiHow sur la création d'une carte simple</h2>
+        <div class="tutorialFormat">Disponible en ligne au format HTML</div>
+        <p>Retrouvez sur le site WikiHow un tutoriel étape par étape sur la création
+            d'un itinéraire.</p>
+
+        <div class="tutorialIllustration">
+            <img src="/images/wikihow.png" width="200" alt="Tutoriel en ligne WikiHow"/>
+            <a href="http://fr.wikihow.com/faire-une-carte-g%C3%A9ographique-simplement" target="_blank">
+                http://fr.wikihow.com/faire-une-carte-géographique-simplement
+            </a>
+        </div>
+
+
+        <h2 class="tutorialTitle">Wiki sur RandonnerLeger.org</h2>
+        <div class="tutorialFormat">Disponible en ligne au format HTML</div>
+        <p>Même sujet, la création d'un itinéraire, mais avec l'énorme plus de RandonnerLeger:
+            un très bon forum avec des conseils de marcheurs expérimentés et des
+            récits de voyages.</p>
+
+        <div class="tutorialIllustration">
+            <img src="/images/randonnerleger.png" width="150" alt="Tutoriel en ligne WikiHow"/>
+            <a href="http://www.randonner-leger.org/wiki/doku.php?id=creer_sa_carte_avec_abc_map"
+               target="_blank">
+                Wiki: http://www.randonner-leger.org/wiki/...
+            </a>
+            <a href="http://www.randonner-leger.org/forum/" target="_blank">
+                Forum: http://www.randonner-leger.org/forum/
+            </a>
+        </div>
+
+    </section>
+
+    <section>
+        <h2>Manuel de l'utilisateur</h2>
+        <div class="tutorialFormat">Disponible au format PDF</div>
+        <p>Vous pouvez télécharger le manuel du logiciel, mais sachez qu'il est
+            inclus dans le logiciel et disponible directement à partir du menu "Aide"
+            de Abc-Map.</p>
+
+        <a href="manual/manual_fr.pdf" id="manualLink">Télécharger le manuel</a>
+    </section>
+
+    <script type="text/javascript" th:inline="javascript">
+
+        var videos = /*[[${videos}]]*/ null;
+
+        function showVideo(i) {
+            document.getElementById("videoTitle").innerHTML = videos[i][0];
+            document.getElementById("videoPlace").innerHTML = '<iframe width="560" height="315" src="' + videos[i][1] + '" frameborder="2" allowfullscreen="true"></iframe>';
+        }
+
+        showVideo(0);
+
+    </script>
+
+</div>
+
+</body>
+</html>
