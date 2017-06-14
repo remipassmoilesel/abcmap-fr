@@ -4,6 +4,7 @@ import org.remipassmoilesel.abcmapfr.Mappings;
 import org.remipassmoilesel.abcmapfr.Templates;
 import org.remipassmoilesel.abcmapfr.lists.Faq;
 import org.remipassmoilesel.abcmapfr.lists.Functionalities;
+import org.remipassmoilesel.abcmapfr.lists.Recommendations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,17 @@ public class MainController {
 
         Mappings.includeMappings(model);
         return Templates.FAQ;
+    }
+
+    @RequestMapping(value = Mappings.ABOUT_PROJECT, method = RequestMethod.GET)
+    public String showProject(Model model) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+
+        List<String[]> list = Recommendations.getList();
+
+        model.addAttribute("recommendations", list);
+
+        Mappings.includeMappings(model);
+        return Templates.ABOUT_PROJECT;
     }
 
 }
