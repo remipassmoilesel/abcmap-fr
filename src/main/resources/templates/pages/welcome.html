@@ -6,6 +6,9 @@
 
     <title>Bienvenue</title>
 
+    <link rel="stylesheet" type="text/css" href="/assets/css/welcome.css"
+          layout:fragment="htmlHeaders"/>
+
 </head>
 <body>
 
@@ -31,15 +34,18 @@
             <li>Et bien d'autres !</li>
         </ul>
 
-        <div style="text-align:center"><a href="http://abc-map.fr/help/">
+        <div id="tutorialLink"><a href="http://abc-map.fr/help/">
             D&eacute;couvrez le fonctionnement du logiciel en quelques minutes<br/>
-            grâce à la vidéo de pr&eacute;sentation</a></div>
-
-        <div style="padding: 10px; margin: auto; width: 300px; text-align: center;">
-            <a href="http://abc-map.fr/download/">Télécharger Abc-Map</a>
-            <br/>
-            <span id="downloadNumber">300 téléchargements cette semaine</span>
+            grâce à la vidéo de pr&eacute;sentation</a>
         </div>
+
+        <div id="downloadSection">
+            <button id="downloadButton">
+                Télécharger Abc-Map
+            </button>
+            <div id="downloadNumber">300 téléchargements cette semaine</div>
+        </div>
+
     </section>
 
     <section>
