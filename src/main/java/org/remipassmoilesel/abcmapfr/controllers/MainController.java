@@ -1,5 +1,9 @@
 package org.remipassmoilesel.abcmapfr.controllers;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.joda.time.DateTime;
 import org.remipassmoilesel.abcmapfr.Mappings;
 import org.remipassmoilesel.abcmapfr.Templates;
@@ -19,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.List;
 
@@ -108,17 +115,55 @@ public class MainController {
     @ResponseBody
     @RequestMapping(value = Mappings.GET_STATS_OF_THE_DAY, method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String getStatsOfTheDay() {
+    public String getStatsOfTheDay() throws IOException {
 
         Date begin = new DateTime().withTimeAtStartOfDay().toDate();
         Date end = new DateTime().plusDays(1).withTimeAtStartOfDay().toDate();
 
         List<StatsOfTheDay> rslt = statsRepository.findBetween(begin, end);
-        if (rslt.size() < 1) {
-            return "{}";
-        } else {
+
+        // today stats are here, return it
+        if (rslt.size() > 0) {
             return rslt.get(0).getContent();
         }
+
+        // no stats, grab them
+        else {
+            return grabAndSaveStats();
+        }
     }
+
+    private String grabAndSaveStats() throws IOException {
+
+        logger.info("Grabbing stats data");
+
+        String dateFormat = "yyyy-MM-dd";
+        String today = new DateTime().withTimeAtStartOfDay().toString(dateFormat);
+        String sevenDaysAgo = new DateTime().minusDays(7)
+                .withTimeAtStartOfDay().toString(dateFormat);
+
+        String url = "https://sourceforge.net/projects/abc-map/files/stats/json?start_date=" + sevenDaysAgo + "&end_date=" + today;
+
+        CloseableHttpClient client = HttpClientBuilder.create().build();
+        HttpGet request = new HttpGet(url);
+
+        // add request header
+        HttpResponse response = client.execute(request);
+
+        BufferedReader rd = new BufferedReader(
+                new InputStreamReader(response.getEntity().getContent()));
+
+        StringBuffer result = new StringBuffer();
+        String line = "";
+        while ((line = rd.readLine()) != null) {
+            result.append(line);
+        }
+
+        // save content
+        statsRepository.save(new StatsOfTheDay(new Date(), result.toString()));
+
+        return result.toString();
+    }
+
 
 }
