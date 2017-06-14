@@ -29,6 +29,8 @@ public class Mappings {
     public static final String VOTES_GET_BY_DATE = VOTES_ROOT + "bydate";
     public static final String VOTES_GET_ALL = VOTES_ROOT + "all";
 
+    public static final String GET_STATS_OF_THE_DAY = ROOT + "getstats";
+
     public static MappingMap getMap() {
 
         MappingMap result = new MappingMap();

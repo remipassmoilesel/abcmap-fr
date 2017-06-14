@@ -1,22 +1,25 @@
 package org.remipassmoilesel.abcmapfr.controllers;
 
+import org.joda.time.DateTime;
 import org.remipassmoilesel.abcmapfr.Mappings;
 import org.remipassmoilesel.abcmapfr.Templates;
+import org.remipassmoilesel.abcmapfr.entities.StatsOfTheDay;
 import org.remipassmoilesel.abcmapfr.lists.Faq;
 import org.remipassmoilesel.abcmapfr.lists.Functionalities;
 import org.remipassmoilesel.abcmapfr.lists.Recommendations;
 import org.remipassmoilesel.abcmapfr.lists.Videos;
+import org.remipassmoilesel.abcmapfr.repositories.StatsOfTheDayRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.xml.sax.SAXException;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +29,9 @@ import java.util.List;
 public class MainController {
 
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+
+    @Autowired
+    private StatsOfTheDayRepository statsRepository;
 
     @RequestMapping(value = Mappings.ROOT, method = RequestMethod.GET)
     public String showIndex() {
@@ -97,6 +103,22 @@ public class MainController {
 
         Mappings.includeMappings(model);
         return Templates.CONTACT;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = Mappings.GET_STATS_OF_THE_DAY, method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String getStatsOfTheDay() {
+
+        Date begin = new DateTime().withTimeAtStartOfDay().toDate();
+        Date end = new DateTime().plusDays(1).withTimeAtStartOfDay().toDate();
+
+        List<StatsOfTheDay> rslt = statsRepository.findBetween(begin, end);
+        if (rslt.size() < 1) {
+            return "{}";
+        } else {
+            return rslt.get(0).getContent();
+        }
     }
 
 }
