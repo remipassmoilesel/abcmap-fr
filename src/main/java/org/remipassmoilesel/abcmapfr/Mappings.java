@@ -21,7 +21,7 @@ public class Mappings {
     public static final String DOWNLOAD = ROOT + "download";
     public static final String FAQ = ROOT + "faq";
     public static final String ABOUT_PROJECT = ROOT + "about-project";
-    public static final String NEW_VERSION = ROOT + "newversion";
+    public static final String NEW_VERSION = ROOT + "new-version";
     public static final String HELP = ROOT + "help";
     public static final String CONTACT = ROOT + "contact";
 

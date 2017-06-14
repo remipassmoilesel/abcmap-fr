@@ -72,4 +72,11 @@ public class MainController {
         return Templates.ABOUT_PROJECT;
     }
 
+    @RequestMapping(value = Mappings.NEW_VERSION, method = RequestMethod.GET)
+    public String showNewVersion(Model model) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+
+        Mappings.includeMappings(model);
+        return Templates.NEW_VERSION;
+    }
+
 }
