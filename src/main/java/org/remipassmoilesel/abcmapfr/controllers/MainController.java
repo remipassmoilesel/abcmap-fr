@@ -133,7 +133,7 @@ public class MainController {
         }
     }
 
-    private String grabAndSaveStats() throws IOException {
+    public String grabAndSaveStats() throws IOException {
 
         logger.info("Grabbing stats data");
 

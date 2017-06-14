@@ -46,7 +46,7 @@ public class StatsOfTheDayTest {
     }
 
     @Test
-    public void repositoryTest() throws Exception {
+    public void test() throws Exception {
 
         statsRepository.deleteAll();
 
@@ -79,7 +79,13 @@ public class StatsOfTheDayTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.*", greaterThan(1)));
         */
+
+        String rslt = mainController.grabAndSaveStats();
+        assertTrue(rslt != null && rslt.length() > 0);
+
         //statsRepository.deleteAll();
+
+
     }
 
 }
