@@ -9,12 +9,19 @@
     <!--[if lte IE 8]>
     <script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="/assets/css/main-decorator.css"/>
+    <link rel="stylesheet" href="/assets/css/main-decorator-additions.css"/>
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="/assets/css/ie9.css"/><![endif]-->
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="/assets/css/ie8.css"/><![endif]-->
 
     <script type="text/javascript">
+
+        /**
+         * Piwik stats
+         *
+         */
+
         var _paq = _paq || [];
         _paq.push(["setCookieDomain", "*.abc-map.fr"]);
         _paq.push(["setDomains", ["*.abc-map.fr"]]);
@@ -31,6 +38,28 @@
             g.src = u + 'piwik.js';
             s.parentNode.insertBefore(g, s);
         })();
+
+        /**
+         * Scrol button
+         */
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("goToTopButton").style.display = "block";
+            } else {
+                document.getElementById("goToTopButton").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Chrome, Safari and Opera
+            document.documentElement.scrollTop = 0; // For IE and Firefox
+        }
+
     </script>
 
     <script layout:fragment="htmlHeaders" th:remove="tag">
@@ -314,6 +343,10 @@
     </div>
 
 </div>
+
+<!-- Scroll to top button -->
+<button onclick="topFunction()" id="goToTopButton" title="Remonter"
+        class="fa fa-arrow-up"></button>
 
 <!-- Scripts -->
 <script src="/assets/js/jquery.min.js"></script>

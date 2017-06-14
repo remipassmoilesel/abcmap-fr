@@ -41,7 +41,7 @@
             <h4 class="title" th:if="${#strings.isEmpty(titles.get(iter.index)) == false}"
                 th:text="${titles.get(iter.index)}"></h4>
 
-            <a class="question" th:name="${'question' + iter.index}" href="#top" 
+            <a class="question" th:name="${'question' + iter.index}" href="#top"
                th:utext="${(iter.index + 1 )+ ' - ' + question}">1 - Question</a>
 
             <div class="answer" th:utext="${answers.get(iter.index)}">Réponse</div>
