@@ -6,6 +6,9 @@
 
     <title>Questions fréquentes</title>
 
+    <link rel="stylesheet" type="text/css" href="/assets/css/faq.css"
+          layout:fragment="htmlHeaders"/>
+
 </head>
 <body>
 
@@ -16,10 +19,14 @@
 <div layout:fragment="content">
 
     <section id="faqSummary">
+
+        <a name="#top" />
+
         <h3>Sommaire</h3>
+
         <div th:each="question, iter : ${questions}">
 
-            <h4 class="title" style="margin: 8px" th:if="${#strings.isEmpty(titles.get(iter.index)) == false}"
+            <h4 class="title" th:if="${#strings.isEmpty(titles.get(iter.index)) == false}"
                 th:text="${titles.get(iter.index)}"></h4>
 
             <a class="question" th:href="${'#question' + iter.index}"
@@ -28,11 +35,17 @@
         </div>
     </section>
 
-    <section>
+    <section id="faqContent">
         <div th:each="question, iter : ${questions}">
-            <a class="question" th:name="${'question' + iter.index}" 
+
+            <h4 class="title" th:if="${#strings.isEmpty(titles.get(iter.index)) == false}"
+                th:text="${titles.get(iter.index)}"></h4>
+
+            <a class="question" th:name="${'question' + iter.index}" href="#top" 
                th:utext="${(iter.index + 1 )+ ' - ' + question}">1 - Question</a>
+
             <div class="answer" th:utext="${answers.get(iter.index)}">Réponse</div>
+
         </div>
     </section>
 

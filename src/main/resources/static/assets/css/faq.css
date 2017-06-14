@@ -1,0 +1,22 @@
+#faqSummary .title{
+    margin-top: 2em;
+}
+
+#faqSummary .question{
+    margin-top: 1em;
+}
+
+#faqContent .title{
+    margin-top: 2em;
+}
+
+#faqContent .question{
+    margin-left: 1em;
+    font-weight: bolder;
+}
+
+#faqContent .answer{
+    margin-top: 1em;
+    margin-left: 3%;
+}
+
