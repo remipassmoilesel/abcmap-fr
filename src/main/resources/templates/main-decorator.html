@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="/assets/css/ie8.css"/><![endif]-->
 
     <!-- favicon -->
-    <link rel="icon" href="/images/favicon.png" type="image/png" />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" href="/images/favicon.png" type="image/png"/>
+    <link rel="shortcut icon" href="/favicon.ico"/>
 
     <script type="text/javascript">
 
@@ -47,7 +47,9 @@
          */
 
         // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
+        window.onscroll = function () {
+            scrollFunction()
+        };
 
         function scrollFunction() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -255,7 +257,7 @@
                     <li><a th:href="${mappings.get('ABOUT_PROJECT')}">Découvrir le projet</a></li>
                     <li><a th:href="${mappings.get('NEW_VERSION')}">Nouvelle version à venir</a></li>
                     <li><a th:href="${mappings.get('HELP')}">Aide et tutoriels</a></li>
-                    <li><a th:href="${mappings.get('CONTACT')}">Contact</a></li>
+                    <!--<li><a th:href="${mappings.get('CONTACT')}">Contact</a></li>-->
 
                     <!--
                     <li>
@@ -326,13 +328,17 @@
 
             <!-- Section -->
             <section>
+
                 <header class="major">
                     <h2>Contact</h2>
                 </header>
+
                 <p>Proposez une idée ou signalez une erreur directement au développeur.</p>
                 <ul class="contact">
-                    <li class="fa-forward">Formulaire de contact</li>
-                    <li class="fa-envelope-o"><a href="#">fr.abcmap@gmail.com</a></li>
+                    <li class="fa-forward">
+                        <a th:href="${mappings.get('CONTACT')}">Formulaire de contact</a></li>
+                    <li class="fa-envelope-o">
+                        <a href="mailto:fr.abcmap@gmail.com">fr.abcmap@gmail.com</a></li>
                 </ul>
             </section>
 

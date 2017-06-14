@@ -50,7 +50,7 @@ public class MainController {
     }
 
     @RequestMapping(value = Mappings.FAQ, method = RequestMethod.GET)
-    public String showFaq(Model model) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    public String showFaq(Model model) {
 
         List[] lists = Faq.getLists();
 
@@ -63,7 +63,7 @@ public class MainController {
     }
 
     @RequestMapping(value = Mappings.ABOUT_PROJECT, method = RequestMethod.GET)
-    public String showProject(Model model) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    public String showProject(Model model) {
 
         List<String[]> list = Recommendations.getList();
         model.addAttribute("recommendations", list);
@@ -73,14 +73,14 @@ public class MainController {
     }
 
     @RequestMapping(value = Mappings.NEW_VERSION, method = RequestMethod.GET)
-    public String showNewVersion(Model model) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    public String showNewVersion(Model model) {
 
         Mappings.includeMappings(model);
         return Templates.NEW_VERSION;
     }
 
     @RequestMapping(value = Mappings.HELP, method = RequestMethod.GET)
-    public String showHelp(Model model) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+    public String showHelp(Model model) {
 
         List<String[]> list = Videos.getList();
 
@@ -90,6 +90,13 @@ public class MainController {
 
         Mappings.includeMappings(model);
         return Templates.HELP;
+    }
+
+    @RequestMapping(value = Mappings.CONTACT, method = RequestMethod.GET)
+    public String showContact(Model model) {
+
+        Mappings.includeMappings(model);
+        return Templates.CONTACT;
     }
 
 }

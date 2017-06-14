@@ -1,0 +1,15 @@
+#contactTable {
+    width: 100%;
+    border: none;
+    margin: 2em;
+}
+
+#contactTable tr {
+    border: none;
+    background: inherit;
+}
+
+#contactTable td {
+    border: none;
+    background: inherit;
+}
