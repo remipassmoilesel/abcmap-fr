@@ -2486,7 +2486,10 @@ button,
     color: inherit;
     font-family: "Courier New", monospace;
     font-size: 3em;
-    font-weight: bolder; }
+    font-weight: bolder;
+    text-decoration: none; }
+    #header .logo:hover {
+      text-decoration: none; }
   #header .icons {
     text-align: right; }
   @media screen and (max-width: 1680px) {
