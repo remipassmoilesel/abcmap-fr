@@ -3,6 +3,7 @@ target/
 
 *.swp
 tomcat-logs
+node_modules
 
 ### STS ###
 .apt_generated
