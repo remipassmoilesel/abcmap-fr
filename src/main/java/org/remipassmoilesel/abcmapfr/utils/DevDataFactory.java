@@ -1,10 +1,7 @@
 package org.remipassmoilesel.abcmapfr.utils;
 
-import org.remipassmoilesel.abcmapfr.controllers.MainController;
-import org.remipassmoilesel.abcmapfr.entities.StatsOfTheDay;
+import org.remipassmoilesel.abcmapfr.entities.Stats;
 import org.remipassmoilesel.abcmapfr.entities.Vote;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -28,7 +25,7 @@ public class DevDataFactory {
         return new Vote(vote, date);
     }
 
-    public static StatsOfTheDay newStat(Date date, String content) {
+    public static Stats newStat(Date date, String content) {
 
         if (date == null) {
             date = new Date();
@@ -38,6 +35,6 @@ public class DevDataFactory {
             content = STAT_EXAMPLE;
         }
 
-        return new StatsOfTheDay(date, content);
+        return new Stats(date, content, Utils.randInt(150, 700));
     }
 }

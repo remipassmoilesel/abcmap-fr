@@ -1,9 +1,9 @@
 package org.remipassmoilesel.abcmapfr.controllers;
 
 import org.joda.time.DateTime;
-import org.remipassmoilesel.abcmapfr.entities.StatsOfTheDay;
+import org.remipassmoilesel.abcmapfr.entities.Stats;
 import org.remipassmoilesel.abcmapfr.entities.Vote;
-import org.remipassmoilesel.abcmapfr.repositories.StatsOfTheDayRepository;
+import org.remipassmoilesel.abcmapfr.repositories.StatsRepository;
 import org.remipassmoilesel.abcmapfr.repositories.VoteRepository;
 import org.remipassmoilesel.abcmapfr.utils.DevDataFactory;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public class DevDataLoader implements ApplicationRunner {
     private VoteRepository voteRepository;
 
     @Autowired
-    private StatsOfTheDayRepository statsRepository;
+    private StatsRepository statsRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -45,7 +45,7 @@ public class DevDataLoader implements ApplicationRunner {
 
     private void populateStatsTable() {
         for (int i = 0; i < 100; i++) {
-            StatsOfTheDay s = DevDataFactory.newStat(new DateTime().minusDays(i).toDate(), null);
+            Stats s = DevDataFactory.newStat(new DateTime().minusDays(i).toDate(), null);
             statsRepository.save(s);
         }
     }
