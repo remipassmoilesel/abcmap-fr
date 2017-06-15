@@ -18,8 +18,11 @@
     <link rel="icon" href="/images/favicon.png" type="image/png"/>
     <link rel="shortcut icon" href="/favicon.ico"/>
 
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript">
 
+        var VOTE_URL = /*[[${mappings.get('VOTES_ROOT')}]]*/ null;
+
+        /*<![CDATA[*/
         /**
          * Piwik stats
          *
@@ -65,6 +68,31 @@
             document.documentElement.scrollTop = 0; // For IE and Firefox
         }
 
+        function vote(i) {
+
+            try {
+                // display stars
+                $(".voteStar").each(function () {
+                    var val = $(this).data("value");
+                    if (val <= 1 || val <= i) {
+                        $(this).removeClass("fa-star-o");
+                        $(this).addClass("fa-star");
+                    }
+
+                    else {
+                        $(this).addClass("fa-star-o");
+                        $(this).removeClass("fa-star");
+                    }
+                });
+            } catch (e) {
+                console.error(e);
+            }
+
+            // vote
+            $.get(VOTE_URL + "?v=" + i + "&p=" + document.location);
+
+        }
+        /*]]>*/
     </script>
 
     <script layout:fragment="htmlHeaders" th:remove="tag">
@@ -85,7 +113,8 @@
                 <a href="/" class="logo">Abc-Map</a>
 
                 <ul class="icons">
-                    <li><a href="https://twitter.com/intent/tweet?text=Avez%20vous%20d%C3%A9j%C3%A0%20essay%C3%A9%20%23AbcMap%20%3F&amp;url=https%3A%2F%2Fabc-map.fr"
+                    <li>
+                        <a href="https://twitter.com/intent/tweet?text=Avez%20vous%20d%C3%A9j%C3%A0%20essay%C3%A9%20%23AbcMap%20%3F&amp;url=https%3A%2F%2Fabc-map.fr"
                            target="_blank" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
                     <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fabc-map.fr"
                            target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
@@ -334,7 +363,22 @@
                 </ul>
             </section>
 
-            <!-- Section -->
+            <section>
+
+                <header class="major">
+                    <h2>Votez !</h2>
+                </header>
+
+                <p>Ce projet vous plait ? Encouragez son développement:</p>
+                <div>
+                    <span class="voteStar fa fa-2x fa-star-o"
+                          th:each="i : ${#numbers.sequence(1,5)}"
+                          th:onclick="'vote(' + ${i} + ')'"
+                          th:attr="data-value=${i}"></span>
+                </div>
+
+            </section>
+
             <section>
 
                 <header class="major">

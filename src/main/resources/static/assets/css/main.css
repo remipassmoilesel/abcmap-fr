@@ -2691,3 +2691,8 @@ button,
 
 .pageTitle h1 {
   margin-top: 0.5em; }
+
+.voteStar {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0.3em; }
