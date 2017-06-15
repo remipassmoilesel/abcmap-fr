@@ -53,9 +53,11 @@
     <section>
         <h2>Tour d'horizon des fonctionnalit&eacute;s</h2>
 
-        <div class='functionnality' th:each="func, iter : ${functionnalities}">
-            <span th:utext="${func}"></span>
-            <div><img th:src="${'/images/functionnality' + (iter.index + 1) + '.png'}"/></div>
+        <div class="functionnality" th:each="func, iter : ${functionnalities}">
+            <div class="description" th:utext="${func}"></div>
+            <div>
+                <img th:src="${'/images/functionnality' + (iter.index + 1) + '.png'}"/>
+            </div>
         </div>
 
         <p>Abc-Map possède d'autres fonctionnalités simples mais efficaces.
@@ -65,9 +67,16 @@
     </section>
 
     <section>
-        Extraits de cartes utilis&eacute;s dans les illustrations:
-        <a href="http://www.openstreetmap.org" target="_blank">http://www.openstreetmap.org</a>
-        <br/>&copy; les contributeurs d'OpenStreetMap
+
+        <p class="copyright">Extraits de cartes utilis&eacute;s dans les illustrations:
+            <a href="http://www.openstreetmap.org" target="_blank">http://www.openstreetmap.org</a>
+            <br/>&copy; les contributeurs d'OpenStreetMap</p>
+
+        <p class="copyright">Demo Images: <a
+                href="https://unsplash.com">Unsplash</a>.
+            Template conçu par : <a href="https://twitter.com/ajlkn">@ajlkn</a>
+            <a href="https://html5up.net">HTML5 UP</a> ✌️ 👏.</p>
+
     </section>
 
 </div>
