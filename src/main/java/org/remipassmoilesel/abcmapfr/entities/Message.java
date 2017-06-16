@@ -13,20 +13,25 @@ import java.util.Objects;
 @Entity
 public class Message {
 
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String message;
     private Date date;
+    private String object;
+    private String mail;
 
-    public Message(){
+    public Message() {
 
     }
 
-    public Message(String message, Date date) {
+    public Message(String object, String message, String mail, Date date) {
         this.message = message;
         this.date = date;
+        this.object = object;
+        this.mail = mail;
     }
 
     public Date getDate() {
@@ -53,19 +58,25 @@ public class Message {
         this.id = id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Message message1 = (Message) o;
-        return Objects.equals(id, message1.id) &&
-                Objects.equals(message, message1.message) &&
-                Objects.equals(date, message1.date);
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getObject() {
+        return object;
+    }
+
+    public void setObject(String object) {
+        this.object = object;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, message, date);
+        return Objects.hash(id, message, date, object, mail);
     }
 
     @Override
@@ -74,6 +85,22 @@ public class Message {
                 "id=" + id +
                 ", message='" + message + '\'' +
                 ", date=" + date +
+                ", object='" + object + '\'' +
+                ", mail='" + mail + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Message message1 = (Message) o;
+        return Objects.equals(id, message1.id) &&
+                Objects.equals(message, message1.message) &&
+                Objects.equals(date, message1.date) &&
+                Objects.equals(object, message1.object) &&
+                Objects.equals(mail, message1.mail);
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package org.remipassmoilesel.abcmapfr.controllers;
 
 import com.jayway.jsonpath.JsonPath;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -8,11 +9,13 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.joda.time.DateTime;
 import org.remipassmoilesel.abcmapfr.Mappings;
 import org.remipassmoilesel.abcmapfr.Templates;
+import org.remipassmoilesel.abcmapfr.entities.Message;
 import org.remipassmoilesel.abcmapfr.entities.Stats;
 import org.remipassmoilesel.abcmapfr.lists.Faq;
 import org.remipassmoilesel.abcmapfr.lists.Functionalities;
 import org.remipassmoilesel.abcmapfr.lists.Recommendations;
 import org.remipassmoilesel.abcmapfr.lists.Videos;
+import org.remipassmoilesel.abcmapfr.repositories.MessagesRepository;
 import org.remipassmoilesel.abcmapfr.repositories.StatsRepository;
 import org.remipassmoilesel.abcmapfr.repositories.VotesRepository;
 import org.slf4j.Logger;
@@ -45,6 +48,9 @@ public class MainController {
 
     @Autowired
     private VotesRepository votesRepository;
+
+    @Autowired
+    private MessagesRepository messagesRepository;
 
     @RequestMapping(value = Mappings.ROOT, method = RequestMethod.GET)
     public String showIndex() {
@@ -150,9 +156,18 @@ public class MainController {
                               @RequestParam(name = "email") String mail,
                               @RequestParam(name = "message") String message) {
 
-        logger.error(object);
-        logger.error(mail);
-        logger.error(message);
+        // TODO: JUnit testing:
+        //adresse@mail.fr <script>alert("Gnéééé")</script>
+        //adresse@mail.fr <script>alert("Gnéééé")</script>  '; "; DROP DATABASE gneeee;
+
+        String escMail = StringEscapeUtils.escapeSql(StringEscapeUtils.escapeHtml(mail));
+        String escObject = StringEscapeUtils.escapeSql(StringEscapeUtils.escapeHtml(object));
+        String escMessage = StringEscapeUtils.escapeSql(StringEscapeUtils.escapeHtml(message));
+
+        Message entity = new Message(escObject, escMessage, escMail, new Date());
+        messagesRepository.save(entity);
+
+        model.addAttribute("messageStatus", "saved");
 
         includeVoteVars(model);
         Mappings.includeMappings(model);
