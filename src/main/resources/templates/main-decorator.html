@@ -9,7 +9,7 @@
     <!--  -->
     <meta name="google-translate-customization"
           content="ef656647eaf123ca-f4733da4fb07eff4-g4eff449bbe259eeb-a"
-          th:if="${session.googleTranslateEnabled}"/>
+          th:if="${#strings.isEmpty(session.googleTranslateEnabled)}"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
@@ -115,22 +115,34 @@
 </head>
 <body>
 
-<script type="text/javascript" th:if="${session.googleTranslateEnabled}">
-    var GA_API_KEY = "UA-57177987-1";
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-                    pageLanguage: 'fr',
-                    layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-                    autoDisplay: false,
-                    gaTrack: true,
-                    gaId: GA_API_KEY
-                },
-                'google_translate_element');
-    }
-</script>
-<script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
+<div th:if="${#strings.isEmpty(session.googleTranslateEnabled)}"
+    style="padding: 0.5em; background: silver; text-align: center">
+
+    <h4>Select a language:</h4>
+
+    <div id="google_translate_element" style="width: 20%; margin: auto">
+
+    </div>
+
+    <script type="text/javascript">
+        var GA_API_KEY = "UA-57177987-1";
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                        pageLanguage: 'fr',
+                        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+                        autoDisplay: false,
+                        gaTrack: true,
+                        gaId: GA_API_KEY
+                    },
+                    'google_translate_element');
+        }
+    </script>
+
+    <script type="text/javascript"
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+
+</div>
 
 
 <!-- Wrapper -->
@@ -152,8 +164,7 @@
                            target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
                     <li><a href="https://plus.google.com/share?url=https%3A%2F%2Fabc-map.fr"
                            target="_blank" class="icon fa-google-plus"><span class="label">Google Plus</span></a></li>
-                    <li>&nbsp;<a th:href="${mappings.get('TRANSLATE')}"
-                                 target="_blank" class="icon fa-globe"><span class="label">Translate</span>
+                    <li>&nbsp;<a th:href="${mappings.get('TRANSLATE')}" class="icon fa-globe"><span class="label">Translate</span>
                         Translate</a></li>
                 </ul>
             </header>
