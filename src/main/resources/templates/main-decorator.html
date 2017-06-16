@@ -127,7 +127,20 @@
                 <h1 layout:fragment="header">Page title</h1>
             </div>
 
-            <div layout:fragment="content" th:remove="tag">
+            <div th:if="${#strings.isEmpty(errorMessage)} == false">
+
+                <div style="width: 70%; margin: auto; padding: 2em; border: solid 3px gray"
+                     th:inline="text">
+
+                    <h3>Erreur</h3>
+
+                    Message: [[${errorMessage}]]
+
+                </div>
+
+            </div>
+
+            <div layout:fragment="content" th:remove="tag" th:if="${#strings.isEmpty(errorMessage)}">
 
                 <!-- Banner -->
                 <section id="banner">
@@ -377,7 +390,8 @@
                           th:attr="data-value=${i}"></span>
                 </div>
                 <div th:inline="text" class="menuVotesDisplay">[[${#numbers.formatDecimal(averageVote, 0, 2)}]] / 5
-                    <span class="fa fa-star"></span>, [[${sumVote}]] participants</div>
+                    <span class="fa fa-star"></span>, [[${sumVote}]] participants
+                </div>
 
             </section>
 
@@ -395,6 +409,8 @@
                         <a href="mailto:fr.abcmap@gmail.com">fr.abcmap@gmail.com</a></li>
                 </ul>
             </section>
+
+            <div style="height: 30em;">&nbsp;</div>
 
         </div>
     </div>

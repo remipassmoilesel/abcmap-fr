@@ -156,18 +156,20 @@ public class MainController {
                               @RequestParam(name = "email") String mail,
                               @RequestParam(name = "message") String message) {
 
-        // TODO: JUnit testing:
-        //adresse@mail.fr <script>alert("Gnéééé")</script>
-        //adresse@mail.fr <script>alert("Gnéééé")</script>  '; "; DROP DATABASE gneeee;
+        try {
+            String escMail = StringEscapeUtils.escapeSql(StringEscapeUtils.escapeHtml(mail));
+            String escObject = StringEscapeUtils.escapeSql(StringEscapeUtils.escapeHtml(object));
+            String escMessage = StringEscapeUtils.escapeSql(StringEscapeUtils.escapeHtml(message));
 
-        String escMail = StringEscapeUtils.escapeSql(StringEscapeUtils.escapeHtml(mail));
-        String escObject = StringEscapeUtils.escapeSql(StringEscapeUtils.escapeHtml(object));
-        String escMessage = StringEscapeUtils.escapeSql(StringEscapeUtils.escapeHtml(message));
+            Message entity = new Message(escObject, escMessage, escMail, new Date());
+            messagesRepository.save(entity);
 
-        Message entity = new Message(escObject, escMessage, escMail, new Date());
-        messagesRepository.save(entity);
+            model.addAttribute("messageStatus", "saved");
 
-        model.addAttribute("messageStatus", "saved");
+        } catch (Exception e) {
+            logger.error("Error while saving message", e);
+            model.addAttribute("errorMessage", "Impossible de sauvegarder ce message.");
+        }
 
         includeVoteVars(model);
         Mappings.includeMappings(model);
