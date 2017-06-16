@@ -5,6 +5,12 @@
 <head>
     <title layout:title-pattern="Abc-Map - $CONTENT_TITLE">Abc-map</title>
     <meta charset="utf-8"/>
+
+    <!--  -->
+    <meta name="google-translate-customization"
+          content="ef656647eaf123ca-f4733da4fb07eff4-g4eff449bbe259eeb-a"
+          th:if="${session.googleTranslateEnabled}"/>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <!--[if lte IE 8]>
     <script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -109,6 +115,24 @@
 </head>
 <body>
 
+<script type="text/javascript" th:if="${session.googleTranslateEnabled}">
+    var GA_API_KEY = "UA-57177987-1";
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+                    pageLanguage: 'fr',
+                    layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+                    autoDisplay: false,
+                    gaTrack: true,
+                    gaId: GA_API_KEY
+                },
+                'google_translate_element');
+    }
+</script>
+<script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
 <!-- Wrapper -->
 <div id="wrapper">
 
@@ -128,6 +152,9 @@
                            target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
                     <li><a href="https://plus.google.com/share?url=https%3A%2F%2Fabc-map.fr"
                            target="_blank" class="icon fa-google-plus"><span class="label">Google Plus</span></a></li>
+                    <li>&nbsp;<a th:href="${mappings.get('TRANSLATE')}"
+                                 target="_blank" class="icon fa-globe"><span class="label">Translate</span>
+                        Translate</a></li>
                 </ul>
             </header>
 
@@ -385,7 +412,9 @@
                                    style="width: 60%; display: inline-block; margin: 3px;"/>
                             <input type="button" id="emailSubscriptionButton" value="O.K."
                                    style="display: inline-block; margin: 3px;"/></li>
-                        <li><div id="emailSubscriptionMessage"></div></li>
+                        <li>
+                            <div id="emailSubscriptionMessage"></div>
+                        </li>
                     </ul>
 
                     <script type="text/javascript" th:inline="javascript">
@@ -395,9 +424,9 @@
                             $("#emailSubscriptionButton").click(function () {
                                 $.post(POST_MAIL_URL, {
                                     email: $("#emailSubscriptionTextfield").val()
-                                }).done(function(){
+                                }).done(function () {
                                     $("#emailSubscriptionMessage").text('Merci 👍 ');
-                                }).fail(function(){
+                                }).fail(function () {
                                     $("#emailSubscriptionMessage").text('Merci 👍 !');
                                     console.error(arguments);
                                 });

@@ -25,6 +25,7 @@ public class Mappings {
     public static final String HELP = ROOT + "help";
     public static final String CONTACT = ROOT + "contact";
     public static final String SUBSCRIBE = ROOT + "subscribe";
+    public static final String TRANSLATE = ROOT + "translate";
 
     public static final String VOTES_ROOT = ROOT + "votes/";
     public static final String VOTES_GET_BY_DATE = VOTES_ROOT + "bydate";

@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -78,15 +79,34 @@ public class MainController {
             model.addAttribute("downloadsThisWeek", -1);
         }
 
-        includeVoteVars(model);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.WELCOME;
     }
 
-    private void includeVoteVars(Model model) {
+    @RequestMapping(value = Mappings.TRANSLATE, method = RequestMethod.GET)
+    public String translate(Model model, HttpSession session) {
+
+        Object curVal = session.getAttribute("googleTranslateEnabled");
+        if (curVal == null || curVal.equals("true") == false) {
+            session.setAttribute("googleTranslateEnabled", "true");
+        } else {
+            session.setAttribute("googleTranslateEnabled", "");
+        }
+
+        logger.error(curVal.toString());
+        logger.error(session.getAttribute("googleTranslateEnabled").toString());
+
+        includeMainModelVars(model);
+        Mappings.includeMappings(model);
+        return Templates.WELCOME;
+    }
+
+    private void includeMainModelVars(Model model) {
         try {
             model.addAttribute("averageVote", votesRepository.averageVoteValue());
             model.addAttribute("sumVote", votesRepository.count());
+            model.addAttribute("googleTranslateEnabled", "true");
         } catch (Exception e) {
             logger.error("Error while adding vote vars to model", e);
         }
@@ -95,7 +115,7 @@ public class MainController {
     @RequestMapping(value = Mappings.DOWNLOAD, method = RequestMethod.GET)
     public String showDownload(Model model) {
 
-        includeVoteVars(model);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.DOWNLOAD;
     }
@@ -109,7 +129,7 @@ public class MainController {
         model.addAttribute("questions", lists[1]);
         model.addAttribute("answers", lists[2]);
 
-        includeVoteVars(model);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.FAQ;
     }
@@ -120,7 +140,7 @@ public class MainController {
         List<String[]> list = Recommendations.getList();
         model.addAttribute("recommendations", list);
 
-        includeVoteVars(model);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.ABOUT_PROJECT;
     }
@@ -128,7 +148,7 @@ public class MainController {
     @RequestMapping(value = Mappings.NEW_VERSION, method = RequestMethod.GET)
     public String showNewVersion(Model model) {
 
-        includeVoteVars(model);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.NEW_VERSION;
     }
@@ -142,7 +162,7 @@ public class MainController {
         model.addAttribute("titlesJs", list);
         model.addAttribute("sourcesJs", list);
 
-        includeVoteVars(model);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.HELP;
     }
@@ -150,7 +170,7 @@ public class MainController {
     @RequestMapping(value = Mappings.CONTACT, method = RequestMethod.GET)
     public String showContact(Model model) {
 
-        includeVoteVars(model);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.CONTACT;
     }
@@ -158,7 +178,7 @@ public class MainController {
     @ResponseBody
     @RequestMapping(value = Mappings.SUBSCRIBE, method = RequestMethod.POST)
     public String postSubscribe(Model model,
-                @RequestParam(name = "email") String mail) {
+                                @RequestParam(name = "email") String mail) {
 
         Subscription sub = new Subscription(new Date(), mail);
         subscriptionsRepository.save(sub);
@@ -187,7 +207,7 @@ public class MainController {
             model.addAttribute("errorMessage", "Impossible de sauvegarder ce message.");
         }
 
-        includeVoteVars(model);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.CONTACT;
     }
