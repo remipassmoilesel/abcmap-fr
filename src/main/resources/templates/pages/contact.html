@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
       layout:decorator="main-decorator">
 <head>
 
@@ -19,6 +20,7 @@
         une fonctionnalité ou pour signaler une erreur. Ecrivez un mail à l'adresse suivante ou
         utilisez ce formulaire de contact:
 
+        <form method="post" th:action="${mappings.get('CONTACT')}">
         <table id="contactTable">
             <tr>
                 <td style="width: 30%">Adresse de contact:</td>
@@ -28,21 +30,29 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
+                <td>Objet:</td>
+                <td><select name="object">
+                    <option value="ask">Demander une fonctionnalité</option>
+                    <option value="help">Aide sur l'utilisation</option>
+                    <option value="error">Signaler une erreur</option>
+                </select></td>
+            </tr>
+            <tr>
                 <td>Votre adresse mail:</td>
-                <td><input type="text"/></td>
+                <td><input type="text" name="email"/></td>
             </tr>
             <tr>
                 <td>Votre message:</td>
-                <td><textarea></textarea></td>
+                <td><textarea name="message"></textarea></td>
             </tr>
+            <tr><td colspan="2">Je ne suis pas une machine</td></tr>
             <tr>
                 <td>&nbsp;</td>
-                <td><input type="button" value="Envoyer"/></td>
+                <td><input type="submit" value="Envoyer"/></td>
             </tr>
         </table>
-
+        </form>
     </section>
-
 
 </div>
 

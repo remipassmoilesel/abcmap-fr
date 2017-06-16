@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.BufferedReader;
@@ -137,6 +138,21 @@ public class MainController {
 
     @RequestMapping(value = Mappings.CONTACT, method = RequestMethod.GET)
     public String showContact(Model model) {
+
+        includeVoteVars(model);
+        Mappings.includeMappings(model);
+        return Templates.CONTACT;
+    }
+
+    @RequestMapping(value = Mappings.CONTACT, method = RequestMethod.POST)
+    public String postContact(Model model,
+                              @RequestParam(name = "object") String object,
+                              @RequestParam(name = "email") String mail,
+                              @RequestParam(name = "message") String message) {
+
+        logger.error(object);
+        logger.error(mail);
+        logger.error(message);
 
         includeVoteVars(model);
         Mappings.includeMappings(model);
