@@ -46,6 +46,8 @@
             <div id="downloadNumber" th:if="${downloadsThisWeek} != -1" th:inline="text">
                 [[${downloadsThisWeek}]] téléchargements cette semaine
             </div>
+            <div th:inline="text">[[${#numbers.formatDecimal(averageVote, 0, 2)}]] / 5
+                <span class="fa fa-star"></span>, [[${totalVotes}]] participants</div>
         </div>
 
     </section>

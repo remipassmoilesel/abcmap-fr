@@ -8,6 +8,10 @@
     margin: 2em;
 }
 
+#downloadNumber {
+    margin-top: 2em;
+}
+
 #downloadButton {
     width: 300px;
     text-align: center;

@@ -14,6 +14,7 @@ import org.remipassmoilesel.abcmapfr.lists.Functionalities;
 import org.remipassmoilesel.abcmapfr.lists.Recommendations;
 import org.remipassmoilesel.abcmapfr.lists.Videos;
 import org.remipassmoilesel.abcmapfr.repositories.StatsRepository;
+import org.remipassmoilesel.abcmapfr.repositories.VotesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,8 @@ public class MainController {
     @Autowired
     private StatsRepository statsRepository;
 
+    @Autowired
+    private VotesRepository votesRepository;
 
     @RequestMapping(value = Mappings.ROOT, method = RequestMethod.GET)
     public String showIndex() {
@@ -55,6 +58,7 @@ public class MainController {
         List<String> functionalities = Functionalities.getList();
         model.addAttribute("functionnalities", functionalities);
 
+        // get download number
         try {
             model.addAttribute("downloadsThisWeek", getDownloadsThisWeek());
         } catch (Exception e) {
@@ -62,13 +66,24 @@ public class MainController {
             model.addAttribute("downloadsThisWeek", -1);
         }
 
+        includeVoteVars(model);
         Mappings.includeMappings(model);
         return Templates.WELCOME;
+    }
+
+    private void includeVoteVars(Model model) {
+        try {
+            model.addAttribute("averageVote", votesRepository.averageVoteValue());
+            model.addAttribute("totalVotes", votesRepository.count());
+        } catch (Exception e) {
+            logger.error("Error while adding vote vars to model", e);
+        }
     }
 
     @RequestMapping(value = Mappings.DOWNLOAD, method = RequestMethod.GET)
     public String showDownload(Model model) {
 
+        includeVoteVars(model);
         Mappings.includeMappings(model);
         return Templates.DOWNLOAD;
     }
@@ -82,6 +97,7 @@ public class MainController {
         model.addAttribute("questions", lists[1]);
         model.addAttribute("answers", lists[2]);
 
+        includeVoteVars(model);
         Mappings.includeMappings(model);
         return Templates.FAQ;
     }
@@ -92,6 +108,7 @@ public class MainController {
         List<String[]> list = Recommendations.getList();
         model.addAttribute("recommendations", list);
 
+        includeVoteVars(model);
         Mappings.includeMappings(model);
         return Templates.ABOUT_PROJECT;
     }
@@ -99,6 +116,7 @@ public class MainController {
     @RequestMapping(value = Mappings.NEW_VERSION, method = RequestMethod.GET)
     public String showNewVersion(Model model) {
 
+        includeVoteVars(model);
         Mappings.includeMappings(model);
         return Templates.NEW_VERSION;
     }
@@ -112,6 +130,7 @@ public class MainController {
         model.addAttribute("titlesJs", list);
         model.addAttribute("sourcesJs", list);
 
+        includeVoteVars(model);
         Mappings.includeMappings(model);
         return Templates.HELP;
     }
@@ -119,6 +138,7 @@ public class MainController {
     @RequestMapping(value = Mappings.CONTACT, method = RequestMethod.GET)
     public String showContact(Model model) {
 
+        includeVoteVars(model);
         Mappings.includeMappings(model);
         return Templates.CONTACT;
     }

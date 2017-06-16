@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 import org.remipassmoilesel.abcmapfr.entities.Stats;
 import org.remipassmoilesel.abcmapfr.entities.Vote;
 import org.remipassmoilesel.abcmapfr.repositories.StatsRepository;
-import org.remipassmoilesel.abcmapfr.repositories.VoteRepository;
+import org.remipassmoilesel.abcmapfr.repositories.VotesRepository;
 import org.remipassmoilesel.abcmapfr.utils.DevDataFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class DevDataLoader implements ApplicationRunner {
     private final Logger logger = LoggerFactory.getLogger(DevDataLoader.class);
 
     @Autowired
-    private VoteRepository voteRepository;
+    private VotesRepository voteRepository;
 
     @Autowired
     private StatsRepository statsRepository;

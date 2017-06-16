@@ -1,10 +1,7 @@
 package org.remipassmoilesel.abcmapfr.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -15,16 +12,26 @@ import java.util.Objects;
 public class Vote {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer value;
     private Date date;
 
-    protected Vote() {}
+    @Column(columnDefinition = "TEXT")
+    private String url;
+
+    protected Vote() {
+    }
 
     public Vote(Integer value, Date date) {
         this.value = value;
         this.date = date;
+    }
+
+    public Vote(Integer value, Date date, String url) {
+        this.value = value;
+        this.date = date;
+        this.url = url;
     }
 
     public Long getId() {
@@ -51,13 +58,12 @@ public class Vote {
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Vote{" +
-                "id=" + id +
-                ", value=" + value +
-                ", date=" + date +
-                '}';
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -67,11 +73,23 @@ public class Vote {
         Vote vote = (Vote) o;
         return Objects.equals(id, vote.id) &&
                 Objects.equals(value, vote.value) &&
-                Objects.equals(date, vote.date);
+                Objects.equals(date, vote.date) &&
+                Objects.equals(url, vote.url);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, value, date);
+        return Objects.hash(id, value, date, url);
     }
+
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "id=" + id +
+                ", value=" + value +
+                ", date=" + date +
+                ", url='" + url + '\'' +
+                '}';
+    }
+
 }

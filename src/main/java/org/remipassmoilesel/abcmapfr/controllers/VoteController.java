@@ -2,7 +2,7 @@ package org.remipassmoilesel.abcmapfr.controllers;
 
 import org.remipassmoilesel.abcmapfr.Mappings;
 import org.remipassmoilesel.abcmapfr.entities.Vote;
-import org.remipassmoilesel.abcmapfr.repositories.VoteRepository;
+import org.remipassmoilesel.abcmapfr.repositories.VotesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,22 +27,17 @@ public class VoteController {
     private static final Logger logger = LoggerFactory.getLogger(VoteController.class);
 
     @Autowired
-    private VoteRepository votes;
+    private VotesRepository voteRepository;
 
     @ResponseBody
     @RequestMapping(value = Mappings.VOTES_ROOT, method = RequestMethod.GET)
     public void postVote(
             @RequestParam(value = "v", required = true) int value,
             @RequestParam(value = "p", required = false) String page) {
-        logger.error(String.valueOf(value));
-        logger.error(String.valueOf(value));
-        logger.error(String.valueOf(value));
-        logger.error(String.valueOf(value));
-        logger.error(page);
-        logger.error(page);
-        logger.error(page);
-        logger.error(page);
-        logger.error(page);
+
+        Vote vote = new Vote(value, null, page);
+        voteRepository.save(vote);
+
     }
 
     @ResponseBody
@@ -50,7 +45,7 @@ public class VoteController {
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Vote> votesGetByDate(
             @RequestParam(value = "date", required = true) Date date) {
-        return votes.findByDate(date);
+        return voteRepository.findByDate(date);
     }
 
     @ResponseBody
@@ -60,7 +55,7 @@ public class VoteController {
         int max = 100;
         int i = 0;
         ArrayList<Vote> rslt = new ArrayList<>();
-        Iterator<Vote> it = votes.findAll().iterator();
+        Iterator<Vote> it = voteRepository.findAll().iterator();
         while (it.hasNext() && i < max) {
             rslt.add(it.next());
             i++;
