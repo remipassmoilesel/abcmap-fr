@@ -11,6 +11,13 @@ Based on Spring Boot.
 
 After visit http://localhost:8085 .
 
+## Specifications
+
+	- Responsive website for desktop and mobile
+	- Use of hight productivity framework Spring
+	- Mailing list registration, message board, votes, ...
+	- Optionnal translation with Google Translate
+
 ## Sass processing
 
 Need Node JS.
@@ -18,3 +25,5 @@ Need Node JS.
 	$ npm install
 	$ npm install -g gulp
 	$ gulp
+
+
