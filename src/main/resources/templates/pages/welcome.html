@@ -34,13 +34,14 @@
             <li>Et bien d'autres !</li>
         </ul>
 
-        <div id="tutorialLink"><a href="http://abc-map.fr/help/">
+        <div id="tutorialLink"><a href="/help/">
             D&eacute;couvrez le fonctionnement du logiciel en quelques minutes<br/>
             grâce à la vidéo de pr&eacute;sentation</a>
         </div>
 
         <div id="downloadSection">
-            <button id="downloadButton" th:onClick="'window.location = \'' + ${mappings.get('DOWNLOAD')} + '\''">
+            <button id="downloadButton" th:onClick="'window.location = \'' +
+                ${mappings.get('DOWNLOAD')} + '\''">
                 Télécharger Abc-Map
             </button>
             <div id="downloadNumber" th:if="${downloadsThisWeek} != -1" th:inline="text">
@@ -74,10 +75,8 @@
             <a href="http://www.openstreetmap.org" target="_blank">http://www.openstreetmap.org</a>
             <br/>&copy; les contributeurs d'OpenStreetMap</p>
 
-        <p class="copyright">Demo Images: <a
-                href="https://unsplash.com">Unsplash</a>.
-            Template conçu par : <a href="https://twitter.com/ajlkn">@ajlkn</a>
-            <a href="https://html5up.net">HTML5 UP</a> ✌️ 👏.</p>
+        <p class="copyright">Template conçu par : <a href="https://twitter.com/ajlkn">@ajlkn</a>
+            <a href="https://html5up.net">HTML5 UP</a> <b style="font-size: 2em;">✌️ 👏</b> </p>
 
     </section>
 
