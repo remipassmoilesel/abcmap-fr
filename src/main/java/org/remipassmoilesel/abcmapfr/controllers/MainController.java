@@ -74,7 +74,7 @@ public class MainController {
     private void includeVoteVars(Model model) {
         try {
             model.addAttribute("averageVote", votesRepository.averageVoteValue());
-            model.addAttribute("totalVotes", votesRepository.count());
+            model.addAttribute("sumVote", votesRepository.count());
         } catch (Exception e) {
             logger.error("Error while adding vote vars to model", e);
         }

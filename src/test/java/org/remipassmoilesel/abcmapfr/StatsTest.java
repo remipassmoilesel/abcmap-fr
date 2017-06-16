@@ -77,12 +77,6 @@ public class StatsTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.*", hasSize(greaterThan(1))));
 
-        // test stats of the day
-        mockMvc.perform(get(Mappings.WELCOME)
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                .andExpect(status().isOk())
-                .andExpect(model().attribute("downloadsThisWeek", greaterThan(1)));
-
         //statsRepository.deleteAll();
 
     }
