@@ -11,12 +11,14 @@ import org.remipassmoilesel.abcmapfr.Mappings;
 import org.remipassmoilesel.abcmapfr.Templates;
 import org.remipassmoilesel.abcmapfr.entities.Message;
 import org.remipassmoilesel.abcmapfr.entities.Stats;
+import org.remipassmoilesel.abcmapfr.entities.Subscription;
 import org.remipassmoilesel.abcmapfr.lists.Faq;
 import org.remipassmoilesel.abcmapfr.lists.Functionalities;
 import org.remipassmoilesel.abcmapfr.lists.Recommendations;
 import org.remipassmoilesel.abcmapfr.lists.Videos;
 import org.remipassmoilesel.abcmapfr.repositories.MessagesRepository;
 import org.remipassmoilesel.abcmapfr.repositories.StatsRepository;
+import org.remipassmoilesel.abcmapfr.repositories.SubscriptionsRepository;
 import org.remipassmoilesel.abcmapfr.repositories.VotesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +53,9 @@ public class MainController {
 
     @Autowired
     private MessagesRepository messagesRepository;
+
+    @Autowired
+    private SubscriptionsRepository subscriptionsRepository;
 
     @RequestMapping(value = Mappings.ROOT, method = RequestMethod.GET)
     public String showIndex() {
@@ -148,6 +153,17 @@ public class MainController {
         includeVoteVars(model);
         Mappings.includeMappings(model);
         return Templates.CONTACT;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = Mappings.SUBSCRIBE, method = RequestMethod.POST)
+    public String postSubscribe(Model model,
+                @RequestParam(name = "email") String mail) {
+
+        Subscription sub = new Subscription(new Date(), mail);
+        subscriptionsRepository.save(sub);
+
+        return "";
     }
 
     @RequestMapping(value = Mappings.CONTACT, method = RequestMethod.POST)

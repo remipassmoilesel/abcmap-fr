@@ -2699,3 +2699,9 @@ button,
 
 .menuVotesDisplay {
   margin-left: 1em; }
+
+#emailSubscriptionMessage {
+  font-size: 1.2em;
+  font-weight: bolder;
+  text-align: right;
+  margin-right: 1em; }

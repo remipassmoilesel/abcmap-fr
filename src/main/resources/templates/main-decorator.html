@@ -18,6 +18,14 @@
     <link rel="icon" href="/images/favicon.png" type="image/png"/>
     <link rel="shortcut icon" href="/favicon.ico"/>
 
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/skel.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <!--[if lte IE 8]>
+    <script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="/assets/js/main.js"></script>
+
     <script type="text/javascript" th:inline="javascript">
 
         var VOTE_URL = /*[[${mappings.get('VOTES_ROOT')}]]*/ null;
@@ -369,11 +377,34 @@
                 </header>
                 <p>Abonnez-vous à la newsletter, pour recevoir occasionnellement des
                     nouvelles du projet</p>
-                <ul style="list-style: none">
-                    <li>Adresse email:</li>
-                    <li><input type="text" style="width: 60%; display: inline-block; margin: 3px;"/>
-                        <input type="button" value="O.K." style="display: inline-block; margin: 3px;"/></li>
-                </ul>
+
+                <form th:fragment="mailSubscription">
+                    <ul style="list-style: none">
+                        <li>Adresse email:</li>
+                        <li><input type="text" id="emailSubscriptionTextfield"
+                                   style="width: 60%; display: inline-block; margin: 3px;"/>
+                            <input type="button" id="emailSubscriptionButton" value="O.K."
+                                   style="display: inline-block; margin: 3px;"/></li>
+                        <li><div id="emailSubscriptionMessage"></div></li>
+                    </ul>
+
+                    <script type="text/javascript" th:inline="javascript">
+                        var POST_MAIL_URL = /*[[${mappings.get('SUBSCRIBE')}]]*/ null;
+
+                        $(function () {
+                            $("#emailSubscriptionButton").click(function () {
+                                $.post(POST_MAIL_URL, {
+                                    email: $("#emailSubscriptionTextfield").val()
+                                }).done(function(){
+                                    $("#emailSubscriptionMessage").text('Merci 👍 ');
+                                }).fail(function(){
+                                    $("#emailSubscriptionMessage").text('Merci 👍 !');
+                                    console.error(arguments);
+                                });
+                            });
+                        });
+                    </script>
+                </form>
             </section>
 
             <section>
@@ -420,14 +451,6 @@
 <!-- Scroll to top button -->
 <button onclick="topFunction()" id="goToTopButton" title="Remonter"
         class="fa fa-arrow-up"></button>
-
-<!-- Scripts -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/skel.min.js"></script>
-<script src="/assets/js/util.js"></script>
-<!--[if lte IE 8]>
-<script src="/assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="/assets/js/main.js"></script>
 
 </body>
 </html>
