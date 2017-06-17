@@ -6,10 +6,10 @@
     <groupId>org.remipassmoilesel</groupId>
     <artifactId>abcmap-fr</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>abcmap-fr</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Distribution website of Abc-Map</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

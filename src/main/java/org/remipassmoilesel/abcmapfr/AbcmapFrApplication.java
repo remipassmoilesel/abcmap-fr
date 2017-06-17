@@ -5,11 +5,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 import java.nio.file.Paths;
 
 @SpringBootApplication
-public class AbcmapFrApplication {
+public class AbcmapFrApplication extends SpringBootServletInitializer {
 
     private static final Logger logger = LoggerFactory.getLogger(AbcmapFrApplication.class);
 
@@ -28,4 +30,10 @@ public class AbcmapFrApplication {
 
         mainApp.run(args);
     }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(AbcmapFrApplication.class);
+    }
+
 }
