@@ -5,8 +5,8 @@
 
     <title>Nouvelle version à venir</title>
 
-    <!--<link rel="stylesheet" type="text/css" href="/assets/css/faq.css"-->
-    <!--layout:fragment="htmlHeaders"/>-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/newVersion.css"
+          layout:fragment="htmlHeaders"/>
 
 </head>
 <body>
@@ -16,13 +16,95 @@
 <div layout:fragment="content">
     <section>
 
+        <p>Une nouvelle version du logiciel Abc-Map est actuellement en développement. Grâce
+            aux nombreuses réponses aux questionnaires et aux intéractions avec les utilisateurs,
+            de nouvelles fonctionnalités seront ajoutées.</p>
+
+        <p>Cette nouvelle version sera plus puissante et utilisera des méthodologie modernes pour
+            permettre une plus grande fiabilité et une maintenance plus facile.</p>
+
         <ul>
-            <li>Nouvelles fonctionnalités</li>
-            <li>Nouvelles interface</li>
-            <li>Statut du projet</li>
+            <li><a href="#new_functionnalities">Nouvelles fonctionnalités prévues</a></li>
+            <li><a href="#new_gui">Nouvelle interface</a></li>
+            <li><a href="#project_status">Statut du projet</a></li>
         </ul>
 
     </section>
+
+    <section id="functionnalities">
+        <a name="new_functionnalities"/>
+
+        <h2>Nouvelles fonctionnalités prévues</h2>
+
+
+        <h3>Import et export de données (GPX, KML, SHP, ...)</h3>
+
+        <p>Sur demande de plusieurs utilisateurs, Abc-Map sera capable d'utiliser des formats de données
+            permettant d'utiliser des récepteurs GPS et d'échanger des données avec d'autres logiciels de
+            cartographie.</p>
+
+
+        <h3>Création d'un système de dépôt de données</h3>
+
+        <p>Afin de simplifier encore la création de cartes, des dépôts de données géographiques seront créés.
+            Cela permettra de créer une carte en recherchant des données directement à partir du logiciel. Les
+            données proposées seront adaptés au logiciel afin d'optimiser le rendu des cartes. Les utilisateurs
+            auront la possibilité de créer leurs propres dépôts. </p>
+
+
+        <h3>Utilisation des connexions WMS (serveurs cartographiques en ligne)</h3>
+
+        <p>Il sera possible d'utiliser les connexions WMS avec Abc-Map.
+            Ces conexions permettent par exemple d'utiliser des données géographique en ligne sans faire de
+            captures d'écran. Bien entendu les fonctionnalités de capture d'acran et d'assemblage
+            d'images seront conservées.</p>
+
+
+        <h3>Mise en page automatique</h3>
+
+        <p>Sur demande de plusieurs utilisateurs, il sera possible de mettre en page automatiquement
+            une carte sur plusieurs feuilles (A4 par exemple).</p>
+
+    </section>
+
+    <section id="ngui">
+        <a name="new_gui"/>
+
+        <h2>Nouvelle interface</h2>
+
+        <p>Une nouvelle interface a été conçue pour répondre aux attentes des utilisateurs. </p>
+
+        <div class="thumbsBox">
+            <a href="/images/abcmap2-screenshot1.png" data-lightbox="screenshot">
+                <img src="/images/abcmap2-screenshot1.png"/>
+            </a>
+            &nbsp;&nbsp;
+            <a href="/images/abcmap2-screenshot2.png" data-lightbox="screenshot">
+                <img src="/images/abcmap2-screenshot2.png"/>
+            </a>
+        </div>
+
+        <p>Cette nouvelle interface, simple et soignée, est entièrement tournée vers une expérience
+            utilisateur simplifiée. De l'aide est disponible pour chaque commande à proximité immédiate
+            des contrôles.
+        </p>
+
+    </section>
+
+    <section id="pstatus">
+        <a name="project_status"/>
+
+        <h2>Statut du projet</h2>
+
+        <p>Abc-Map 2 est en développement actif depuis plus d'un an. Le logiciel est développé bénévolement
+            par un seul développeur, ce qui additionné à diverses difficultés techniques, explique
+            le temps important de développement.
+        </p>
+
+        <p>La prochaine version devrait être disponible en téléchargement dans le courant de l'année 2018.</p>
+
+    </section>
+
 </div>
 
 </body>
