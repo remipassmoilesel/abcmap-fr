@@ -44,6 +44,8 @@ import java.util.List;
 @Controller
 public class MainController {
 
+    public static final String GTRANSLATE_ATTR_NAME = "googleTranslateEnabled";
+
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
@@ -64,7 +66,7 @@ public class MainController {
     }
 
     @RequestMapping(value = Mappings.WELCOME, method = RequestMethod.GET)
-    public String showWelcome(Model model) {
+    public String showWelcome(Model model, HttpSession session) {
 
         //statsRepository.deleteAll();
 
@@ -79,7 +81,7 @@ public class MainController {
             model.addAttribute("downloadsThisWeek", -1);
         }
 
-        includeMainModelVars(model);
+        includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.WELCOME;
     }
@@ -87,41 +89,37 @@ public class MainController {
     @RequestMapping(value = Mappings.TRANSLATE, method = RequestMethod.GET)
     public String translate(Model model, HttpSession session) {
 
-        Object curVal = session.getAttribute("googleTranslateEnabled");
+        Object curVal = session.getAttribute(GTRANSLATE_ATTR_NAME);
         if (curVal == null || curVal.equals("true") == false) {
-            session.setAttribute("googleTranslateEnabled", "true");
+            session.setAttribute(GTRANSLATE_ATTR_NAME, "true");
         } else {
-            session.setAttribute("googleTranslateEnabled", "");
+            session.setAttribute(GTRANSLATE_ATTR_NAME, "");
         }
 
-        logger.error(curVal.toString());
-        logger.error(session.getAttribute("googleTranslateEnabled").toString());
-
-        includeMainModelVars(model);
+        includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.WELCOME;
     }
 
-    private void includeMainModelVars(Model model) {
+    private void includeMainModelVars(Model model, HttpSession session) {
         try {
             model.addAttribute("averageVote", votesRepository.averageVoteValue());
             model.addAttribute("sumVote", votesRepository.count());
-            model.addAttribute("googleTranslateEnabled", "true");
         } catch (Exception e) {
             logger.error("Error while adding vote vars to model", e);
         }
     }
 
     @RequestMapping(value = Mappings.DOWNLOAD, method = RequestMethod.GET)
-    public String showDownload(Model model) {
+    public String showDownload(Model model, HttpSession session) {
 
-        includeMainModelVars(model);
+        includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.DOWNLOAD;
     }
 
     @RequestMapping(value = Mappings.FAQ, method = RequestMethod.GET)
-    public String showFaq(Model model) {
+    public String showFaq(Model model, HttpSession session) {
 
         List[] lists = Faq.getLists();
 
@@ -129,32 +127,32 @@ public class MainController {
         model.addAttribute("questions", lists[1]);
         model.addAttribute("answers", lists[2]);
 
-        includeMainModelVars(model);
+        includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.FAQ;
     }
 
     @RequestMapping(value = Mappings.ABOUT_PROJECT, method = RequestMethod.GET)
-    public String showProject(Model model) {
+    public String showProject(Model model, HttpSession session) {
 
         List<String[]> list = Recommendations.getList();
         model.addAttribute("recommendations", list);
 
-        includeMainModelVars(model);
+        includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.ABOUT_PROJECT;
     }
 
     @RequestMapping(value = Mappings.NEW_VERSION, method = RequestMethod.GET)
-    public String showNewVersion(Model model) {
+    public String showNewVersion(Model model, HttpSession session) {
 
-        includeMainModelVars(model);
+        includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.NEW_VERSION;
     }
 
     @RequestMapping(value = Mappings.HELP, method = RequestMethod.GET)
-    public String showHelp(Model model) {
+    public String showHelp(Model model, HttpSession session) {
 
         List<String[]> list = Videos.getList();
 
@@ -162,15 +160,15 @@ public class MainController {
         model.addAttribute("titlesJs", list);
         model.addAttribute("sourcesJs", list);
 
-        includeMainModelVars(model);
+        includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.HELP;
     }
 
     @RequestMapping(value = Mappings.CONTACT, method = RequestMethod.GET)
-    public String showContact(Model model) {
+    public String showContact(Model model, HttpSession session) {
 
-        includeMainModelVars(model);
+        includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.CONTACT;
     }
@@ -187,7 +185,7 @@ public class MainController {
     }
 
     @RequestMapping(value = Mappings.CONTACT, method = RequestMethod.POST)
-    public String postContact(Model model,
+    public String postContact(Model model, HttpSession session,
                               @RequestParam(name = "object") String object,
                               @RequestParam(name = "email") String mail,
                               @RequestParam(name = "message") String message) {
@@ -207,7 +205,7 @@ public class MainController {
             model.addAttribute("errorMessage", "Impossible de sauvegarder ce message.");
         }
 
-        includeMainModelVars(model);
+        includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.CONTACT;
     }

@@ -16,8 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.io.IOException;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,6 +37,7 @@ public class MainControllerTest {
     @Test
     public void welcomePageTests() throws Exception {
 
+        // welcome page
         mockMvc.perform(get(Mappings.WELCOME)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(status().isOk())
@@ -45,6 +45,18 @@ public class MainControllerTest {
                 .andExpect(model().attributeExists("averageVote"))
                 .andExpect(model().attributeExists("sumVote"));
 
+        // enable translation
+        mockMvc.perform(get(Mappings.TRANSLATE)
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .andExpect(status().isOk())
+                .andExpect(request().sessionAttribute(MainController.GTRANSLATE_ATTR_NAME, "true"));
+
+        // disable translation
+        mockMvc.perform(get(Mappings.TRANSLATE)
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .sessionAttr(MainController.GTRANSLATE_ATTR_NAME, "true"))
+                .andExpect(status().isOk())
+                .andExpect(request().sessionAttribute(MainController.GTRANSLATE_ATTR_NAME, ""));
     }
 
 }
