@@ -7,7 +7,7 @@ Based on Spring Boot.
 
 	$ git clone https://github.com/remipassmoilesel/abcmap-fr
 	$ cd abcmap-fr
-	$ ./mvnw spring-boot:run
+	$ ./launcher-example.sh
 
 After visit http://localhost:8085 .
 
