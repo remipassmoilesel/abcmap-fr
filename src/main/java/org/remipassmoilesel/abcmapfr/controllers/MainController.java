@@ -20,6 +20,7 @@ import org.remipassmoilesel.abcmapfr.repositories.VotesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,8 +35,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +47,9 @@ public class MainController {
     public static final String GTRANSLATE_ATTR_NAME = "googleTranslateEnabled";
 
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+
+    @Value("${app.google-analytics-api-key}")
+    private String googleAnalyticsApiKey;
 
     @Autowired
     private StatsRepository statsRepository;
@@ -318,11 +320,15 @@ public class MainController {
         return getStatsOfTheWeek().getTotalDownloads();
     }
 
-
     private void includeMainModelVars(Model model, HttpSession session) {
         try {
             model.addAttribute("averageVote", votesRepository.averageVoteValue());
             model.addAttribute("sumVote", votesRepository.count());
+
+            if (googleAnalyticsApiKey != null) {
+                model.addAttribute("googleAnalyticsApiKey", googleAnalyticsApiKey);
+            }
+
         } catch (Exception e) {
             logger.error("Error while adding vote vars to model", e);
         }

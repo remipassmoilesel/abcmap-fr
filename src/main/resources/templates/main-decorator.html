@@ -6,11 +6,6 @@
     <title layout:title-pattern="Abc-Map - $CONTENT_TITLE">Abc-map</title>
     <meta charset="utf-8"/>
 
-    <!--  -->
-    <meta name="google-translate-customization"
-          content="ef656647eaf123ca-f4733da4fb07eff4-g4eff449bbe259eeb-a"
-          th:if="${#strings.isEmpty(session.googleTranslateEnabled)}"/>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
     <link rel="stylesheet" href="/bower_components/lightbox2/dist/css/lightbox.css"/>
@@ -117,13 +112,24 @@
         /*]]>*/
     </script>
 
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script type="text/javascript" th:inline="javascript"
+            th:if="${googleAnalyticsApiKey != null}">
 
-        ga('create', 'UA-57177987-1', 'auto');
+        var GA_API_KEY = /*[[${googleAnalyticsApiKey}]]*/ null;
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', GA_API_KEY, 'auto');
         ga('send', 'pageview');
     </script>
 
@@ -134,7 +140,7 @@
 </head>
 <body>
 
-<div th:if="${#strings.isEmpty(session.googleTranslateEnabled)}"
+<div th:if="${session.googleTranslateEnabled != null and #strings.isEmpty(session.googleTranslateEnabled) == false}"
      style="padding: 0.5em; background: silver; text-align: center">
 
     <h4>Select a language:</h4>
@@ -144,14 +150,11 @@
     </div>
 
     <script type="text/javascript">
-        var GA_API_KEY = "UA-57177987-1";
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                         pageLanguage: 'fr',
                         layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
                         autoDisplay: false,
-                        gaTrack: true,
-                        gaId: GA_API_KEY
                     },
                     'google_translate_element');
         }
