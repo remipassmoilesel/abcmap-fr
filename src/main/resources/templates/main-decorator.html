@@ -12,20 +12,25 @@
           th:if="${#strings.isEmpty(session.googleTranslateEnabled)}"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+
+    <link rel="stylesheet" href="/bower_components/lightbox2/dist/css/lightbox.css"/>
+
     <!--[if lte IE 8]>
     <script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="/assets/css/main.css"/>
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/assets/css/ie9.css"/><![endif]-->
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="/assets/css/ie8.css"/><![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="/assets/css/ie9.css"/><![endif]-->
 
     <!-- favicon -->
     <link rel="icon" href="/images/favicon.png" type="image/png"/>
     <link rel="shortcut icon" href="/favicon.ico"/>
 
     <!-- Scripts -->
-    <script src="/assets/js/jquery.min.js"></script>
+    <!--<script src="/assets/js/jquery.min.js"></script>-->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/lightbox2/dist/js/lightbox.js"></script>
     <script src="/assets/js/skel.min.js"></script>
     <script src="/assets/js/util.js"></script>
     <!--[if lte IE 8]>
