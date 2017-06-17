@@ -26,4 +26,6 @@ Need Node JS.
 	$ npm install -g gulp
 	$ gulp
 
+## TODO
 
+    - Mail notifications
