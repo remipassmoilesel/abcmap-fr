@@ -74,10 +74,13 @@
         };
 
         function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.getElementById("goToTopButton").style.display = "block";
-            } else {
-                document.getElementById("goToTopButton").style.display = "none";
+            var button = document.getElementById("goToTopButton");
+            if (button) {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    button.style.display = "block";
+                } else {
+                    button.style.display = "none";
+                }
             }
         }
 
@@ -121,7 +124,7 @@
 <body>
 
 <div th:if="${#strings.isEmpty(session.googleTranslateEnabled)}"
-    style="padding: 0.5em; background: silver; text-align: center">
+     style="padding: 0.5em; background: silver; text-align: center">
 
     <h4>Select a language:</h4>
 
