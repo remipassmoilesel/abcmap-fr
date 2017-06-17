@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Erreur</title>
+
+    <style type="text/css">
+        * {
+            font-family: "Courier New", monospace;
+        }
+
+        .errorDate{
+            margin: 1em;
+        }
+
+        .errorMessage{
+            margin: 1em;
+        }
+    </style>
+
+</head>
+<body>
+
+<div style="width: 70%; margin-top: 2em; margin: auto;">
+
+    <h1 layout:fragment="header">Une erreur est survenue</h1>
+
+    <div layout:fragment="content">
+
+        <div>
+            Une erreur empêche le fonctionnement de cette plate-forme.
+            Retournez à l'index du site. Si cette erreur persiste, vous pouvez
+            contacter l'administrateur de ce site à l'adresse suivante:
+            <a href="mailto:fr.abcmap@gmail.com">fr.abcmap [@] gmail.com</a>
+        </div>
+
+        <div th:text="${date}" class="errorDate"></div>
+        <div th:text="${errorMsg}" class="errorMessage"></div>
+
+    </div>
+</div>
+
+</body>
+</html>

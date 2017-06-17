@@ -69,7 +69,7 @@ public class MainController {
     }
 
     @RequestMapping(value = Mappings.WELCOME, method = RequestMethod.GET)
-    public String showWelcome(Model model, HttpSession session) {
+    public String showWelcome(Model model, HttpSession session) throws Exception {
 
         //statsRepository.deleteAll();
 

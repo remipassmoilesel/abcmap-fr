@@ -37,6 +37,7 @@ public class Mappings {
 
     public static final String WHY_DONATE = FAQ + "#question12";
 
+    public static final String ERROR_PATH = "/error";
 
 
     public static MappingMap getMap() {
