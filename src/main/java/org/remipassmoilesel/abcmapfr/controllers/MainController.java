@@ -12,10 +12,7 @@ import org.remipassmoilesel.abcmapfr.Templates;
 import org.remipassmoilesel.abcmapfr.entities.Message;
 import org.remipassmoilesel.abcmapfr.entities.Stats;
 import org.remipassmoilesel.abcmapfr.entities.Subscription;
-import org.remipassmoilesel.abcmapfr.lists.Faq;
-import org.remipassmoilesel.abcmapfr.lists.Functionalities;
-import org.remipassmoilesel.abcmapfr.lists.Recommendations;
-import org.remipassmoilesel.abcmapfr.lists.Videos;
+import org.remipassmoilesel.abcmapfr.lists.*;
 import org.remipassmoilesel.abcmapfr.repositories.MessagesRepository;
 import org.remipassmoilesel.abcmapfr.repositories.StatsRepository;
 import org.remipassmoilesel.abcmapfr.repositories.SubscriptionsRepository;
@@ -101,17 +98,20 @@ public class MainController {
         return Templates.WELCOME;
     }
 
-    private void includeMainModelVars(Model model, HttpSession session) {
-        try {
-            model.addAttribute("averageVote", votesRepository.averageVoteValue());
-            model.addAttribute("sumVote", votesRepository.count());
-        } catch (Exception e) {
-            logger.error("Error while adding vote vars to model", e);
-        }
-    }
-
     @RequestMapping(value = Mappings.DOWNLOAD, method = RequestMethod.GET)
-    public String showDownload(Model model, HttpSession session) {
+    public String showDownload(Model model, HttpSession session,
+                               @RequestParam(name = "downloadType", required = false) String downloadType) {
+
+        // retrieve and add download link if needed
+        if(downloadType != null) {
+            String link = DownloadLinks.get(downloadType.trim().toLowerCase());
+
+            if (link == null) {
+                includeErrorMessage(model, "Téléchargement non disponible");
+            } else {
+                model.addAttribute("downloadLink", link);
+            }
+        }
 
         includeMainModelVars(model, session);
         Mappings.includeMappings(model);
@@ -202,7 +202,7 @@ public class MainController {
 
         } catch (Exception e) {
             logger.error("Error while saving message", e);
-            model.addAttribute("errorMessage", "Impossible de sauvegarder ce message.");
+            includeErrorMessage(model, "Impossible de sauvegarder ce message.");
         }
 
         includeMainModelVars(model, session);
@@ -275,4 +275,19 @@ public class MainController {
     public int getDownloadsThisWeek() throws IOException {
         return getStatsOfTheWeek().getTotalDownloads();
     }
+
+
+    private void includeMainModelVars(Model model, HttpSession session) {
+        try {
+            model.addAttribute("averageVote", votesRepository.averageVoteValue());
+            model.addAttribute("sumVote", votesRepository.count());
+        } catch (Exception e) {
+            logger.error("Error while adding vote vars to model", e);
+        }
+    }
+
+    private void includeErrorMessage(Model model, String message) {
+        model.addAttribute("errorMessage", message);
+    }
+
 }

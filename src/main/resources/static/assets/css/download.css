@@ -1,0 +1,14 @@
+
+.downloadFormErrorMessage{
+    background: #ffdd97;
+    font-size: 1em;
+    font-weight: bolder;
+    text-align: center;
+    margin: 1em;
+    padding: 1em;
+}
+
+.downloadList{
+    list-style: none;
+    margin: 1em;
+}
