@@ -98,3 +98,26 @@
   text-align: right;
   margin-right: 1em;
 }
+
+.donationBlock {
+  width: 80%;
+  margin: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: solid 5px _palette(accent);
+  padding: 1em;
+
+  .description {
+    margin: 0.5em;
+  }
+
+  .amountForm{
+    text-align: center;
+    margin: 1em;
+  }
+
+  .centered {
+    text-align: center
+  }
+
+}

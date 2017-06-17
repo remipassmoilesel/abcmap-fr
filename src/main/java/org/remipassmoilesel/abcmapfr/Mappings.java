@@ -35,6 +35,10 @@ public class Mappings {
     public static final String LICENSE = ROOT + "license";
     public static final String DOWNLOADER_PHP = ROOT + "downloader.php";
 
+    public static final String WHY_DONATE = FAQ + "#question12";
+
+
+
     public static MappingMap getMap() {
 
         MappingMap result = new MappingMap();

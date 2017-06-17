@@ -2702,3 +2702,18 @@ button,
   font-weight: bolder;
   text-align: right;
   margin-right: 1em; }
+
+.donationBlock {
+  width: 80%;
+  margin: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: solid 5px #3f9843;
+  padding: 1em; }
+  .donationBlock .description {
+    margin: 0.5em; }
+  .donationBlock .amountForm {
+    text-align: center;
+    margin: 1em; }
+  .donationBlock .centered {
+    text-align: center; }

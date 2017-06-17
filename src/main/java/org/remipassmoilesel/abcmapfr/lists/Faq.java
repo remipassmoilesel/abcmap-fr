@@ -185,7 +185,7 @@ public class Faq {
                 "    logiciel est <a target='_blank' href='" + licensePage + "'>disponible en ligne</a>" +
                 "    ou directement dans le dossier du logiciel.");
 
-        titles.add("Contact");
+        titles.add("");
         questions.add("Pourquoi faire un don ?");
         answers.add("<p>Abc-Map est disponible gratuitement et a été développé bénévolement. Il vous permet de créer des cartes facilement" +
                 " et pour tous usages, y compris professionnels. Le développement de ce logiciel est long et difficile, et vos dons financent des" +
@@ -197,7 +197,7 @@ public class Faq {
                 "pour connaitre le détail des améliorations à l'étude.</b></p>");
 
 
-        titles.add("");
+        titles.add("Contact");
         questions.add("Je souhaite aider le développement de ce logiciel.");
         answers.add("" +
                 "<p>Le développeur de ce logiciel est à la recherche de partenariats." +

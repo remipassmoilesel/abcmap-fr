@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="main-decorator">
+<head>
+
+</head>
+<body>
+
+
+<div th:fragment="donationBlock" class="donationBlock">
+
+    <form method="POST" action="https://www.paypal.com/cgi-bin/webscr" style="margin: 0px">
+
+        <div class="description">
+            <b>Créé par un développeur indépendant dans un objectif de partage, ce logiciel a déjà
+            nécessité des centaines d'heures de travail</b> et nécessitera encore beaucoup de temps et
+            d'efforts dans l'avenir pour se maintenir et se perfectionner.
+        </div>
+
+        <div class="amountForm">
+            <input type="hidden" name="business" value="remi.pace88@gmail.com"/>
+            <input type="hidden" name="cmd" value="_donations"/>
+            <input type="hidden" name="currency_code" value="EUR"/>
+            <input type="hidden" name="item_name" value="Développement du logiciel Abc-Map"/>
+
+            Faire un don sécurisé de:
+            <input type="number" name="amount" value="8.0" style="width: 50px"/>
+            &nbsp;&euro;
+        </div>
+
+        <div class="centered">
+            <input type="image" src="/images/paypal_submit.png"
+                   width="140" style="border: solid gray 1px"
+                   alt="Faire un don sécurisé Paypal" border="0"/>
+        </div>
+
+        <div class="centered">
+            <a th:href="${mappings.get('WHY_DONATE')}">Pourquoi faire un don ?</a>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
+
+
+
