@@ -33,6 +33,7 @@ public class Mappings {
 
     public static final String GET_STATS_OF_THE_DAY = ROOT + "getstats";
     public static final String LICENSE = ROOT + "license";
+    public static final String DOWNLOADER_PHP = ROOT + "downloader.php";
 
     public static MappingMap getMap() {
 

@@ -28,10 +28,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
@@ -103,8 +107,8 @@ public class MainController {
                                @RequestParam(name = "downloadType", required = false) String downloadType) {
 
         // retrieve and add download link if needed
-        if(downloadType != null) {
-            String link = DownloadLinks.get(downloadType.trim().toLowerCase());
+        if (downloadType != null) {
+            String link = DownloadLocations.get(downloadType.trim().toLowerCase());
 
             if (link == null) {
                 includeErrorMessage(model, "Téléchargement non disponible");
@@ -138,6 +142,36 @@ public class MainController {
         includeMainModelVars(model, session);
         Mappings.includeMappings(model);
         return Templates.LICENSE;
+    }
+
+    /**
+     * Required to maintain good links with old websites
+     *
+     * @param model
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = Mappings.DOWNLOADER_PHP, method = RequestMethod.GET)
+    public void getFile(Model model, HttpSession session, HttpServletResponse response,
+                        @RequestParam(name = "id") String id) {
+
+        id = id.trim().toLowerCase();
+
+        // test if id is valid or return nothing
+        String location = DownloadLocations.get(id);
+        if (location == null) {
+            return;
+        }
+
+        // return file content
+        try {
+            InputStream is = MainController.class.getResourceAsStream(location);
+            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+        } catch (IOException ex) {
+            logger.error("Error while serving file", ex);
+            return;
+        }
     }
 
     @RequestMapping(value = Mappings.ABOUT_PROJECT, method = RequestMethod.GET)
