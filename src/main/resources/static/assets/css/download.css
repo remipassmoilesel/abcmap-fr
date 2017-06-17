@@ -6,6 +6,7 @@
     text-align: center;
     margin: 1em;
     padding: 1em;
+    display: none;
 }
 
 .downloadList{

@@ -68,6 +68,7 @@
                 $("#downloadFormValidButton").click(function () {
 
                     if ($("#agreement").is(":checked") == false) {
+                        errorMsgs.css('display', 'block');
                         errorMsgs.text("Vous devez accepter les conditions d'utilisation");
                         return;
                     }
