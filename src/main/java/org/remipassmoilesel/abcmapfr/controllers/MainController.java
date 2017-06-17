@@ -132,6 +132,14 @@ public class MainController {
         return Templates.FAQ;
     }
 
+    @RequestMapping(value = Mappings.LICENSE, method = RequestMethod.GET)
+    public String showLicense(Model model, HttpSession session) {
+
+        includeMainModelVars(model, session);
+        Mappings.includeMappings(model);
+        return Templates.LICENSE;
+    }
+
     @RequestMapping(value = Mappings.ABOUT_PROJECT, method = RequestMethod.GET)
     public String showProject(Model model, HttpSession session) {
 

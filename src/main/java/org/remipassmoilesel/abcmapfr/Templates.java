@@ -15,4 +15,6 @@ public class Templates {
     public static final String NEW_VERSION = PAGES_DIR + "newVersion";
     public static final String HELP = PAGES_DIR + "help";
     public static final String CONTACT = PAGES_DIR + "contact";
+    public static final String LICENSE = PAGES_DIR + "license";
+
 }

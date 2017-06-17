@@ -32,6 +32,7 @@ public class Mappings {
     public static final String VOTES_GET_ALL = VOTES_ROOT + "all";
 
     public static final String GET_STATS_OF_THE_DAY = ROOT + "getstats";
+    public static final String LICENSE = ROOT + "license";
 
     public static MappingMap getMap() {
 
