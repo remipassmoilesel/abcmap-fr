@@ -1,5 +1,7 @@
 package org.remipassmoilesel.abcmapfr.lists;
 
+import org.remipassmoilesel.abcmapfr.Mappings;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,21 +10,32 @@ import java.util.List;
  */
 public class Faq {
 
-    public static List[] getLists(){
+    public static List[] getLists() {
         ArrayList<String> titles = new ArrayList<>();
         ArrayList<String> questions = new ArrayList<>();
         ArrayList<String> answers = new ArrayList<>();
 
+        Mappings.MappingMap mappings = Mappings.getMap();
+        String downloadPage = mappings.get("DOWNLOAD");
+        String projectPage = mappings.get("ABOUT_PROJECT");
+        String helpPage = mappings.get("HELP");
+        String licensePage = mappings.get("LICENSE");
+        String newversionPage = mappings.get("NEW_VERSION");
+        String contactPage = mappings.get("CONTACT");
+
+        String facebookPage = "https://www.facebook.com/abcmap";
+        String googleplusPage = "https://plus.google.com/114048401722237104335";
+
         titles.add("Questions techniques");
         questions.add("Comment bien démarrer Abc-Map ?");
-        answers.add("<p><b>Tout d'abord rendez-vous sur la </b><a href='{$url->DOWNLOAD_URL->url}' target = '_blank'>page de téléchargement</a>" +
+        answers.add("<p><b>Tout d'abord rendez-vous sur la </b><a href='" + downloadPage + "' target = '_blank'>page de téléchargement</a>" +
                 " pour remplir le petit formulaire. Validez puis choisissez le lien qui correspond à votre système:" +
-                " Windows, Linux ou Mac. Pour en savoir plus sur les informations collectées rendez-vous <a href='{$url->FAQ_URL_DATAS->url}'>" +
-                " plus bas</a> sur cette page.</p>" +
+                " Windows, Linux ou Mac.</p>" +
                 "<p><b>Ensuite, décompressez l'archive</b> à l'aide d'un logiciel de compression, par exemple" +
-                "    <a href='http://www.7-zip.org/download.html' target='_blank'>7-zip</a>.</p>" +
-                "<p><b>Si vous ne parvenez pas à ouvrir l'archive ZIP du logiciel,</b> rendez-vous <a href='#question2'>plus bas</a> sur cette page.</p>" +
-                "<p><b>Lancez le fichier 'abcmap.exe | .sh | .command'</b> (par exemple en double-cliquant dessus) et attendez quelques minutes.</p>" +
+                "    <a href='http://www.7-zip.org/download.html' target='_blank'>7-zip</a>. Si vous ne parvenez pas à ouvrir l'archive " +
+                "    ZIP du logiciel, rendez-vous <a href='#question3'>plus bas</a> sur cette page.</p>" +
+                "<p><b>Ouvrez le dossier Abc-Map et lancez le fichier 'abcmap.exe | .sh | .command'</b> (par exemple en double-cliquant dessus). " +
+                "    Attendez quelques minutes.</p>" +
                 "<p><b>Pour les utilisateurs de Linux</b>, un tutoriel sur le lancement des scripts est disponible sur le forum" +
                 "    Ubuntu: <a href='http://doc.ubuntu-fr.org/tutoriel/script_shell#executer_un_script' target='_blank'>" +
                 "    http://doc.ubuntu-fr.org/tutoriel/...</a></p>" +
@@ -46,10 +59,10 @@ public class Faq {
 
         titles.add("");
         questions.add("Abc-Map et Java sont ils sûrs ?");
-        answers.add("<p><b>Abc-Map est un projet étudiant recommandé par plusieurs académies françaises</b> (tous les liens sur la" +
-                "<a href='{$url->PROJECT_TALKING_ABOUT_URL->url}'>page du présentation du projet</a>)" +
-                "</p>" +
-                "" +
+        answers.add("<p><b>Abc-Map est un logiciel libre (à code source ouvert et vérifiable) recommandé par plusieurs académies françaises</b>" +
+                " (tous les liens sur la " +
+                "<a href='" + projectPage + "'>page du présentation du projet</a>)" +
+                "</p> " +
                 "<p>Java est un support pour faire fonctionner des programmes utilisé partout dans le monde." +
                 "<ul><li>Fiche explicative sur Java par le site Clubic:" +
                 "    <a href='http://www.clubic.com/telecharger-fiche121472-java-runtime-environment.html' target='_blank'>" +
@@ -74,7 +87,7 @@ public class Faq {
         titles.add("");
         questions.add("Comment savoir si Abc-Map fonctionnera sur mon ordinateur ?");
         answers.add("<p>Abc-Map est un logiciel multi-plateforme c’est à dire qu’il est capable de fonctionner" +
-                "    sur plusieurs systèmes d’exploitation. Le logiciel à été testé sur:</p>" +
+                "    sur plusieurs systèmes d’exploitation. Le logiciel a été testé sur:</p>" +
                 "<ul>" +
                 "    <li>Windows XP</li>" +
                 "    <li>Windows 7</li>" +
@@ -91,15 +104,14 @@ public class Faq {
                 "    versions de Mac OS.</p>" +
                 "" +
                 "<p>" +
-                "    <a href='{$url->HELP_URL->url}'>Une vidéo tutoriel de 5 minutes</a> décrivant l’installation" +
+                "    <a href='" + helpPage + "'>Une vidéo tutoriel de 5 minutes</a> décrivant l’installation " +
                 "étape par étape est disponible en ligne. En cas de problèmes pensez également à consulter cette FAQ." +
                 "</p>");
 
         titles.add("");
-        questions.add("Puis-je exporter des tracés au format GPX ou KML ?");
-        answers.add("<p>L'export et l'import de fichiers de tracé est impossible pour l'instant, mais cette fonctionnalité sera développée" +
-                "    dans le courant de l'année. Il sera possible ensuite d'importer et d'exporter au format KML, GPX et CSV." +
-                "</p>");
+        questions.add("Puis-je importer/exporter des tracés au format GPX ou KML ?");
+        answers.add("<p>L'export et l'import de ces fichiers est impossible pour l'instant, mais cette fonctionnalité sera " +
+                "disponible dans la deuxième version du logiciel. </p>");
 
         titles.add("");
         questions.add("Abc-Map a des problèmes de mémoire / Comment faire de plus grandes cartes ?");
@@ -119,7 +131,7 @@ public class Faq {
         titles.add("");
         questions.add("L'impression des projets ne fonctionne pas correctement.");
         answers.add("<p>Il peut arriver qu'Abc-Map ne fonctionne pas très bien avec certains pilotes d'impression. Dans ce cas, vous" +
-                "avez plusieurs solutions:</p>" +
+                " avez plusieurs solutions:</p>" +
                 "<ul>" +
                 "    <li><b>Imprimer le projet au format PDF</b> pour ensuite l'imprimer avec votre lecteur de PDF habituel." +
                 "        Vous pouvez utiliser par exemple" +
@@ -135,53 +147,53 @@ public class Faq {
 
         titles.add("Question sur le projet");
         questions.add("C’est gratuit ? Pourquoi ? Abc-Map est-il sûr ?");
-        answers.add("<p><b>Abc-Map est un logiciel libre.</b> Un logiciel libre est un logiciel dont vous" +
-                "    pouvez consulter, modifier et redistribuer le code source. Il est presque impossible" +
-                "    qu'un logiciel libre soit malicieux puisque son code est ouvert et que n'importe qui" +
-                "    est en mesure de vérifier ce que le programme fait en détail." +
+        answers.add("<p><b>Abc-Map est un logiciel libre.</b> Un logiciel libre est un logiciel dont vous " +
+                "    pouvez consulter, modifier et redistribuer le code source. Il est presque impossible " +
+                "    qu'un logiciel libre soit malicieux puisque son code est lisible et accessible pour vérification. " +
+                "    N'importe qui est en mesure de vérifier ce que ce programme fait en détail." +
                 "</p>" +
-                "" +
-                "<p>Le mouvement du logiciel libre est un mouvement mondial qui garantit aux" +
+                "<p>" +
+                "    Le mouvement du logiciel libre est un mouvement mondial qui garantit aux" +
                 "    utilisateurs des libertés essentielles. Vous utilisez quotidiennement des logiciels" +
                 "    libres comme par exemple: <a href='http://www.videolan.org/vlc/' target='_blank'>VLC</a>," +
-                "    <a href='https://www.mozilla.org/fr/firefox/new/' target='_blank'>Firefox</a> où" +
+                "    <a href='https://www.mozilla.org/fr/firefox/new/' target='_blank'>Firefox</a> ou" +
                 "    <a href='https://fr.libreoffice.org/' target='_blank'>LibreOffice</a>." +
                 "</p>");
 
         titles.add("");
         questions.add("Quel est l’intérêt d'Abc-Map par rapport à d'autres logiciels ?");
         answers.add("<p>Le but d’Abc-Map n’est pas de concurrencer les très bons logiciels existant tels que" +
-                "<a href='http://www.qgis.org/' target='_blank'>QGis</a> ou" +
-                "<a href='http://www.gvsig.org/' target='_blank'>GvSig</a>. Ces logiciels très complets sont" +
+                " <a href='http://www.qgis.org/' target='_blank'>QGis</a> ou" +
+                " <a href='http://www.gvsig.org/' target='_blank'>GvSig</a>. Ces logiciels très complets sont " +
                 "d'un niveau technique supérieur mais sont également bien plus complexes.</p>" +
                 "" +
-                "<p>Le but de ce logiciel est de proposer une solution simple pour créer des cartes," +
+                "<p>Le but de ce logiciel est de proposer une solution simple pour créer des cartes, " +
                 "pour tous ceux qui ne souhaitent pas se former à des logiciels lourds et complexes.</p>" +
                 "" +
-                "<p><b>L'avantage principal de ce logiciel est de permettre la création de cartes rapides sans" +
+                "<p><b>L'avantage principal de ce logiciel est de permettre la création de cartes rapides sans " +
                 "perdre de temps en formation ou en difficultés diverses.</b></p>");
 
         titles.add("");
         questions.add("Sous quelle licence est diffusé ce logiciel ?");
         answers.add("<p>Abc-Map est un logiciel libre diffusé sous <a href='http://www.gnu.org/copyleft/gpl.html' target='_blank'>Licence Publique Générale" +
-                "    GNU version 3</a>. Vous pouvez consulter le texte complet <a target='_blank' href='{$url->LICENSE->url}'>en ligne</a> ou directement" +
+                "    GNU version 3</a>. Vous pouvez consulter le texte complet <a target='_blank' href='" + licensePage + "'>en ligne</a> ou directement" +
                 "    dans le dossier du logiciel.</p>");
 
         titles.add("");
         questions.add("Puis-je utiliser ce logiciel pour une activité professionnelle ?");
-        answers.add("Abc-Map est gratuit pour tout type d'activité. La licence d'utilisation du" +
-                "    logiciel est <a target='_blank' href='{$url->LICENSE->url}'>disponible en ligne</a>" +
+        answers.add("Abc-Map est libre gratuit pour tout type d'activité. La licence d'utilisation du" +
+                "    logiciel est <a target='_blank' href='" + licensePage + "'>disponible en ligne</a>" +
                 "    ou directement dans le dossier du logiciel.");
 
         titles.add("Contact");
         questions.add("Pourquoi faire un don ?");
-        answers.add("<p>Abc-Map est disponible gratuitement et à été développé bénévolement. Il vous permet de créer des cartes facilement" +
-                "et pour tout usage, y compris professionnel. Le développement de ce logiciel est long et difficile, et vos dons financent des" +
-                "heures de développement pour le maintenir et le perfectionner.</p>" +
+        answers.add("<p>Abc-Map est disponible gratuitement et a été développé bénévolement. Il vous permet de créer des cartes facilement" +
+                " et pour tous usages, y compris professionnels. Le développement de ce logiciel est long et difficile, et vos dons financent des" +
+                " heures de développement pour le maintenir et le perfectionner.</p>" +
                 "" +
                 "<p><b>Faire un don financera des heures de développement. 8€ peuvent faire la différence," +
-                "et plusieurs dons cumulés permettront de fiabiliser et de perfectionner le logiciel. Rendez vous sur la" +
-                "</b> <a href='{$url->PROJECT_URL->url}'> page de présentation du projet</a> <b>" +
+                " et plusieurs dons cumulés permettront de fiabiliser et de perfectionner le logiciel. Rendez vous sur la" +
+                "</b> <a href='" + newversionPage + "'> page de présentation du projet</a> <b>" +
                 "pour connaitre le détail des améliorations à l'étude.</b></p>");
 
 
@@ -192,12 +204,12 @@ public class Faq {
                 "    Ce projet vous plait ? Vous souhaitez aider à sa diffusion ?</p>" +
                 "<ul>" +
                 "    <li><b>Partagez</b> ce logiciel avec vos proches !</li>" +
-                "    <li><a href='{$url->FB_PAGE->url}' target='_blank'>Rendez-vous sur la page Facebook du projet,</a></li>" +
-                "    <li><a href='{$url->GG_PLUS->url}' target='_blank'>Rendez-vous sur la page Google + du projet,</a></li>" +
+                "    <li><a href='" + facebookPage + "' target='_blank'>Rendez-vous sur la page Facebook du projet,</a></li>" +
+                "    <li><a href='" + googleplusPage + "' target='_blank'>Rendez-vous sur la page Google + du projet,</a></li>" +
                 "    <li><b>Vous possédez un espace d'expression en ligne ?</b> Ecrivez vos ressentis sur ce logiciel," +
                 "        le développeur peut vous fournir de l'aide, de la documentation et des tutoriels sur mesure correspondant à vos besoins" +
                 "        ou à ceux de votre communauté.</li>" +
-                "    <li><b>Faites un don</b> sécurisé en ligne via la <a href='{$url->PROJECT_URL->url}'>" +
+                "    <li><b>Faites un don</b> sécurisé en ligne via la <a href='" + projectPage + "'>" +
                 "        page de présentation du projet</a></li>" +
                 "</ul>");
 
@@ -209,16 +221,16 @@ public class Faq {
                 "    <li><b>Remplissez en 10 minutes</b> le <a target='_blank' href='http://goo.gl/forms/TRUIBHVWe9'>" +
                 "        questionnaire d'expérience utilisateur</a>,</li>" +
                 "    <li><b>Votez</b> sur le site en bas de chaque page ou directement via le logiciel,</li>" +
-                "    <li><a href='{$url->CONTACT_URL->url}'>Contactez</a> le développeur de ce logiciel pour lui faire part de vos remarques.</li>" +
+                "    <li><a href='" + contactPage + "'>Contactez</a> le développeur de ce logiciel pour lui faire part de vos remarques.</li>" +
                 "</ul>");
 
 
         titles.add("");
         questions.add("J’ai d’autres questions.");
-        answers.add("<p>Posez les directement au développeur de ce logiciel sur <a href='{$url->CONTACT_URL->url}'>" +
+        answers.add("<p>Posez les directement au développeur de ce logiciel sur <a href='" + contactPage + "'>" +
                 "    la page de contact.</a></p>");
 
-        return new List[]{titles,questions,answers};
+        return new List[]{titles, questions, answers};
     }
 
 }
