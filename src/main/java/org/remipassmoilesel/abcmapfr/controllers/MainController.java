@@ -12,6 +12,7 @@ import org.remipassmoilesel.abcmapfr.Templates;
 import org.remipassmoilesel.abcmapfr.entities.Message;
 import org.remipassmoilesel.abcmapfr.entities.Stats;
 import org.remipassmoilesel.abcmapfr.entities.Subscription;
+import org.remipassmoilesel.abcmapfr.entities.Vote;
 import org.remipassmoilesel.abcmapfr.lists.*;
 import org.remipassmoilesel.abcmapfr.repositories.MessagesRepository;
 import org.remipassmoilesel.abcmapfr.repositories.StatsRepository;
@@ -21,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,7 +86,7 @@ public class MainController {
             model.addAttribute("downloadsThisWeek", -1);
         }
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.WELCOME;
     }
@@ -99,7 +101,7 @@ public class MainController {
             session.setAttribute(GTRANSLATE_ATTR_NAME, "");
         }
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.WELCOME;
     }
@@ -119,7 +121,7 @@ public class MainController {
             }
         }
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.DOWNLOAD;
     }
@@ -133,7 +135,7 @@ public class MainController {
         model.addAttribute("questions", lists[1]);
         model.addAttribute("answers", lists[2]);
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.FAQ;
     }
@@ -141,7 +143,7 @@ public class MainController {
     @RequestMapping(value = Mappings.LICENSE, method = RequestMethod.GET)
     public String showLicense(Model model, HttpSession session) {
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.LICENSE;
     }
@@ -182,7 +184,7 @@ public class MainController {
         List<String[]> list = Recommendations.getList();
         model.addAttribute("recommendations", list);
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.ABOUT_PROJECT;
     }
@@ -190,7 +192,7 @@ public class MainController {
     @RequestMapping(value = Mappings.NEW_VERSION, method = RequestMethod.GET)
     public String showNewVersion(Model model, HttpSession session) {
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.NEW_VERSION;
     }
@@ -204,7 +206,7 @@ public class MainController {
         model.addAttribute("titlesJs", list);
         model.addAttribute("sourcesJs", list);
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.HELP;
     }
@@ -212,7 +214,7 @@ public class MainController {
     @RequestMapping(value = Mappings.CONTACT, method = RequestMethod.GET)
     public String showContact(Model model, HttpSession session) {
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.CONTACT;
     }
@@ -249,7 +251,7 @@ public class MainController {
             includeErrorMessage(model, "Impossible de sauvegarder ce message.");
         }
 
-        includeMainModelVars(model, session);
+        includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.CONTACT;
     }
@@ -259,6 +261,24 @@ public class MainController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String getStatsOfTheDay() throws IOException {
         return getStatsOfTheWeek().getContent();
+    }
+
+    @RequestMapping(value = Mappings.ADMIN_PAGE, method = RequestMethod.GET)
+    public String showAdminPage(Model model) throws IOException {
+
+        List<Vote> votes = votesRepository.getLasts(new PageRequest(0, 20));
+        List<Message> messages = messagesRepository.getLasts(new PageRequest(0, 20));
+        List<Subscription> subscriptions = subscriptionsRepository.getLasts(new PageRequest(0, 20));
+        List<Stats> stats = statsRepository.getLasts(new PageRequest(0, 20));
+
+        model.addAttribute("votes", votes);
+        model.addAttribute("messages", messages);
+        model.addAttribute("subscriptions", subscriptions);
+        model.addAttribute("stats", stats);
+
+        includeMainModelVars(model);
+        Mappings.includeMappings(model);
+        return Templates.ADMIN;
     }
 
     public Stats getStatsOfTheWeek() throws IOException {
@@ -320,7 +340,7 @@ public class MainController {
         return getStatsOfTheWeek().getTotalDownloads();
     }
 
-    private void includeMainModelVars(Model model, HttpSession session) {
+    private void includeMainModelVars(Model model) {
         try {
             model.addAttribute("averageVote", votesRepository.averageVoteValue());
             model.addAttribute("sumVote", votesRepository.count());

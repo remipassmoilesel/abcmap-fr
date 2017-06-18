@@ -36,8 +36,8 @@ public class Mappings {
     public static final String DOWNLOADER_PHP = ROOT + "downloader.php";
 
     public static final String WHY_DONATE = FAQ + "#question12";
-
     public static final String ERROR_PATH = "/error";
+    public static final String ADMIN_PAGE = ROOT + "/bimbulubulu";
 
 
     public static MappingMap getMap() {

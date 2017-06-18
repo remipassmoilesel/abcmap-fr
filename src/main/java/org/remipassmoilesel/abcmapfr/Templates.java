@@ -16,5 +16,6 @@ public class Templates {
     public static final String HELP = PAGES_DIR + "help";
     public static final String CONTACT = PAGES_DIR + "contact";
     public static final String LICENSE = PAGES_DIR + "license";
-    public static final String ERROR = "error";
+    public static final String ERROR = PAGES_DIR + "error";
+    public static final String ADMIN = PAGES_DIR + "admin";
 }

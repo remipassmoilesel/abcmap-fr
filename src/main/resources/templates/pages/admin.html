@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="main-decorator">
+<head>
+
+    <title>Admin</title>
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/admin.css"
+          layout:fragment="htmlHeaders"/>
+
+</head>
+<body>
+
+<h1 layout:fragment="header">Admin</h1>
+
+<div layout:fragment="content">
+    <section>
+
+        <h2>Derniers messages</h2>
+        <table>
+            <tr th:each="msg : ${messages}" style="padding-bottom: 2em">
+                <td>
+                    <div style="font-weight: bolder">
+                        <span th:text="${'Objet: ' + msg.object}">Objet</span>&nbsp;&nbsp;
+                        <span th:text="${'Expéditeur: ' + msg.mail}">Expéditeur</span>&nbsp;&nbsp;
+                        <span th:text="${'Reçu le: ' +msg.date}">Reçu le</span>
+                    </div>
+                    <div th:text="${msg.message}"></div>
+                </td>
+            </tr>
+        </table>
+
+        <h2>Derniers votes</h2>
+        <table>
+            <tr>
+            <th>Valeur</th>
+            <th>Page</th>
+            <th>Date</th>
+            </tr>
+            <tr th:each="vt : ${votes}">
+                <td th:text="${vt.value}">5</td>
+                <td th:text="${vt.url != null} ? ${vt.url} : '&nbsp;'">/welcome</td>
+                <td th:text="${vt.date}">11-01-2015</td>
+            </tr>
+        </table>
+
+        <h2>Dernières souscriptions</h2>
+        <table>
+            <tr>
+            <th>Mail</th>
+            <th>Date</th>
+            </tr>
+            <tr th:each="sub : ${subscriptions}">
+                <td th:text="${sub.mail}"></td>
+                <td th:text="${sub.date}"></td>
+            </tr>
+        </table>
+
+        <h2>Dernières stats</h2>
+        <table>
+            <tr>
+            <th>Téléchargements</th>
+            <th>Source</th>
+            <th>Date</th>
+            </tr>
+            <tr th:each="st : ${stats}">
+                <td th:text="${st.totalDownloads}"></td>
+                <td th:text="${#strings.substring(st.content,30) + '...'}"></td>
+                <td th:text="${st.date}"></td>
+            </tr>
+        </table>
+
+    </section>
+</div>
+
+</body>
+</html>
