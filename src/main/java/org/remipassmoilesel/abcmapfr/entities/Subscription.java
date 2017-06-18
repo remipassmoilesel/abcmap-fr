@@ -17,8 +17,11 @@ public class Subscription {
 
     private Date date;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "VARCHAR(200)")
     private String mail;
+
+    public Subscription() {
+    }
 
     public Subscription(Date date, String mail) {
         this.date = date;
