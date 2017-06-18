@@ -16,6 +16,6 @@
   ],
   "dependencies": {
     "lightbox2": "^2.9.0",
-    "jquery": "2"
+    "jquery": "2",
   }
 }
