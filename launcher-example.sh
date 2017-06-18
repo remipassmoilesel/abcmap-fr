@@ -3,6 +3,6 @@
 # Launch script for Abc-Map
 # You can modify environment vars to modify site behavior
 
-. ./export-env-vars.sh
+. ./setenv.sh
 
 ./mvnw spring-boot:run
