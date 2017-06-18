@@ -3,6 +3,7 @@
 # Launch script for Abc-Map
 # You can modify environment vars to modify site behavior
 
+export ABCMAP_FR_DB_URL=jdbc:mysql://localhost:3306/abcmapfr
 export ABCMAP_FR_DB_USERNAME=abcmapfr
 export ABCMAP_FR_DB_PASSWORD=abcmapfr
 
