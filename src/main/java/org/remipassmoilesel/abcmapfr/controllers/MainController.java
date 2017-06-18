@@ -284,7 +284,7 @@ public class MainController {
 
     @RequestMapping(value = Mappings.ADMIN_PAGE_LOGIN, method = RequestMethod.GET)
     public String showLoginPage(Model model) throws IOException {
-        
+
         includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.ADMIN_LOGIN;

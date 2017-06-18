@@ -2,6 +2,7 @@ package org.remipassmoilesel.abcmapfr.controllers;
 
 import org.remipassmoilesel.abcmapfr.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,6 +10,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("${app.admin-login}")
+    private String adminLogin;
+
+    @Value("${app.admin-password}")
+    private String adminPassword;
 
     private static final String ANONYMOUS = "ANONYMOUS_ROLE";
     private static final String ADMIN = "ADMIN_ROLE";
@@ -43,6 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("password").roles(ADMIN);
+        auth.inMemoryAuthentication().withUser(adminLogin).password(adminPassword).roles(ADMIN);
     }
 }

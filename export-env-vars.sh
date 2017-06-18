@@ -12,3 +12,6 @@ export ABCMAP_FR_MAIL_SERVER=mail.server.fr
 export ABCMAP_FR_MAIL_USERNAME=abcmapfr
 export ABCMAP_FR_MAIL_PASSWORD=abcmapfr
 
+export ABCMAP_FR_ADMIN_LOGIN=admin
+export ABCMAP_FR_ADMIN_PASSWORD=admin
+
