@@ -34,7 +34,9 @@
 
     <script type="text/javascript" th:inline="javascript">
 
-        var VOTE_URL = /*[[${mappings.get('VOTES_ROOT')}]]*/ null;
+        var UrlTree = {
+            VOTE_URL: /*[[${mappings.get('VOTES_ROOT')}]]*/ null,
+        };
 
         /*<![CDATA[*/
         /**
@@ -85,32 +87,10 @@
             document.documentElement.scrollTop = 0; // For IE and Firefox
         }
 
-        function vote(i) {
-
-            try {
-                // display stars
-                $(".voteStar").each(function () {
-                    var val = $(this).data("value");
-                    if (val <= 1 || val <= i) {
-                        $(this).removeClass("fa-star-o");
-                        $(this).addClass("fa-star");
-                    }
-
-                    else {
-                        $(this).addClass("fa-star-o");
-                        $(this).removeClass("fa-star");
-                    }
-                });
-            } catch (e) {
-                console.error(e);
-            }
-
-            // vote
-            $.get(VOTE_URL + "?v=" + i + "&p=" + document.location);
-
-        }
         /*]]>*/
     </script>
+
+    <script src="/assets/js/vote.js"></script>
 
     <script type="text/javascript" th:inline="javascript"
             th:if="${googleAnalyticsApiKey != null}">
@@ -133,7 +113,7 @@
         ga('send', 'pageview');
     </script>
 
-
+    <!-- Optionnal headers from decorated views -->
     <script layout:fragment="htmlHeaders" th:remove="tag">
     </script>
 
@@ -506,13 +486,13 @@
                 <div>
                     <span class="voteStar fa fa-2x fa-star-o"
                           th:each="i : ${#numbers.sequence(1,5)}"
-                          th:onclick="'vote(' + ${i} + ')'"
+                          th:onclick="'Vote.vote(' + ${i} + ')'"
                           th:attr="data-value=${i}"></span>
                 </div>
                 <div th:inline="text" class="menuVotesDisplay">[[${#numbers.formatDecimal(averageVote, 0, 2)}]] / 5
                     <span class="fa fa-star"></span>, [[${sumVote}]] participants
                 </div>
-
+                <div id="voteMessage"></div>
             </section>
 
             <section>

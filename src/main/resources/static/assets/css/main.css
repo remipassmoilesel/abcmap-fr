@@ -2703,6 +2703,12 @@ button,
   text-align: right;
   margin-right: 1em; }
 
+#voteMessage {
+  font-size: 1.2em;
+  font-weight: bolder;
+  text-align: right;
+  margin-right: 1em; }
+
 .donationBlock {
   width: 80%;
   margin: auto;

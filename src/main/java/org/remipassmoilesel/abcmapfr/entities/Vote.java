@@ -17,7 +17,7 @@ public class Vote {
     private Integer value;
     private Date date;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "VARCHAR(300)")
     private String url;
 
     protected Vote() {
