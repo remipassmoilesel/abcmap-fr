@@ -1,6 +1,7 @@
 package org.remipassmoilesel.abcmapfr.controllers;
 
 import org.joda.time.DateTime;
+import org.remipassmoilesel.abcmapfr.AbcmapFrApplication;
 import org.remipassmoilesel.abcmapfr.entities.Message;
 import org.remipassmoilesel.abcmapfr.entities.Stats;
 import org.remipassmoilesel.abcmapfr.entities.Subscription;
@@ -16,7 +17,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 /**
  * Created by remipassmoilesel on 12/06/17.
@@ -39,8 +43,15 @@ public class DevDataLoader implements ApplicationRunner {
     @Autowired
     private SubscriptionsRepository subscriptionsRepository;
 
+    @Autowired
+    Environment env;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+        if (Arrays.asList(env.getActiveProfiles()).contains(AbcmapFrApplication.DEV_PROFILE) == false) {
+            return;
+        }
 
         if (voteRepository.count() < 1) {
             populateVoteTable();
@@ -56,7 +67,8 @@ public class DevDataLoader implements ApplicationRunner {
             populateMessagesTable();
             logger.warn("-- Fake messages added");
         }
-   if (subscriptionsRepository.count() < 1) {
+
+        if (subscriptionsRepository.count() < 1) {
             populateSubscriptionsTable();
             logger.warn("-- Fake subscriptions added");
         }
