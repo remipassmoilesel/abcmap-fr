@@ -13,3 +13,19 @@
     border: none;
     background: inherit;
 }
+
+#clickArea{
+    font-weight: bolder;
+    color: orangered;
+    cursor: pointer;
+}
+
+.contactFormErrorMessage{
+    background: #ffdd97;
+    font-size: 1em;
+    font-weight: bolder;
+    text-align: center;
+    margin: 1em;
+    padding: 1em;
+    display: none;
+}

@@ -7,6 +7,7 @@
     <title>Contact</title>
 
     <link rel="stylesheet" type="text/css" href="/assets/css/contact.css"/>
+    <script type="text/javascript" src="/assets/js/contactform.js"></script>
 
 </head>
 <body>
@@ -16,7 +17,11 @@
 <div layout:fragment="content">
 
     <section th:if="${messageStatus} == 'saved'">
-        Merci, vous recevrez une réponse dès que possible !
+
+        <h3>Merci, vous recevrez une réponse dès que possible !</h3>
+
+        <div th:replace="fragments/donationBlock :: donationBlock"></div>
+
     </section>
 
     <section th:if="${messageStatus} != 'saved'">
@@ -24,7 +29,10 @@
         une fonctionnalité ou pour signaler une erreur. Ecrivez un mail à l'adresse suivante ou
         utilisez ce formulaire de contact:
 
-        <form method="post" th:action="${mappings.get('CONTACT')}">
+        <form method="post" th:action="${mappings.get('CONTACT')}" id="contactForm">
+
+            <div class="contactFormErrorMessage"></div>
+
             <table id="contactTable">
                 <tr>
                     <td style="width: 30%">Adresse de contact:</td>
@@ -35,7 +43,8 @@
                 </tr>
                 <tr>
                     <td>Objet:</td>
-                    <td><select name="object">
+                    <td><select name="object" id="object">
+                        <option value="none">Choisissez une catégorie...</option>
                         <option value="ask">Demander une fonctionnalité</option>
                         <option value="help">Aide sur l'utilisation</option>
                         <option value="error">Signaler une erreur</option>
@@ -43,24 +52,50 @@
                 </tr>
                 <tr>
                     <td>Votre adresse mail:</td>
-                    <td><input type="text" name="email"/></td>
+                    <td><input type="text" name="email" id="email"/></td>
                 </tr>
                 <tr>
                     <td>Votre message:</td>
-                    <td><textarea name="message"></textarea></td>
-                </tr>
-                <tr>
-                    <td colspan="2">Je ne suis pas une machine</td>
+                    <td><textarea name="message" id="message"></textarea></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td><input type="submit" value="Envoyer"/></td>
+                    <td id="clickArea">
+                        Cliquez ici pour prouver que vous n'êtes pas une machine
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="button" value="Envoyer"
+                               onclick="ContactForm.submit()"/></td>
                 </tr>
             </table>
-        </form>
-    </section>
 
+            <div class="contactFormErrorMessage"></div>
+
+        </form>
+
+        <script type="text/javascript">
+
+            /*
+            $(function () {
+                setTimeout(function () {
+                    ContactForm.submit();
+                    console.error("Javascript triggered");
+
+                    setTimeout(function () {
+                        ContactForm.submit();
+                        console.error("JQuery triggered");
+                    }, 2000);
+                }, 2000);
+            });
+            */
+
+        </script>
+
+    </section>
 </div>
+
 
 </body>
 </html>
