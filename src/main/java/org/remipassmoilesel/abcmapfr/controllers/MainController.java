@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -279,6 +280,14 @@ public class MainController {
         includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.ADMIN;
+    }
+
+    @RequestMapping(value = Mappings.ADMIN_PAGE_LOGIN, method = RequestMethod.GET)
+    public String showLoginPage(Model model) throws IOException {
+        
+        includeMainModelVars(model);
+        Mappings.includeMappings(model);
+        return Templates.ADMIN_LOGIN;
     }
 
     public Stats getStatsOfTheWeek() throws IOException {

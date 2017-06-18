@@ -17,6 +17,9 @@
 <div layout:fragment="content">
     <section>
 
+        <a style="display: block; text-align: right"
+           th:href="${mappings.get('ADMIN_PAGE_LOGOUT')}">Déconnexion</a>
+
         <h2>Derniers messages</h2>
         <table>
             <tr th:each="msg : ${messages}" style="padding-bottom: 2em">

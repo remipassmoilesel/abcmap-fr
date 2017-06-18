@@ -18,4 +18,5 @@ public class Templates {
     public static final String LICENSE = PAGES_DIR + "license";
     public static final String ERROR = PAGES_DIR + "error";
     public static final String ADMIN = PAGES_DIR + "admin";
+    public static final String ADMIN_LOGIN = PAGES_DIR + "adminLogin";
 }

@@ -37,8 +37,10 @@ public class Mappings {
 
     public static final String WHY_DONATE = FAQ + "#question12";
     public static final String ERROR_PATH = "/error";
-    public static final String ADMIN_PAGE = ROOT + "/bimbulubulu";
 
+    public static final String ADMIN_PAGE = ROOT + "admin";
+    public static final String ADMIN_PAGE_LOGIN = ROOT + "admin-login";
+    public static final String ADMIN_PAGE_LOGOUT = ROOT + "admin-logout";
 
     public static MappingMap getMap() {
 

@@ -1,0 +1,17 @@
+
+#mainForm {
+    width: 50%;
+    margin-top: 2em;
+    margin: auto;
+    text-align: center;
+}
+
+.disconnected {
+    text-align: center;
+    font-weight: bolder;
+    padding: 1.5em;
+}
+
+.validButton {
+    margin: 2em;
+}

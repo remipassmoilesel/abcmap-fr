@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="main-decorator">
+<head>
+
+    <title>Identification</title>
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/adminLogin.css"
+          layout:fragment="htmlHeaders"/>
+
+</head>
+<body>
+
+<h1 layout:fragment="header">Identification</h1>
+
+<div layout:fragment="content">
+    <section>
+
+        <form th:action="${mappings.get('ADMIN_PAGE_LOGIN')}" method="post" id="mainForm">
+
+            <!--<div th:if="${param.error}" class="alert alert-warning">-->
+                <!--Mot de passe invalide-->
+            <!--</div>-->
+
+            <div th:if="${param.logout}" class="disconnected">
+                Vous avez été déconnecté.
+            </div>
+
+            <!-- Password -->
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" required="true" autofocus="true"/>
+
+            <div>&nbsp;</div>
+
+            <!-- Username -->
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" required="true"/>
+
+            <!-- Valid button -->
+            <button class="validButton" type="submit">Connexion</button>
+
+        </form>
+
+    </section>
+
+    <!--<div th:replace="fragments/showDebug :: debug"></div>-->
+
+</div>
+
+</body>
+</html>
