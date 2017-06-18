@@ -5,6 +5,7 @@ package org.remipassmoilesel.abcmapfr.repositories;
  */
 
 import org.remipassmoilesel.abcmapfr.entities.Vote;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,7 +16,10 @@ public interface VotesRepository extends JpaRepository<Vote, Long> {
 
     public List<Vote> findByDate(Date date);
 
-    @Query("SELECT AVG(v.value) from Vote v")
+    @Query("SELECT AVG(v.value) FROM Vote v")
     public double averageVoteValue();
+
+    @Query("SELECT v FROM Vote v ORDER BY v.date DESC")
+    public List<Vote> getLasts(Pageable p);
 }
 
