@@ -13,6 +13,9 @@ import java.nio.file.Paths;
 @SpringBootApplication
 public class AbcmapFrApplication extends SpringBootServletInitializer {
 
+    public static final String DEV_PROFILE = "dev";
+    public static final String PROD_PROFILE = "prod";
+
     private static final Logger logger = LoggerFactory.getLogger(AbcmapFrApplication.class);
 
     private static SpringApplication mainApp;

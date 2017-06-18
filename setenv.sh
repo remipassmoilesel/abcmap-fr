@@ -16,3 +16,5 @@ export ABCMAP_FR_MAIL_PASSWORD=abcmapfr
 export ABCMAP_FR_ADMIN_LOGIN=admin
 export ABCMAP_FR_ADMIN_PASSWORD=admin
 
+export ABCMAP_FR_ACTIVE_PROFILE=dev
+

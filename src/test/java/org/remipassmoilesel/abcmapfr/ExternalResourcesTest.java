@@ -5,6 +5,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 
+@ActiveProfiles(AbcmapFrApplication.DEV_PROFILE)
 public class ExternalResourcesTest {
 
     @Test
