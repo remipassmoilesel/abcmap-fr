@@ -38,7 +38,7 @@ public class MainControllerTest {
     public void welcomePageTests() throws Exception {
 
         // welcome page
-        mockMvc.perform(get(Mappings.WELCOME)
+        mockMvc.perform(get(Mappings.ROOT)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("downloadsThisWeek"))

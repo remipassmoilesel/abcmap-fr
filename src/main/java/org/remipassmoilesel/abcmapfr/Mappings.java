@@ -17,7 +17,6 @@ public class Mappings {
 
     public static final String ROOT = "/";
 
-    public static final String WELCOME = ROOT + "welcome";
     public static final String DOWNLOAD = ROOT + "download";
     public static final String FAQ = ROOT + "faq";
     public static final String ABOUT_PROJECT = ROOT + "about-project";

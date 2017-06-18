@@ -38,7 +38,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -67,11 +66,6 @@ public class MainController {
     private SubscriptionsRepository subscriptionsRepository;
 
     @RequestMapping(value = Mappings.ROOT, method = RequestMethod.GET)
-    public String showIndex() {
-        return "redirect:" + Mappings.WELCOME;
-    }
-
-    @RequestMapping(value = Mappings.WELCOME, method = RequestMethod.GET)
     public String showWelcome(Model model, HttpSession session) throws Exception {
 
         //statsRepository.deleteAll();
@@ -89,7 +83,7 @@ public class MainController {
 
         includeMainModelVars(model);
         Mappings.includeMappings(model);
-        return Templates.WELCOME;
+        return Templates.ROOT;
     }
 
     @RequestMapping(value = Mappings.TRANSLATE, method = RequestMethod.GET)
@@ -104,7 +98,7 @@ public class MainController {
 
         includeMainModelVars(model);
         Mappings.includeMappings(model);
-        return Templates.WELCOME;
+        return Templates.ROOT;
     }
 
     @RequestMapping(value = Mappings.DOWNLOAD, method = RequestMethod.GET)

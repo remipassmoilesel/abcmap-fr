@@ -42,7 +42,7 @@
             </tr>
             <tr th:each="vt : ${votes}">
                 <td th:text="${vt.value}">5</td>
-                <td th:text="${vt.url != null} ? ${vt.url} : '&nbsp;'">/welcome</td>
+                <td th:text="${vt.url != null} ? ${vt.url} : '&nbsp;'">/url</td>
                 <td th:text="${vt.date}">11-01-2015</td>
             </tr>
         </table>
