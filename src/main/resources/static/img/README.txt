@@ -1,0 +1,1 @@
+This logo is located here for backward compatibility.
