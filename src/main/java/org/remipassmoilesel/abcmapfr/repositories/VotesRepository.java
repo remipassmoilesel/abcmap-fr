@@ -17,7 +17,7 @@ public interface VotesRepository extends JpaRepository<Vote, Long> {
     public List<Vote> findByDate(Date date);
 
     @Query("SELECT AVG(v.value) FROM Vote v")
-    public double averageVoteValue();
+    public Double averageVoteValue();
 
     @Query("SELECT v FROM Vote v ORDER BY v.date DESC")
     public List<Vote> getLasts(Pageable p);

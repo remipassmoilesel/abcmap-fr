@@ -408,6 +408,7 @@ public class MainController {
 
     private void includeMainModelVars(Model model) {
         try {
+
             model.addAttribute("averageVote", votesRepository.averageVoteValue());
             model.addAttribute("sumVote", votesRepository.count());
 
