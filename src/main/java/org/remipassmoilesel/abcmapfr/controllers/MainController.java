@@ -273,7 +273,7 @@ public class MainController {
         return Templates.SITEMAP;
     }
 
- @RequestMapping(value = Mappings.LEGAL_MENTION, method = RequestMethod.GET)
+    @RequestMapping(value = Mappings.LEGAL_MENTION, method = RequestMethod.GET)
     public String showLegalmentions(Model model, HttpSession session) {
 
         includeMainModelVars(model);

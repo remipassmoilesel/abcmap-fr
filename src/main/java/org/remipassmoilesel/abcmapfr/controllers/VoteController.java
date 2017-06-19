@@ -30,7 +30,7 @@ public class VoteController {
     private VotesRepository voteRepository;
 
     @ResponseBody
-    @RequestMapping(value = Mappings.VOTES_ROOT, method = RequestMethod.GET)
+    @RequestMapping(value = Mappings.VOTE_ROOT, method = RequestMethod.GET)
     public void postVote(
             @RequestParam(value = "v", required = true) int value,
             @RequestParam(value = "p", required = false) String page) {
@@ -41,7 +41,7 @@ public class VoteController {
     }
 
     @ResponseBody
-    @RequestMapping(value = Mappings.VOTES_GET_BY_DATE,
+    @RequestMapping(value = Mappings.VOTE_GET_BY_DATE,
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Vote> votesGetByDate(
             @RequestParam(value = "date", required = true) Date date) {
@@ -49,7 +49,7 @@ public class VoteController {
     }
 
     @ResponseBody
-    @RequestMapping(value = Mappings.VOTES_GET_ALL,
+    @RequestMapping(value = Mappings.VOTE_GET_ALL,
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Vote> votesGetAll() {
         int max = 100;

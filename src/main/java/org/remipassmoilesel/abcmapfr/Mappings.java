@@ -26,9 +26,9 @@ public class Mappings {
     public static final String SUBSCRIBE = ROOT + "subscribe";
     public static final String TRANSLATE = ROOT + "translate";
 
-    public static final String VOTES_ROOT = ROOT + "votes/";
-    public static final String VOTES_GET_BY_DATE = VOTES_ROOT + "bydate";
-    public static final String VOTES_GET_ALL = VOTES_ROOT + "all";
+    public static final String VOTE_ROOT = ROOT + "vote";
+    public static final String VOTE_GET_BY_DATE = VOTE_ROOT + "/bydate";
+    public static final String VOTE_GET_ALL = VOTE_ROOT + "/all";
 
     public static final String GET_STATS_OF_THE_DAY = ROOT + "getstats";
     public static final String LICENSE = ROOT + "license";
