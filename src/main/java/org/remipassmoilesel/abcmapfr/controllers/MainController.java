@@ -13,6 +13,7 @@ import org.remipassmoilesel.abcmapfr.Templates;
 import org.remipassmoilesel.abcmapfr.entities.*;
 import org.remipassmoilesel.abcmapfr.lists.*;
 import org.remipassmoilesel.abcmapfr.repositories.*;
+import org.remipassmoilesel.abcmapfr.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
@@ -63,6 +65,9 @@ public class MainController {
 
     @Autowired
     private UpdateInformationRepository updateInformationRepository;
+
+    @Autowired
+    private SoftwareUtilisationRepository softwareUtilisationRepository;
 
     @RequestMapping(value = Mappings.ROOT, method = RequestMethod.GET)
     public String showWelcome(Model model, HttpSession session) throws Exception {
@@ -282,7 +287,7 @@ public class MainController {
     /**
      * Serve update informations about the software. An instance of software
      * contact this server, tell which version it is and get a message.
-     *
+     * <p>
      * If no message must be shown, return nothing
      *
      * @param version
@@ -290,8 +295,24 @@ public class MainController {
      */
     @ResponseBody
     @RequestMapping(value = Mappings.NEWS, method = RequestMethod.GET)
-    public String getNews(@RequestParam(name = "version", required = true) String version) {
+    public String getNews(HttpServletRequest request,
+                          @RequestParam(name = "version", required = true) String version) {
 
+        // log traffic
+        version = version.trim().toLowerCase();
+        try {
+            softwareUtilisationRepository.save(
+                    new SoftwareUtilisation(
+                            new Date(),
+                            request.getHeader("User-Agent"),
+                            request.getHeader("Accept-Language"),
+                            Utils.anonymizeIpAdress(request.getRemoteAddr()),
+                            version));
+        } catch (Exception e) {
+            logger.error("Error while saving traffic", e);
+        }
+
+        // check code
         Integer codeVersion = UpdateInformation.getCodeVersion(version);
         if (codeVersion == null) {
             return "";
@@ -322,11 +343,13 @@ public class MainController {
         List<Message> messages = messagesRepository.getLasts(new PageRequest(0, 20));
         List<Subscription> subscriptions = subscriptionsRepository.getLasts(new PageRequest(0, 20));
         List<Stats> stats = statsRepository.getLasts(new PageRequest(0, 20));
+        List<SoftwareUtilisation> softwareUtilisations = softwareUtilisationRepository.getLasts(new PageRequest(0, 20));
 
         model.addAttribute("votes", votes);
         model.addAttribute("messages", messages);
         model.addAttribute("subscriptions", subscriptions);
         model.addAttribute("stats", stats);
+        model.addAttribute("softwareUtilisations", softwareUtilisations);
 
         includeMainModelVars(model);
         Mappings.includeMappings(model);
@@ -385,7 +408,7 @@ public class MainController {
                 // do not use "total" value from sourceforge, results are non significants
                 JSONArray downloads = JsonPath.read(rawJson, "$.oses[*][1]");
                 totalDownloads = 0;
-                for(Integer i : downloads.toArray(new Integer[downloads.size()])){
+                for (Integer i : downloads.toArray(new Integer[downloads.size()])) {
                     totalDownloads += i;
                 }
 

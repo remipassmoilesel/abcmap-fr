@@ -456,7 +456,7 @@
                           th:onclick="'Vote.vote(' + ${i} + ')'"
                           th:attr="data-value=${i}"></span>
                 </div>
-                <div th:inline="text" class="menuVotesDisplay" th:if="${sumVote} > 0">[[${#numbers.formatDecimal(averageVote, 0, 2)}]] / 5
+                <div th:inline="text" class="menuVotesDisplay" th:if="${sumVote} != null and ${sumVote} > 0">[[${#numbers.formatDecimal(averageVote, 0, 2)}]] / 5
                     <span class="fa fa-star"></span>, [[${sumVote}]] participants
                 </div>
                 <div id="voteMessage"></div>

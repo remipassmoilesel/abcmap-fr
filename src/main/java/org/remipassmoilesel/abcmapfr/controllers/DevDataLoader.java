@@ -39,6 +39,8 @@ public class DevDataLoader implements ApplicationRunner {
 
     @Autowired
     private UpdateInformationRepository updateInformationRepository;
+    @Autowired
+    private SoftwareUtilisationRepository softwareUtilisationRepository;
 
     @Autowired
     private Environment env;
@@ -75,6 +77,21 @@ public class DevDataLoader implements ApplicationRunner {
             logger.warn("-- Fake update informations added");
         }
 
+        if (softwareUtilisationRepository.count() < 1) {
+            populateSoftwareUtilisationTable();
+            logger.warn("-- Fake software utilisations added");
+        }
+
+    }
+
+    private void populateSoftwareUtilisationTable() {
+
+        DateTime start = new DateTime();
+
+        for (int i = 0; i < 100; i++) {
+            SoftwareUtilisation s = DevDataFactory.newSoftwareUtilisation(start.minusDays(i).toDate());
+            softwareUtilisationRepository.save(s);
+        }
     }
 
     private void populateUpdateInformationsTable() {

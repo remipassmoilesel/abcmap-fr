@@ -19,6 +19,18 @@
         <a style="display: block; text-align: right"
            th:href="${mappings.get('ADMIN_PAGE_LOGOUT')}">Déconnexion</a>
 
+        <h2>Dernières utilisations</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Version</th>
+            </tr>
+            <tr th:each="su : ${softwareUtilisations}">
+                <td th:text="${su.date}">11/01/25</td>
+                <td th:text="${su.version}">1.03</td>
+            </tr>
+        </table>
+
         <h2>Derniers messages</h2>
         <table>
             <tr th:each="msg : ${messages}" style="padding-bottom: 2em">
@@ -36,9 +48,9 @@
         <h2>Derniers votes</h2>
         <table>
             <tr>
-            <th>Valeur</th>
-            <th>Page</th>
-            <th>Date</th>
+                <th>Valeur</th>
+                <th>Page</th>
+                <th>Date</th>
             </tr>
             <tr th:each="vt : ${votes}">
                 <td th:text="${vt.value}">5</td>
@@ -50,8 +62,8 @@
         <h2>Dernières souscriptions</h2>
         <table>
             <tr>
-            <th>Mail</th>
-            <th>Date</th>
+                <th>Mail</th>
+                <th>Date</th>
             </tr>
             <tr th:each="sub : ${subscriptions}">
                 <td th:text="${sub.mail}"></td>
@@ -62,9 +74,9 @@
         <h2>Dernières stats</h2>
         <table>
             <tr>
-            <th>Téléchargements</th>
-            <th>Source</th>
-            <th>Date</th>
+                <th>Téléchargements</th>
+                <th>Source</th>
+                <th>Date</th>
             </tr>
             <tr th:each="st : ${stats}">
                 <td th:text="${st.totalDownloads}"></td>

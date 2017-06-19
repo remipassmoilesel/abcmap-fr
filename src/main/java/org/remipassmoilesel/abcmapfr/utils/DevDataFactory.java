@@ -1,9 +1,6 @@
 package org.remipassmoilesel.abcmapfr.utils;
 
-import org.remipassmoilesel.abcmapfr.entities.Message;
-import org.remipassmoilesel.abcmapfr.entities.Stats;
-import org.remipassmoilesel.abcmapfr.entities.Subscription;
-import org.remipassmoilesel.abcmapfr.entities.Vote;
+import org.remipassmoilesel.abcmapfr.entities.*;
 
 import java.util.Date;
 
@@ -68,5 +65,21 @@ public class DevDataFactory {
             date = new Date();
         }
         return new Subscription(date, mail);
+    }
+
+    public static SoftwareUtilisation newSoftwareUtilisation(Date date) {
+
+        if (date == null) {
+            date = new Date();
+        }
+
+        SoftwareUtilisation su = new SoftwareUtilisation(
+                date,
+                "User-Agent - " + Utils.generateLoremIpsum(50),
+                "Accept-Language - " + Utils.generateLoremIpsum(50),
+                "127.0.X.X" + Utils.generateLoremIpsum(9),
+                "1.03");
+
+        return su;
     }
 }
