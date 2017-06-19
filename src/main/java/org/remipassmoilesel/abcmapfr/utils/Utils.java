@@ -1,6 +1,5 @@
 package org.remipassmoilesel.abcmapfr.utils;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import javax.xml.transform.OutputKeys;
@@ -68,4 +67,7 @@ public class Utils {
         return rslt.substring(0, length);
     }
 
+    public static String anonymizeIpAdress(String stringIp) {
+        return stringIp.replaceFirst("[0-9]{1,3}\\.[0-9]{1,3}$", "X.X");
+    }
 }
