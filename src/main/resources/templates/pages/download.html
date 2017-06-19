@@ -82,7 +82,8 @@
 
     <section style="padding: 1em;" th:if="${#strings.isEmpty(downloadLink) == false}">
 
-        <div>Voici votre lien de téléchargement:</div>
+        <h3>Voici votre lien de téléchargement:</h3>
+
         <a th:href="${downloadLink}" th:text="${downloadLink}" target="_blank">
             http://abc-map.fr/....
         </a>
