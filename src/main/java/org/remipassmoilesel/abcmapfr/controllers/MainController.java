@@ -37,6 +37,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -249,6 +250,27 @@ public class MainController {
         includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.CONTACT;
+    }
+
+    @RequestMapping(value = Mappings.SITEMAP, method = RequestMethod.GET)
+    public String showSitemap(Model model, HttpSession session) {
+
+        List<String[]> links = Arrays.asList(
+                new String[]{Mappings.ROOT, "Accueil"},
+                new String[]{Mappings.DOWNLOAD, "Téléchargements"},
+                new String[]{Mappings.FAQ, "Questions fréquentes"},
+                new String[]{Mappings.HELP, "Aide et tutoriels"},
+                new String[]{Mappings.ABOUT_PROJECT, "Découvrir le projet"},
+                new String[]{Mappings.NEW_VERSION, "Nouvelle version à venir"},
+                new String[]{Mappings.LICENSE, "Licence d'utilisation du logiciel"},
+                new String[]{Mappings.SITEMAP_XML, "Fichier sitemap.xml"}
+        );
+
+        model.addAttribute("links", links);
+
+        includeMainModelVars(model);
+        Mappings.includeMappings(model);
+        return Templates.SITEMAP;
     }
 
     @ResponseBody

@@ -19,7 +19,7 @@ public class Mappings {
 
     public static final String DOWNLOAD = ROOT + "download";
     public static final String FAQ = ROOT + "faq";
-    public static final String ABOUT_PROJECT = ROOT + "about-project";
+    public static final String ABOUT_PROJECT = ROOT + "project";
     public static final String NEW_VERSION = ROOT + "new-version";
     public static final String HELP = ROOT + "help";
     public static final String CONTACT = ROOT + "contact";
@@ -40,6 +40,10 @@ public class Mappings {
     public static final String ADMIN_PAGE = ROOT + "admin-bulubulu";
     public static final String ADMIN_PAGE_LOGIN = ROOT + "admin-login-bulubulu";
     public static final String ADMIN_PAGE_LOGOUT = ROOT + "admin-logout-bulubulu";
+
+    public static final String SITEMAP = ROOT + "sitemap";
+    public static final String SITEMAP_XML = ROOT + "sitemap.xml";
+    public static final String LEGAL_MENTION = ROOT + "legalmention";
 
     public static MappingMap getMap() {
 

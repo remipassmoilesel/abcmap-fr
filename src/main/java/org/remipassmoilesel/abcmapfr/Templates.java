@@ -19,4 +19,5 @@ public class Templates {
     public static final String ERROR = PAGES_DIR + "error";
     public static final String ADMIN = PAGES_DIR + "admin";
     public static final String ADMIN_LOGIN = PAGES_DIR + "adminLogin";
+    public static final String SITEMAP = PAGES_DIR + "sitemap";
 }

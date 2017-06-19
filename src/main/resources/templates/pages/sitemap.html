@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="main-decorator">
+<head>
+
+    <title>Plan du site</title>
+
+    <!-- Head content is cloned in decorator, no need of th:fragments -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/sitemap.css"/>
+
+</head>
+<body>
+
+<h1 layout:fragment="header">Plan du site</h1>
+
+<div layout:fragment="content">
+    <section>
+
+        <table>
+            <tr>
+                <th>Adresse</th>
+                <th>Titre</th>
+            </tr>
+
+            <tr th:each="l : ${links}" th:href="${l[0]}">
+                <td>
+                    <a th:href="${l[0]}" th:text="${l[0]}">
+                        /contact
+                    </a>
+                </td>
+                <td>
+                    <a th:href="${l[0]}" th:text="${l[1]}">
+                        Page de contact
+                    </a>
+                </td>
+
+            </tr>
+        </table>
+
+
+    </section>
+</div>
+
+</body>
+</html>
