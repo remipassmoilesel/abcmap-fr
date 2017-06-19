@@ -68,6 +68,13 @@ public class StatsTest {
         long count = statsRepository.count();
         assertTrue(count == nbrFake);
 
+        assertTrue(statsRepository.findBetween(
+                start.plusDays(2).toDate(),
+                start.plusDays(4).toDate()).size() == 3);
+
+        assertTrue(statsRepository.findBetween(start.withTimeAtStartOfDay().toDate(),
+                start.withTimeAtStartOfDay().plusDays(1).toDate()).size() == 1);
+
         // retrieve stats of today
         Stats today = mainController.getStatsOfTheWeek();
 
