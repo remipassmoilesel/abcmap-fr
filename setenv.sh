@@ -6,6 +6,10 @@
 export ABCMAP_FR_DB_URL=jdbc:mysql://localhost:3306/abcmapfr
 export ABCMAP_FR_DB_USERNAME=abcmapfr
 export ABCMAP_FR_DB_PASSWORD=abcmapfr
+export ABCMAP_FR_DB_NAME=abcmapfr
+
+export ABCMAP_FR_DB_BACKUP_DIRECTORY=./db-backup/
+export ABCMAP_FR_DB_BACKUP_NUMBER=20
 
 export ABCMAP_FR_GANALYTICS_API_KEY=UA-57177987-1
 
@@ -17,4 +21,6 @@ export ABCMAP_FR_ADMIN_LOGIN=admin
 export ABCMAP_FR_ADMIN_PASSWORD=admin
 
 export ABCMAP_FR_ACTIVE_PROFILE=dev
+
+
 

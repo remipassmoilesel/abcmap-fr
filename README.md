@@ -5,8 +5,21 @@ Based on Spring Boot.
 
 ## Launch a demo
 
-	$ git clone https://github.com/remipassmoilesel/abcmap-fr
-	$ cd abcmap-fr
+You need a functionnal MySQL server. On Ubuntu 17.04:
+
+    $ sudo apt install mysql-server
+    
+Clone the project:
+
+    $ git clone https://github.com/remipassmoilesel/abcmap-fr
+    $ cd abcmap-fr
+    
+Configure a database:
+
+    $ ./setup-db.sh
+    
+Launch embedded HTTP server:
+    
 	$ ./launcher-example.sh
 
 After visit http://localhost:8085 .
@@ -19,6 +32,7 @@ After visit http://localhost:8085 .
 	- Github activity summary of a profile or a user in real time
 	- Donation form with Paypal
 	- Optionnal translation with Google Translate
+	- Automatic database backup
 
 ## Sass processing
 

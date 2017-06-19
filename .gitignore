@@ -4,6 +4,7 @@ target/
 *.swp
 tomcat-logs
 node_modules
+db-backup
 
 ### STS ###
 .apt_generated
