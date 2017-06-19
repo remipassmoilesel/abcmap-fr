@@ -273,6 +273,14 @@ public class MainController {
         return Templates.SITEMAP;
     }
 
+ @RequestMapping(value = Mappings.LEGAL_MENTION, method = RequestMethod.GET)
+    public String showLegalmentions(Model model, HttpSession session) {
+
+        includeMainModelVars(model);
+        Mappings.includeMappings(model);
+        return Templates.LEGAL_MENTION;
+    }
+
     @ResponseBody
     @RequestMapping(value = Mappings.GET_STATS_OF_THE_DAY, method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

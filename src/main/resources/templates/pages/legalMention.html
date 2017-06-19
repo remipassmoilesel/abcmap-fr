@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="main-decorator">
+<head>
+
+    <title>Mentions légales</title>
+
+    <!-- Head content is cloned in decorator, no need of th:fragments -->
+    <style type="text/css">
+        .legalMention p{
+            margin: 0.2em;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1 layout:fragment="header">Mentions légales</h1>
+
+<div layout:fragment="content">
+    <section class="legalMention">
+        <p><b>Développeur et administrateur du site:</b> Rémi Pace - fr.abcmap [@] gmail.com</p>
+        <p><b>Hébergeur:</b>  OVH</p>
+        <p><b>Téléphone:</b>  0 820 32 03 63</p>
+        <p><b>Siège social :</b>  2 rue Kellermann - 59100 Roubaix - France.</p>
+        <p>&nbsp;</p>
+        <p>Conformément aux articles 39 et suivants de la loi n° 78-17 du 6 janvier 1978 modifiée
+            en 2004 relatives à l’informatique, aux fichiers et aux libertés, toute personne
+            peut obtenir communication et, le cas échéant, rectification ou suppression des
+            informations la concernant en s'adressant au responsable de ce site.</p>
+
+    </section>
+</div>
+
+</body>
+</html>
+
+
+
