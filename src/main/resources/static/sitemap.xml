@@ -28,4 +28,12 @@
         <loc>http://abc-map.fr/license</loc>
         <changefreq>monthly</changefreq>
     </url>
+    <url>
+        <loc>http://abc-map.fr/legalmention</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
+        <loc>http://abc-map.fr/sitemap</loc>
+        <changefreq>monthly</changefreq>
+    </url>
 </urlset>
