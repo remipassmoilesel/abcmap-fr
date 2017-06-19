@@ -1,6 +1,7 @@
 package org.remipassmoilesel.abcmapfr.controllers;
 
 import com.jayway.jsonpath.JsonPath;
+import net.minidev.json.JSONArray;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -370,8 +371,7 @@ public class MainController {
             // add request header
             HttpResponse response = client.execute(request);
 
-            BufferedReader rd = new BufferedReader(
-                    new InputStreamReader(response.getEntity().getContent()));
+            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
             StringBuffer rawJson = new StringBuffer();
             String line = "";
@@ -381,7 +381,14 @@ public class MainController {
 
             int totalDownloads = -1;
             try {
-                totalDownloads = JsonPath.read(rawJson.toString(), "$.total");
+
+                // do not use "total" value from sourceforge, results are non significants
+                JSONArray downloads = JsonPath.read(rawJson, "$.oses[*][1]");
+                totalDownloads = 0;
+                for(Integer i : downloads.toArray(new Integer[downloads.size()])){
+                    totalDownloads += i;
+                }
+
             } catch (Exception e) {
                 logger.error("Error while parsing JSON", e);
             }
