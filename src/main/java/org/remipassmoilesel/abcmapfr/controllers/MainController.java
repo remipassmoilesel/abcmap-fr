@@ -9,15 +9,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.joda.time.DateTime;
 import org.remipassmoilesel.abcmapfr.Mappings;
 import org.remipassmoilesel.abcmapfr.Templates;
-import org.remipassmoilesel.abcmapfr.entities.Message;
-import org.remipassmoilesel.abcmapfr.entities.Stats;
-import org.remipassmoilesel.abcmapfr.entities.Subscription;
-import org.remipassmoilesel.abcmapfr.entities.Vote;
+import org.remipassmoilesel.abcmapfr.entities.*;
 import org.remipassmoilesel.abcmapfr.lists.*;
-import org.remipassmoilesel.abcmapfr.repositories.MessagesRepository;
-import org.remipassmoilesel.abcmapfr.repositories.StatsRepository;
-import org.remipassmoilesel.abcmapfr.repositories.SubscriptionsRepository;
-import org.remipassmoilesel.abcmapfr.repositories.VotesRepository;
+import org.remipassmoilesel.abcmapfr.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +59,9 @@ public class MainController {
 
     @Autowired
     private SubscriptionsRepository subscriptionsRepository;
+
+    @Autowired
+    private UpdateInformationRepository updateInformationRepository;
 
     @RequestMapping(value = Mappings.ROOT, method = RequestMethod.GET)
     public String showWelcome(Model model, HttpSession session) throws Exception {
@@ -279,6 +276,35 @@ public class MainController {
         includeMainModelVars(model);
         Mappings.includeMappings(model);
         return Templates.LEGAL_MENTION;
+    }
+
+    /**
+     * Serve update informations about the software. An instance of software
+     * contact this server, tell which version it is and get a message.
+     *
+     * If no message must be shown, return nothing
+     *
+     * @param version
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = Mappings.NEWS, method = RequestMethod.GET)
+    public String getNews(@RequestParam(name = "version", required = true) String version) {
+
+        Integer codeVersion = UpdateInformation.getCodeVersion(version);
+        if (codeVersion == null) {
+            return "";
+        }
+
+        List<UpdateInformation> informations = updateInformationRepository.getForCodeVersion(codeVersion);
+
+        StringBuilder output = new StringBuilder();
+        for (UpdateInformation inf : informations) {
+            output.append(inf.getContent());
+            output.append("\n\n");
+        }
+
+        return output.toString();
     }
 
     @ResponseBody

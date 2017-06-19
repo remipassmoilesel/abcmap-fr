@@ -2,14 +2,8 @@ package org.remipassmoilesel.abcmapfr.controllers;
 
 import org.joda.time.DateTime;
 import org.remipassmoilesel.abcmapfr.AbcmapFrApplication;
-import org.remipassmoilesel.abcmapfr.entities.Message;
-import org.remipassmoilesel.abcmapfr.entities.Stats;
-import org.remipassmoilesel.abcmapfr.entities.Subscription;
-import org.remipassmoilesel.abcmapfr.entities.Vote;
-import org.remipassmoilesel.abcmapfr.repositories.MessagesRepository;
-import org.remipassmoilesel.abcmapfr.repositories.StatsRepository;
-import org.remipassmoilesel.abcmapfr.repositories.SubscriptionsRepository;
-import org.remipassmoilesel.abcmapfr.repositories.VotesRepository;
+import org.remipassmoilesel.abcmapfr.entities.*;
+import org.remipassmoilesel.abcmapfr.repositories.*;
 import org.remipassmoilesel.abcmapfr.utils.DevDataFactory;
 import org.remipassmoilesel.abcmapfr.utils.Utils;
 import org.slf4j.Logger;
@@ -44,7 +38,10 @@ public class DevDataLoader implements ApplicationRunner {
     private SubscriptionsRepository subscriptionsRepository;
 
     @Autowired
-    Environment env;
+    private UpdateInformationRepository updateInformationRepository;
+
+    @Autowired
+    private Environment env;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -71,6 +68,25 @@ public class DevDataLoader implements ApplicationRunner {
         if (subscriptionsRepository.count() < 1) {
             populateSubscriptionsTable();
             logger.warn("-- Fake subscriptions added");
+        }
+
+        if (updateInformationRepository.count() < 1) {
+            populateUpdateInformationsTable();
+            logger.warn("-- Fake update informations added");
+        }
+
+    }
+
+    private void populateUpdateInformationsTable() {
+
+        DateTime start = new DateTime();
+
+        for (int i = 0; i <= 3; i++) {
+            UpdateInformation ui = new UpdateInformation(
+                    start.minusDays(i).toDate(),
+                    "CodeVersion-" + i + " -- " + Utils.generateLoremIpsum(500),
+                    i);
+            updateInformationRepository.save(ui);
         }
 
     }

@@ -45,6 +45,8 @@ public class Mappings {
     public static final String SITEMAP_XML = ROOT + "sitemap.xml";
     public static final String LEGAL_MENTION = ROOT + "legalmention";
 
+    public static final String NEWS = ROOT + "news";
+
     public static MappingMap getMap() {
 
         MappingMap result = new MappingMap();
