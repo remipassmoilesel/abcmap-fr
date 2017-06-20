@@ -406,7 +406,7 @@ public class MainController {
             try {
 
                 // do not use "total" value from sourceforge, results are non significants
-                JSONArray downloads = JsonPath.read(rawJson, "$.oses[*][1]");
+                JSONArray downloads = JsonPath.read(rawJson.toString(), "$.oses[*][1]");
                 totalDownloads = 0;
                 for (Integer i : downloads.toArray(new Integer[downloads.size()])) {
                     totalDownloads += i;

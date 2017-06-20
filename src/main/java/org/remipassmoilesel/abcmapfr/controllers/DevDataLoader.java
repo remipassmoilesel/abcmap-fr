@@ -109,7 +109,9 @@ public class DevDataLoader implements ApplicationRunner {
     }
 
     private void populateStatsTable() {
-        for (int i = 0; i < 100; i++) {
+
+        // start at 3 in order to download stats today
+        for (int i = 3; i < 100; i++) {
             Stats s = DevDataFactory.newStat(new DateTime().minusDays(i).toDate(), null);
             statsRepository.save(s);
         }
