@@ -25,6 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // avoid weird errors
         http.csrf().disable()
+                // allow calls from iframes
+                .headers().frameOptions().sameOrigin()
+                .and()
                 // normal visitors are logged as anonymous
                 .anonymous()
                 .authorities(ANONYMOUS)
