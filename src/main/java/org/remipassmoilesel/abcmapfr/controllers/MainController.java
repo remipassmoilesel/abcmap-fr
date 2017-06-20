@@ -3,8 +3,10 @@ package org.remipassmoilesel.abcmapfr.controllers;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.joda.time.DateTime;
@@ -111,7 +113,7 @@ public class MainController {
 
         // retrieve and add download link if needed
         if (downloadType != null) {
-            String link = DownloadLocations.get(downloadType.trim().toLowerCase());
+            String link = DownloadLocations.get(downloadType.trim().toLowerCase()).getLocation();
 
             if (link == null) {
                 includeErrorMessage(model, "Téléchargement non disponible");
@@ -154,6 +156,7 @@ public class MainController {
      * @param session
      * @return
      */
+    @ResponseBody
     @RequestMapping(value = Mappings.DOWNLOADER_PHP, method = RequestMethod.GET)
     public void getFile(Model model, HttpSession session, HttpServletResponse response,
                         @RequestParam(name = "id") String id) {
@@ -161,14 +164,21 @@ public class MainController {
         id = id.trim().toLowerCase();
 
         // test if id is valid or return nothing
-        String location = DownloadLocations.get(id);
-        if (location == null) {
+        DownloadLocations.DownloadLocation download = DownloadLocations.get(id);
+        if (download == null) {
             return;
         }
 
         // return file content
         try {
-            InputStream is = MainController.class.getResourceAsStream(location);
+
+            response.addHeader("Content-Type", MediaType.parseMediaType(download.getContentType()).toString());
+            response.addHeader("Content-Disposition", "inline;filename=" + id);
+
+            InputStream is = MainController.class.getResourceAsStream(download.getLocation());
+
+            response.setContentType(download.getContentType().toString());
+
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
         } catch (IOException ex) {
