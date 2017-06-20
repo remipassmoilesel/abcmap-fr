@@ -5,6 +5,7 @@ target/
 tomcat-logs
 node_modules
 db-backup
+rsync.sh
 
 ### STS ###
 .apt_generated
