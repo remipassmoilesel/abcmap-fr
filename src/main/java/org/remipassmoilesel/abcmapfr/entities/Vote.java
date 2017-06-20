@@ -20,6 +20,13 @@ public class Vote {
     @Column(columnDefinition = "VARCHAR(300)")
     private String url;
 
+    @Column(columnDefinition = "TEXT")
+    private String userAgent;
+
+    private String language;
+
+    private String anonymRemoteAddr;
+
     protected Vote() {
     }
 
@@ -66,6 +73,30 @@ public class Vote {
         this.url = url;
     }
 
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getAnonymRemoteAddr() {
+        return anonymRemoteAddr;
+    }
+
+    public void setAnonymRemoteAddr(String anonymRemoteAddr) {
+        this.anonymRemoteAddr = anonymRemoteAddr;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,12 +105,15 @@ public class Vote {
         return Objects.equals(id, vote.id) &&
                 Objects.equals(value, vote.value) &&
                 Objects.equals(date, vote.date) &&
-                Objects.equals(url, vote.url);
+                Objects.equals(url, vote.url) &&
+                Objects.equals(userAgent, vote.userAgent) &&
+                Objects.equals(language, vote.language) &&
+                Objects.equals(anonymRemoteAddr, vote.anonymRemoteAddr);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, value, date, url);
+        return Objects.hash(id, value, date, url, userAgent, language, anonymRemoteAddr);
     }
 
     @Override
@@ -89,7 +123,9 @@ public class Vote {
                 ", value=" + value +
                 ", date=" + date +
                 ", url='" + url + '\'' +
+                ", userAgent='" + userAgent + '\'' +
+                ", language='" + language + '\'' +
+                ", anonymRemoteAddr='" + anonymRemoteAddr + '\'' +
                 '}';
     }
-
 }

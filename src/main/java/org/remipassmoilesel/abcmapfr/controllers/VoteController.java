@@ -3,6 +3,7 @@ package org.remipassmoilesel.abcmapfr.controllers;
 import org.remipassmoilesel.abcmapfr.Mappings;
 import org.remipassmoilesel.abcmapfr.entities.Vote;
 import org.remipassmoilesel.abcmapfr.repositories.VotesRepository;
+import org.remipassmoilesel.abcmapfr.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -31,11 +33,15 @@ public class VoteController {
 
     @ResponseBody
     @RequestMapping(value = Mappings.VOTE_ROOT, method = RequestMethod.GET)
-    public void postVote(
+    public void postVote(HttpServletRequest request,
             @RequestParam(value = "v", required = true) int value,
             @RequestParam(value = "p", required = false) String page) {
 
         Vote vote = new Vote(value, new Date(), page);
+        vote.setAnonymRemoteAddr(Utils.anonymizeIpAdress(request.getRemoteAddr()));
+        vote.setUserAgent(request.getHeader("User-Agent"));
+        vote.setLanguage(request.getHeader("Accept-Language"));
+
         voteRepository.save(vote);
 
     }
