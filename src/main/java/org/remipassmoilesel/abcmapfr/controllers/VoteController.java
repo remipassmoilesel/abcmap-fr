@@ -35,7 +35,7 @@ public class VoteController {
             @RequestParam(value = "v", required = true) int value,
             @RequestParam(value = "p", required = false) String page) {
 
-        Vote vote = new Vote(value, null, page);
+        Vote vote = new Vote(value, new Date(), page);
         voteRepository.save(vote);
 
     }
