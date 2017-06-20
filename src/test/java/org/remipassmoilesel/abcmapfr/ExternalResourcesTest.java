@@ -20,7 +20,10 @@ public class ExternalResourcesTest {
     public void test() throws IOException {
 
         List<String> toTest = Arrays.asList(
-                "http://colmdoyle.github.io/gh-activity/gh-activity.html?user=remipassmoilesel&type=user"
+                "https://sourceforge.net/projects/abc-map/files/abcmap-win.zip/download",
+                "https://sourceforge.net/projects/abc-map/files/abcmap-mac.zip/download",
+                "https://sourceforge.net/projects/abc-map/files/abcmap-linux.zip/download",
+                "https://sourceforge.net/projects/abc-map/files/abcmap-sources.zip/download"
         );
 
         CloseableHttpClient client = HttpClientBuilder.create().build();

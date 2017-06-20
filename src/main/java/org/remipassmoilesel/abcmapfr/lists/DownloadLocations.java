@@ -13,7 +13,7 @@ public class DownloadLocations {
         downloadLocations.put("windows", "https://sourceforge.net/projects/abc-map/files/abcmap-win.zip/download");
         downloadLocations.put("mac", "https://sourceforge.net/projects/abc-map/files/abcmap-mac.zip/download");
         downloadLocations.put("linux", "https://sourceforge.net/projects/abc-map/files/abcmap-linux.zip/download");
-        downloadLocations.put("sources", "https://sourceforge.net/projects/abc-map/files/abcmap-sources.zip/download");
+        downloadLocations.put("source", "https://sourceforge.net/projects/abc-map/files/abcmap-sources.zip/download");
 
         String manualRoot = "/static/manual";
         downloadLocations.put("tutoriel_cotentin.pdf", manualRoot + "/tutoriel_cotentin.pdf");
