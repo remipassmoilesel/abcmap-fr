@@ -9,6 +9,7 @@ import org.remipassmoilesel.abcmapfr.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.env.Environment;
@@ -45,8 +46,13 @@ public class DevDataLoader implements ApplicationRunner {
     @Autowired
     private Environment env;
 
+    @Value("${app.db-name}")
+    private String dbName;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+        logger.warn("Database name: " + dbName);
 
         if (Arrays.asList(env.getActiveProfiles()).contains(AbcmapFrApplication.DEV_PROFILE) == false) {
             return;

@@ -3,10 +3,12 @@
 # Launch script for Abc-Map
 # You can modify environment vars to modify site behavior
 
-export ABCMAP_FR_DB_URL=jdbc:mysql://localhost:3306/abcmapfr
+export ABCMAP_FR_DB_NAME=abcmapfr
+# Specify JDBC url without database name
+export ABCMAP_FR_DB_URL=jdbc:mysql://localhost:3306/
 export ABCMAP_FR_DB_USERNAME=abcmapfr
 export ABCMAP_FR_DB_PASSWORD=abcmapfr
-export ABCMAP_FR_DB_NAME=abcmapfr
+
 
 export ABCMAP_FR_DB_BACKUP_DIRECTORY=./db-backup/
 export ABCMAP_FR_DB_BACKUP_NUMBER=40
