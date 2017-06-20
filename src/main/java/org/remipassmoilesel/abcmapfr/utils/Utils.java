@@ -8,7 +8,11 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Random;
 
 /**
@@ -70,4 +74,20 @@ public class Utils {
     public static String anonymizeIpAdress(String stringIp) {
         return stringIp.replaceFirst("[0-9]{1,3}\\.[0-9]{1,3}$", "X.X");
     }
+
+    public void anonymizeRawString(String raw, Path destinationPath) throws IOException {
+
+        Files.createFile(destinationPath);
+
+        BufferedWriter writer = Files.newBufferedWriter(destinationPath);
+
+        for (String ip : raw.split("\n")) {
+            writer.write(Utils.anonymizeIpAdress(ip));
+            writer.newLine();
+        }
+
+        writer.flush();
+        writer.close();
+    }
+
 }
