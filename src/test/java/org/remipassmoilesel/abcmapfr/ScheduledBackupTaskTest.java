@@ -50,7 +50,7 @@ public class ScheduledBackupTaskTest {
         int backupNumber = maxBackupNumber * 2;
 
         // do some backups
-        for (int i = 0; i < backupNumber; i++) {
+        for (int i = 0; i <= backupNumber; i++) {
             int returnCode = backupTask.processBackup();
 
             // test return codes
