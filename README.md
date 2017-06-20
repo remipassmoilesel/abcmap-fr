@@ -13,6 +13,8 @@ Clone the project:
 
     $ git clone https://github.com/remipassmoilesel/abcmap-fr
     $ cd abcmap-fr
+    $ git submodule init
+    $ git submodule update
     
 Configure a database:
 
