@@ -3,10 +3,8 @@ package org.remipassmoilesel.abcmapfr.controllers;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.joda.time.DateTime;
@@ -81,7 +79,9 @@ public class MainController {
 
         // get download number
         try {
-            model.addAttribute("downloadsThisWeek", getDownloadsThisWeek());
+            Stats stats = getStatsOfTheWeek();
+            model.addAttribute("downloadsThisWeek",
+                    stats == null ? -1 : stats.getTotalDownloads());
         } catch (Exception e) {
             logger.error("Error while grabing downloads", e);
             model.addAttribute("downloadsThisWeek", -1);
@@ -342,7 +342,7 @@ public class MainController {
     @ResponseBody
     @RequestMapping(value = Mappings.GET_STATS_OF_THE_DAY, method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String getStatsOfTheDay() throws IOException {
+    public String getJSONStatsOfTheWeek() throws IOException {
         return getStatsOfTheWeek().getContent();
     }
 
@@ -433,10 +433,6 @@ public class MainController {
 
             return st;
         }
-    }
-
-    public int getDownloadsThisWeek() throws IOException {
-        return getStatsOfTheWeek().getTotalDownloads();
     }
 
     private void includeMainModelVars(Model model) {

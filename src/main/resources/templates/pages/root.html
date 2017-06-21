@@ -43,7 +43,7 @@
                 ${mappings.get('DOWNLOAD')} + '\''">
                 Télécharger Abc-Map
             </button>
-            <div id="downloadNumber" th:if="${downloadsThisWeek} != -1" th:inline="text">
+            <div id="downloadNumber" th:if="${downloadsThisWeek} != -1 and ${downloadsThisWeek} != null" th:inline="text">
                 [[${downloadsThisWeek}]] téléchargements cette semaine
             </div>
             <div th:inline="text" th:if="${sumVote} != null and ${sumVote} > 0">[[${#numbers.formatDecimal(averageVote, 0, 2)}]] / 5
