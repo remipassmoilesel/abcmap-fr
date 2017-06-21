@@ -2,6 +2,7 @@ package org.remipassmoilesel.abcmapfr;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.remipassmoilesel.abcmapfr.controllers.ScheduledBackupTask;
@@ -24,6 +25,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by remipassmoilesel on 19/06/17.
  */
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ActiveProfiles(AbcmapFrApplication.DEV_PROFILE)
@@ -38,6 +40,7 @@ public class ScheduledBackupTaskTest {
     @Value("${app.db-max-backup-number}")
     private int maxBackupNumber;
 
+    @Ignore
     @Test
     public void test() throws Exception {
 
