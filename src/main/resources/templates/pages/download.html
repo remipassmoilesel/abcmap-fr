@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h1 layout:fragment="header">Téléchargement</h1>
+<h1 layout:fragment="header">Télécharger</h1>
 
 <div layout:fragment="content">
 
@@ -48,7 +48,9 @@
                     <li>Je dois respecter les droits de propriété des différentes données que
                         j'utiliserai avec ce logiciel
                     </li>
-                    <li>Je dois respecter respecter la licence d'utilisation de ce logiciel</li>
+                    <li>Je dois respecter respecter la <a th:href="${mappings.get('LICENSE')}">
+                        licence d'utilisation</a> de ce logiciel
+                    </li>
                 </ul>
             </div>
 

@@ -17,7 +17,7 @@ import static junit.framework.TestCase.assertTrue;
 public class ExternalResourcesTest {
 
     @Test
-    public void test() throws IOException {
+    public void testDownloads() throws IOException {
 
         List<String> toTest = Arrays.asList(
                 "https://sourceforge.net/projects/abc-map/files/abcmap-win.zip/download",

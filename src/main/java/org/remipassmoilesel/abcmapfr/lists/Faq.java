@@ -58,7 +58,7 @@ public class Faq {
                 "    sur <a href='{$url->HELP_URL->url}'>la page d'aide du site</a>.</p>");
 
         titles.add("");
-        questions.add("Abc-Map et Java sont ils sûrs ?");
+        questions.add("Abc-Map et Java sont-ils sûrs ?");
         answers.add("<p><b>Abc-Map est un logiciel libre (à code source ouvert et vérifiable) recommandé par plusieurs académies françaises</b>" +
                 " (tous les liens sur la " +
                 "<a href='" + projectPage + "'>page du présentation du projet</a>)" +

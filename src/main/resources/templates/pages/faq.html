@@ -19,8 +19,6 @@
 
         <a name="#top"/>
 
-        <h3>Sommaire</h3>
-
         <div th:each="question, iter : ${questions}">
 
             <h4 class="title" th:if="${#strings.isEmpty(titles.get(iter.index)) == false}"
