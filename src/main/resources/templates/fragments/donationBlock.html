@@ -30,13 +30,13 @@
         </div>
 
         <div class="centered">
-            <input type="image" src="/images/paypal_submit.png"
+            <input type="image" th:src="@{/images/paypal_submit.png}"
                    width="140" style="border: solid gray 1px"
                    alt="Faire un don sécurisé Paypal" border="0"/>
         </div>
 
         <div class="centered">
-            <a th:href="${mappings.get('WHY_DONATE')}">Pourquoi faire un don ?</a>
+            <a th:href="@{${mappings.get('WHY_DONATE')}}">Pourquoi faire un don ?</a>
         </div>
 
     </form>

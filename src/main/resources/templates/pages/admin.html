@@ -6,7 +6,7 @@
 
     <title>Admin</title>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/admin.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/admin.css}"/>
 
 </head>
 <body>
@@ -17,7 +17,7 @@
     <section>
 
         <a style="display: block; text-align: right"
-           th:href="${mappings.get('ADMIN_PAGE_LOGOUT')}">Déconnexion</a>
+           th:href="@{${mappings.get('ADMIN_PAGE_LOGOUT')}}">Déconnexion</a>
 
         <h2>Dernières utilisations</h2>
         <table>

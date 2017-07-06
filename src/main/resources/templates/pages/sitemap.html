@@ -7,7 +7,7 @@
     <title>Plan du site</title>
 
     <!-- Head content is cloned in decorator, no need of th:fragments -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/sitemap.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/sitemap.css}"/>
 
 </head>
 <body>
@@ -25,12 +25,12 @@
 
             <tr th:each="l : ${links}" th:href="${l[0]}">
                 <td>
-                    <a th:href="${l[0]}" th:text="${l[0]}">
+                    <a th:href="@{${l[0]}}" th:text="${l[0]}">
                         /contact
                     </a>
                 </td>
                 <td>
-                    <a th:href="${l[0]}" th:text="${l[1]}">
+                    <a th:href="@{${l[0]}}" th:text="${l[1]}">
                         Page de contact
                     </a>
                 </td>

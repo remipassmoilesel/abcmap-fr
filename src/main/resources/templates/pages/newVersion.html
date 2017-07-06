@@ -6,7 +6,7 @@
 
     <title>Nouvelle version à venir</title>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/newVersion.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/newVersion.css}"/>
 
 </head>
 <body>
@@ -48,12 +48,12 @@
         </p>
 
         <div class="thumbsBox">
-            <a href="/images/abcmap2-screenshot1.png" data-lightbox="screenshot">
-                <img src="/images/abcmap2-screenshot1.png"/>
+            <a th:href="@{/images/abcmap2-screenshot1.png}" data-lightbox="screenshot">
+                <img th:src="@{/images/abcmap2-screenshot1.png}"/>
             </a>
             &nbsp;&nbsp;
-            <a href="/images/abcmap2-screenshot2.png" data-lightbox="screenshot">
-                <img src="/images/abcmap2-screenshot2.png"/>
+            <a th:href="@{/images/abcmap2-screenshot2.png}" data-lightbox="screenshot">
+                <img th:src="@{/images/abcmap2-screenshot2.png}"/>
             </a>
         </div>
 
@@ -114,7 +114,7 @@
         <div style="text-align: center">
             <h3>Activité en temps réel</h3>
             <iframe allowtransparency="true" frameborder="0" scrolling="no" seamless="seamless"
-                    src="/gh-activity/gh-activity.html?user=remipassmoilesel&amp;type=user"
+                    th:src="@{/gh-activity/gh-activity.html(user='remipassmoilesel', type='user')}"
                     width="300" height="500"></iframe>
 
         </div>

@@ -13,39 +13,40 @@
     <meta property="og:url" content="http://abc-map.fr/"/>
     <meta name="description" content="Abc-Map est un logiciel libre, portable et multi-plateforme pour créer des cartes géographiques simplement." />
     <meta name="keywords" content=" Abc-Map, Logiciel libre, Cartographie, Système d'Information Géographique, Géographie, Carte, Randonnée, Course d'orientation, Chasse et pêche, Géo-Caching, Découverte"/>
-    <link rel="image_src" href="http://abc-map.fr/img/shared_logo.png" />
+    <link rel="image_src" th:href="@{/img/shared_logo.png}" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-    <link rel="stylesheet" href="/bower_components/lightbox2/dist/css/lightbox.css"/>
+    <link rel="stylesheet" th:href="@{/bower_components/lightbox2/dist/css/lightbox.css}"/>
 
     <!--[if lte IE 8]>
     <script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="/assets/css/main.css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}"/>
     <!--[if lte IE 8]>
-    <link rel="stylesheet" href="/assets/css/ie8.css"/><![endif]-->
+    <link rel="stylesheet" th:href="@{/assets/css/ie8.css}"/><![endif]-->
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="/assets/css/ie9.css"/><![endif]-->
+    <link rel="stylesheet" th:href="@{/assets/css/ie9.css}"/><![endif]-->
 
     <!-- favicon -->
-    <link rel="icon" href="/images/favicon.png" type="image/png"/>
-    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="icon" th:href="@{/images/favicon.png}" type="image/png"/>
+    <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
 
     <!-- Scripts -->
     <!--<script src="/assets/js/jquery.min.js"></script>-->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/lightbox2/dist/js/lightbox.js"></script>
-    <script src="/assets/js/skel.min.js"></script>
-    <script src="/assets/js/util.js"></script>
+    <script th:src="@{/bower_components/jquery/dist/jquery.js}"></script>
+    <script th:src="@{/bower_components/lightbox2/dist/js/lightbox.js}"></script>
+    <script th:src="@{/assets/js/skel.min.js}"></script>
+    <script th:src="@{/assets/js/util.js}"></script>
     <!--[if lte IE 8]>
-    <script src="/assets/js/ie/respond.min.js"></script><![endif]-->
-    <script src="/assets/js/main.js"></script>
+    <script th:src="@{/assets/js/ie/respond.min.js}"></script><![endif]-->
+    <script th:src="@{/assets/js/main.js}"></script>
 
     <script type="text/javascript" th:inline="javascript">
 
         var UrlTree = {
-            VOTE_URL: /*[[${mappings.get('VOTE_ROOT')}]]*/ null,
-            POST_MAIL_URL: /*[[${mappings.get('SUBSCRIBE')}]]*/ null
+            VOTE_URL: /*[[${#httpServletRequest.getContextPath() + mappings.get('VOTE_ROOT')}]]*/ null,
+            POST_MAIL_URL: /*[[${#httpServletRequest.getContextPath() + mappings.get('SUBSCRIBE')}]]*/ null,
+            DOWNLOAD_PAGE: /*[[${#httpServletRequest.getContextPath() + mappings.get('DOWNLOAD')}]]*/ null
         };
 
         /*<![CDATA[*/
@@ -99,8 +100,8 @@
         /*]]>*/
     </script>
 
-    <script src="/assets/js/vote.js"></script>
-    <script src="/assets/js/mailinglist.js"></script>
+    <script th:src="@{/assets/js/vote.js}"></script>
+    <script th:src="@{/assets/js/mailinglist.js}"></script>
 
     <script type="text/javascript" th:inline="javascript"
             th:if="${googleAnalyticsApiKey != null}">
@@ -167,7 +168,8 @@
             <!-- Header -->
             <header id="header">
 
-                <a href="/" class="logo">Abc-Map&nbsp;<span class="fa fa-globe"></span>&nbsp;</a>
+                <a th:href="@{${mappings.get('ROOT')}}" class="logo">
+                    Abc-Map&nbsp;<span class="fa fa-globe"></span>&nbsp;</a>
 
                 <ul class="icons">
                     <li>
@@ -177,7 +179,7 @@
                            target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
                     <li><a href="https://plus.google.com/share?url=https%3A%2F%2Fabc-map.fr"
                            target="_blank" class="icon fa-google-plus"><span class="label">Google Plus</span></a></li>
-                    <li><a th:href="${mappings.get('TRANSLATE')}">Translate&nbsp;
+                    <li><a th:href="@{${mappings.get('TRANSLATE')}}">Translate&nbsp;
                         <span class="label icon fa fa-globe"></span></a></li>
                 </ul>
             </header>
@@ -360,66 +362,14 @@
                     </div>
                 </header>
                 <ul>
-                    <li><a th:href="${mappings.get('ROOT')}">Accueil</a></li>
-                    <li><a th:href="${mappings.get('DOWNLOAD')}">Télécharger</a></li>
-                    <li><a th:href="${mappings.get('FAQ')}">Questions fréquentes</a></li>
-                    <li><a th:href="${mappings.get('HELP')}">Aide et tutoriels</a></li>
-                    <li><a th:href="${mappings.get('ABOUT_PROJECT')}">Découvrir le projet</a></li>
-                    <li><a th:href="${mappings.get('NEW_VERSION')}">Nouvelle version à venir</a></li>
-                    <!--<li><a th:href="${mappings.get('CONTACT')}">Contact</a></li>-->
-
-                    <!--
-                    <li>
-                        <span class="opener">Submenu</span>
-                        <ul>
-                            <li><a href="#">Lorem Dolor</a></li>
-                            <li><a href="#">Ipsum Adipiscing</a></li>
-                            <li><a href="#">Tempus Magna</a></li>
-                            <li><a href="#">Feugiat Veroeros</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Etiam Dolore</a></li>
-                    <li><a href="#">Adipiscing</a></li>
-                    <li>
-                        <span class="opener">Another Submenu</span>
-                        <ul>
-                            <li><a href="#">Lorem Dolor</a></li>
-                            <li><a href="#">Ipsum Adipiscing</a></li>
-                            <li><a href="#">Tempus Magna</a></li>
-                            <li><a href="#">Feugiat Veroeros</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Maximus Erat</a></li>
-                    <li><a href="#">Sapien Mauris</a></li>
-                    <li><a href="#">Amet Lacinia</a></li>
-                    -->
+                    <li><a th:href="@{${mappings.get('ROOT')}}">Accueil</a></li>
+                    <li><a th:href="@{${mappings.get('DOWNLOAD')}}">Télécharger</a></li>
+                    <li><a th:href="@{${mappings.get('FAQ')}}">Questions fréquentes</a></li>
+                    <li><a th:href="@{${mappings.get('HELP')}}">Aide et tutoriels</a></li>
+                    <li><a th:href="@{${mappings.get('ABOUT_PROJECT')}}">Découvrir le projet</a></li>
+                    <li><a th:href="@{${mappings.get('NEW_VERSION')}}">Nouvelle version à venir</a></li>
                 </ul>
             </nav>
-
-            <!-- Section
-            <section>
-                <header class="major">
-                    <h2>Ante interdum</h2>
-                </header>
-                <div class="mini-posts">
-                    <article>
-                        <a href="#" class="image"><img src="/images/pic07.jpg" alt=""/></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="/images/pic08.jpg" alt=""/></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="/images/pic09.jpg" alt=""/></a>
-                        <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
-                    </article>
-                </div>
-                <ul class="actions">
-                    <li><a href="#" class="button">More</a></li>
-                </ul>
-            </section>
-            -->
 
             <!-- Section -->
             <section>
@@ -471,7 +421,7 @@
                 <p>Proposez une idée ou signalez une erreur directement au développeur.</p>
                 <ul class="contact">
                     <li class="fa-forward">
-                        <a th:href="${mappings.get('CONTACT')}">Formulaire de contact</a></li>
+                        <a th:href="@{${mappings.get('CONTACT')}}">Formulaire de contact</a></li>
                     <li class="fa-envelope-o">
                         <a href="mailto:fr.abcmap@gmail.com">fr.abcmap@gmail.com</a></li>
                 </ul>
@@ -481,8 +431,8 @@
             <section>
 
                 <ul style="list-style: none">
-                    <li><a th:href="${mappings.get('SITEMAP')}">Plan du site</a></li>
-                    <li><a th:href="${mappings.get('LEGAL_MENTION')}">Mentions légales</a></li>
+                    <li><a th:href="@{${mappings.get('SITEMAP')}}">Plan du site</a></li>
+                    <li><a th:href="@{${mappings.get('LEGAL_MENTION')}}">Mentions légales</a></li>
                 </ul>
 
             </section>

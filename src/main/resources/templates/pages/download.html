@@ -6,7 +6,7 @@
 
     <title>Téléchargement</title>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/download.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/download.css}"/>
 
 </head>
 <body>
@@ -19,7 +19,7 @@
         Abc-Map est un logiciel <b>libre et portable</b>: il est gratuit pour tous usages et
         ne nécéssite pas d'installation. Ce logiciel fonctionne sur <b>Windows, Linux et Mac</b>.
         Découvrez toutes les étapes d'installation et d'utilisation en quelques minutes en
-        consultant <a th:href="${mappings.get('HELP')}">les tutoriels du logiciel.</a>
+        consultant <a th:href="@{${mappings.get('HELP')}}">les tutoriels du logiciel.</a>
     </section>
 
     <section style="padding: 1em;" th:if="${#strings.isEmpty(downloadLink) == true}">
@@ -48,7 +48,7 @@
                     <li>Je dois respecter les droits de propriété des différentes données que
                         j'utiliserai avec ce logiciel
                     </li>
-                    <li>Je dois respecter respecter la <a th:href="${mappings.get('LICENSE')}">
+                    <li>Je dois respecter respecter la <a th:href="@{${mappings.get('LICENSE')}}">
                         licence d'utilisation</a> de ce logiciel
                     </li>
                 </ul>

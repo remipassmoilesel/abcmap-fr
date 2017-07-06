@@ -6,7 +6,7 @@
 
     <title>Découvrir le projet</title>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/aboutProject.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/aboutProject.css}"/>
 
 </head>
 <body>
@@ -40,15 +40,15 @@
             fonctionnalités plus proches des attentes des utilisateurs, cette version
             utilise des méthodologies et des technologies modernes dans le but d'offrir une plus grande
             fiabilité aux utilisateurs, et d'être plus facilement maintenable et extensible. Pour en
-            savoir plus rendez-vous sur la <a th:href="${mappings.get('NEW_VERSION')}">page dédiée à la nouvelle version</a>.
+            savoir plus rendez-vous sur la <a th:href="@{${mappings.get('NEW_VERSION')}}">page dédiée à la nouvelle version</a>.
         </p>
 
 
         <a name="developer"/>
         <h2>Concepteur / Développeur</h2>
 
-        <a href="https://toutes-les-bulles-eclatent.fr" target="_blank">
-            <img src="/images/author.jpg" id="author" alt="Rémi Pace"/>
+        <a th:href="@{https://toutes-les-bulles-eclatent.fr}" target="_blank">
+            <img th:src="@{/images/author.jpg}" id="author" alt="Rémi Pace"/>
         </a>
         <h4>Rémi Pace</h4>
 

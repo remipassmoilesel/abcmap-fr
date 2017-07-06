@@ -6,7 +6,7 @@
 
     <title>Aide et tutoriels</title>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/help.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/help.css}"/>
 
 </head>
 <body>
@@ -19,7 +19,7 @@
         Dans cette section vous trouverez des <b>tutoriels vidéos et statiques</b> expliquant
         le fonctionnement d'Abc-Map. Vous avez un problème technique ? Vous souhaitez plus
         de renseignements sur ce logiciel ? Pensez à consulter la section des
-        <a th:href="${mappings.get('FAQ')}">questions fréquentes</a>.
+        <a th:href="@{${mappings.get('FAQ')}}">questions fréquentes</a>.
     </section>
 
     <!-- Video tutorials -->
@@ -53,8 +53,8 @@
             document de traitement de texte. Le résultat attendu est affiché ci-dessous:</p>
 
         <div class="tutorialIllustration">
-            <a href="/images/cotentin.png" data-lightbox="cotentin">
-                <img src="/images/cotentin.png" style="width: 30%;"/>
+            <a th:href="@{/images/cotentin.png}" data-lightbox="cotentin">
+                <img th:src="@{/images/cotentin.png}" style="width: 30%;"/>
             </a>
             <a href="http://lycee.clionautes.org/spip.php?article603" target="_blank">http://lycee.clionautes.org/spip.php?article603</a>
         </div>
@@ -65,7 +65,7 @@
             d'un itinéraire.</p>
 
         <div class="tutorialIllustration">
-            <img src="/images/wikihow.png" width="200" alt="Tutoriel en ligne WikiHow"/>
+            <img th:src="@{/images/wikihow.png}" width="200" alt="Tutoriel en ligne WikiHow"/>
             <a href="http://fr.wikihow.com/faire-une-carte-g%C3%A9ographique-simplement" target="_blank">
                 http://fr.wikihow.com/faire-une-carte-géographique-simplement
             </a>
@@ -79,7 +79,7 @@
             récits de voyages.</p>
 
         <div class="tutorialIllustration">
-            <img src="/images/randonnerleger.png" width="150" alt="Tutoriel en ligne WikiHow"/>
+            <img th:src="@{/images/randonnerleger.png}" width="150" alt="Tutoriel en ligne WikiHow"/>
             <a href="http://www.randonner-leger.org/wiki/doku.php?id=creer_sa_carte_avec_abc_map"
                target="_blank">
                 Wiki: http://www.randonner-leger.org/wiki/...
@@ -98,7 +98,7 @@
             inclus dans le logiciel et disponible directement à partir du menu "Aide"
             de Abc-Map.</p>
 
-        <a href="manual/manual_fr.pdf" id="manualLink">Télécharger le manuel</a>
+        <a th:href="@{/manual/manual_fr.pdf}" id="manualLink">Télécharger le manuel</a>
     </section>
 
     <script type="text/javascript" th:inline="javascript">

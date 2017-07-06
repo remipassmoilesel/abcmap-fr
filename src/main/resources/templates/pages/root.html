@@ -6,7 +6,7 @@
 
     <title>Bienvenue</title>
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/welcome.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/welcome.css}"/>
 
 </head>
 <body>
@@ -33,14 +33,13 @@
             <li>Et bien d'autres !</li>
         </ul>
 
-        <div id="tutorialLink"><a href="/help/">
+        <div id="tutorialLink"><a th:href="@{mappings.get('HELP')}">
             D&eacute;couvrez le fonctionnement du logiciel en quelques minutes<br/>
             grâce à la vidéo de pr&eacute;sentation</a>
         </div>
 
         <div id="downloadSection">
-            <button id="downloadButton" th:onClick="'window.location = \'' +
-                ${mappings.get('DOWNLOAD')} + '\''">
+            <button id="downloadButton" onclick="window.location=UrlTree.DOWNLOAD_PAGE">
                 Télécharger Abc-Map
             </button>
             <div id="downloadNumber" th:if="${downloadsThisWeek} != -1 and ${downloadsThisWeek} != null" th:inline="text">
@@ -58,7 +57,7 @@
         <div class="functionnality" th:each="func, iter : ${functionnalities}">
             <div class="description" th:utext="${func}"></div>
             <div>
-                <img th:src="${'/images/functionnality' + (iter.index + 1) + '.png'}"/>
+                <img th:src="@{${'/images/functionnality' + (iter.index + 1) + '.png'}}"/>
             </div>
         </div>
 
