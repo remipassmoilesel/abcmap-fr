@@ -145,7 +145,7 @@ public class Faq {
                 "" +
                 "</ul>");
 
-        titles.add("Question sur le projet");
+        titles.add("Questions sur le projet");
         questions.add("C’est gratuit ? Pourquoi ? Abc-Map est-il sûr ?");
         answers.add("<p><b>Abc-Map est un logiciel libre.</b> Un logiciel libre est un logiciel dont vous " +
                 "    pouvez consulter, modifier et redistribuer le code source. Il est presque impossible " +
