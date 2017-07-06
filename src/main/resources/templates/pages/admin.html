@@ -16,9 +16,17 @@
 <div layout:fragment="content">
     <section>
 
-        <a style="display: block; text-align: right"
-           th:href="@{${mappings.get('ADMIN_PAGE_LOGOUT')}}">Déconnexion</a>
+        <a style="display: block; text-align: right" th:href="@{${mappings.get('ADMIN_PAGE_LOGOUT')}}">Déconnexion</a>
 
+        <ul>
+            <li><a href="#lastUtilisations">Dernières utilisations</a></li>
+            <li><a href="#lastMessages">Derniers messages</a></li>
+            <li><a href="#lastVotes">Derniers votes</a></li>
+            <li><a href="#lastSubscriptions">Dernières souscriptions</a></li>
+            <li><a href="#lastStats">Dernières stats</a></li>
+        </ul>
+
+        <a name="lastUtilisations" />
         <h2>Dernières utilisations</h2>
         <table>
             <tr>
@@ -31,6 +39,7 @@
             </tr>
         </table>
 
+        <a name="lastMessages" />
         <h2>Derniers messages</h2>
         <table>
             <tr th:each="msg : ${messages}" style="padding-bottom: 2em">
@@ -45,6 +54,7 @@
             </tr>
         </table>
 
+        <a name="lastVotes" />
         <h2>Derniers votes</h2>
         <table>
             <tr>
@@ -59,6 +69,7 @@
             </tr>
         </table>
 
+        <a name="lastSubscriptions" />
         <h2>Dernières souscriptions</h2>
         <table>
             <tr>
@@ -71,6 +82,7 @@
             </tr>
         </table>
 
+        <a name="lastStats" />
         <h2>Dernières stats</h2>
         <table>
             <tr>
@@ -78,9 +90,10 @@
                 <th>Source</th>
                 <th>Date</th>
             </tr>
-            <tr th:each="st : ${stats}">
+            <tr th:each="st : ${stats}" th:onclick="'console.log(' + ${st.content}+ ')'"
+                style="cursor: pointer" title="Cliquer pour afficher en console">
                 <td th:text="${st.totalDownloads}"></td>
-                <td th:text="${#strings.substring(st.content,30) + '...'}"></td>
+                <td th:text="${#strings.substring(st.content, 0, 30) + '...'}"></td>
                 <td th:text="${st.date}"></td>
             </tr>
         </table>
