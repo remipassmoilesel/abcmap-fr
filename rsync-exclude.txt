@@ -1,3 +1,4 @@
 target/abcmap-fr-0.0.1-SNAPSHOT.war
 target/abcmap-fr-0.0.1-SNAPSHOT.war.original
-
+.git/*
+target/*
