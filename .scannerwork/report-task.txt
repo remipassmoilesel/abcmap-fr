@@ -1,0 +1,6 @@
+projectKey=org.remipassmoilesel:abcmap-fr
+serverUrl=http://localhost:9000
+serverVersion=6.4.0.25310
+dashboardUrl=http://localhost:9000/dashboard/index/org.remipassmoilesel:abcmap-fr
+ceTaskId=AVzzD1WzDGzydyT1Dtmq
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVzzD1WzDGzydyT1Dtmq
