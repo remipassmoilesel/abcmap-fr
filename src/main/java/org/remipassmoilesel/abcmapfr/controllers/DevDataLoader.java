@@ -40,6 +40,7 @@ public class DevDataLoader implements ApplicationRunner {
 
     @Autowired
     private UpdateInformationRepository updateInformationRepository;
+
     @Autowired
     private SoftwareUtilisationRepository softwareUtilisationRepository;
 

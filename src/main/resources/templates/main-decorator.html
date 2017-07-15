@@ -82,21 +82,25 @@
          * Scroll button
          */
 
-        // display button only if needed
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) {
-                $('#goToTopButton').fadeIn();
-            } else {
-                $('#goToTopButton').fadeOut();
-            }
-        });
+        $(function(){
 
-        //Click event to scroll to top
-        $(function () {
-            $('#goToTopButton').click(function () {
-                $('html, body').animate({scrollTop: 0}, 1100);
-                return false;
+            // display button only if needed
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('#goToTopButton').fadeIn();
+                } else {
+                    $('#goToTopButton').fadeOut();
+                }
             });
+
+            //Click event to scroll to top
+            $(function () {
+                $('#goToTopButton').click(function () {
+                    $('html, body').animate({scrollTop: 0}, 1100);
+                    return false;
+                });
+            });
+
         });
 
         /*]]>*/
