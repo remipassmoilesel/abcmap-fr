@@ -28,3 +28,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+inventory.cfg
+bower_components
+*.retry
