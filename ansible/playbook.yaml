@@ -1,0 +1,41 @@
+- hosts: vps
+  vars:
+    project_src: "{{ playbook_dir }}/.."
+    project_deps: "{{ project_src }}/src/main/resources/static"
+    project_dest: "/opt/abcmap-fr/"
+
+  tasks:
+  - name: "Build project"
+    shell: mvn package -Dmaven.test.skip=true
+    args:
+      chdir: "{{ project_src }}"
+      executable: /bin/bash
+    delegate_to: localhost
+
+  - name: "Build project"
+    shell: bower install --production
+    args:
+      chdir: "{{ project_deps }}"
+      executable: /bin/bash
+    delegate_to: localhost
+
+  - name: "Ensure destination directory exists"
+    file:
+      path: "{{ project_dest }}"
+      state: directory
+      recurse: yes
+      owner: 'www-data'
+
+  - name: "Send project to remotes"
+    synchronize:
+      src: "{{ project_src }}"
+      dest: "{{ project_dest }}"
+
+  - name: "Copy war to tomcat dir"
+    copy:
+      src: /opt/abcmap-fr/target/abcmap-fr-0.0.1-SNAPSHOT.war
+      remote_src: yes
+      dest: /opt/tomcat/webapps/vh_abcmap-fr/ROOT.war
+      owner: "tomcat"
+
+
