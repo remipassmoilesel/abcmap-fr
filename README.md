@@ -5,7 +5,9 @@ Based on Spring Boot.
 
 ## Launch a demo
 
-You need a functionnal MySQL server. On Ubuntu 17.04:
+This site works only on Java 1.8.   
+
+You need a MySQL/MariaDB server. On Ubuntu 17.04:
 
     $ sudo apt install mysql-server
     

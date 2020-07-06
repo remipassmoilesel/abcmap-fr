@@ -6,7 +6,7 @@
 
   tasks:
   - name: "Build project"
-    shell: mvn package -Dmaven.test.skip=true
+    shell: ./mvnw package -Dmaven.test.skip=true
     args:
       chdir: "{{ project_src }}"
       executable: /bin/bash
@@ -26,7 +26,7 @@
       recurse: yes
       owner: 'www-data'
 
-  - name: "Send project to remotes"
+  - name: "Send project to remote"
     synchronize:
       src: "{{ project_src }}"
       dest: "{{ project_dest }}"
