@@ -20,9 +20,9 @@ Configure a database:
 
     $ ./setup-db.sh
     
-Launch embedded HTTP server:
-    
-	$ ./launcher-example.sh
+Start:
+
+    $ ./launch-dev.sh
 
 After visit http://localhost:8085 .
 
